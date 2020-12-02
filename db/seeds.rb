@@ -11,6 +11,7 @@ Admin.create!(
   )
 
 Customer.create!(
+  is_teacher: true,
   username: "teacher",
   email: "uuu@uuu",
   password: "jjjjjj"

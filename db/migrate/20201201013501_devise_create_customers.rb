@@ -41,7 +41,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.string :username
       t.string :telephone_number
-      t.boolean :is_deleted, default: "false"
+      t.boolean :is_deleted, default: false
+      t.boolean :is_teacher, default: false
     end
 
     add_index :customers, :email,                unique: true
