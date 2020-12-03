@@ -15,3 +15,70 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ header {
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: #faa;
+  * {
+    position: relative;
+    z-index: 100;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    margin: 0 auto;
+    .logo {
+      padding: 10px 20px;
+      font-family: "Century";
+      font-size: 20px;
+      text-decoration: none;
+    }
+    ul {
+      justify-content: flex-end;
+      p {
+        padding: 10px 20px 10px 10px;
+      }
+      li {
+        list-style: none;
+        a {
+          display: block;
+          width: 110px;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          color: #333;
+        }
+      }
+      li:hover {
+        background-color: #fcc;
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.admin_header {
+  background-color: #aaf;
+  .header-content {
+    ul {
+      li:hover {
+        background-color: #ccf;
+      }
+    }
+  }
+}
+main {
+  padding: 200px 0;
+}
+footer {
+  padding: 15px 0;
+  font-size: 14px;
+  text-align: center;
+  background-color: #ccc;
+}
