@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
@@ -26,7 +26,7 @@
       <td><%= f.text_field :telephone_number %></td>
     </tr>
     <tr>
-      <th><%= f.label :password %></th>
+      <th><%= f.label :password, "パスワード" %></th>
       <td>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -35,16 +35,16 @@
       </td>
     </tr>
     <tr>
-      <th><%= f.label :password_confirmation %></th>
+      <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
       <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
     </tr>
   </table>
   <div class="field">
     <%= f.label :is_teacher, "Please check here if you're not Japanese" %>
-    <%= f.check_box :customer, :is_teacher, {class: "check_box"}, true, false %>
+     <!--f.check_box :customer, :is_teacher, {class: "check_box"}, true, false -->
   </div>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
-<%= render "customers/shared/links" %>
+<%= link_to 'すでに会員の方はこちら', new_customer_session_path %>
