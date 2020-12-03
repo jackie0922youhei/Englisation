@@ -1,38 +1,39 @@
 Rails.application.routes.draw do
-  namespace :customers do
-    get 'comments/create'
-    get 'comments/destroy'
-    get 'comments/edit'
-    get 'comments/update'
-  end
-  namespace :customers do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  namespace :customers do
-    get 'reviews/create'
-    get 'reviews/edit'
-    get 'reviews/update'
-    get 'reviews/destroy'
-  end
-  namespace :customers do
-    get 'posts/index'
-    get 'posts/new'
-    get 'posts/create'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/update'
-    get 'posts/destroy'
-  end
-  root to: 'home#about'
-  get 'homes/about'
+
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
   }
+
+  namespace :admins do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
 
   devise_for :customers, controllers: {
   sessions: 'customers/sessions',
   registrations: 'customers/registrations'
   }
+
+  namespace :customers do
+    root 'customers/posts#index'
+    get 'customers/mypage' => 'customers#show', as: 'mypage'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/information' => 'customers#update', as: 'update_information'
+    put 'customers/information' => 'customers#update'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+    put 'customers/withdraw' => 'customers#withdraw'
+    resources :posts do
+      resources :comments, only: [:create, :edit, :update, :destroy]
+      resource :favorites, only: [:create, :destroy]
+      resources :reviews, only: [:create, :edit, :update, :destroy]
+    end
+    resources :notifications, only: [:index] do
+      collection do
+        delete :destroy_all
+      end
+    end
+  end
+  get 'homes/about'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
