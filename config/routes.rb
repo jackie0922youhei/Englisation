@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+
+  devise_for :admins, controllers: {
+  sessions: 'admins/sessions'
+  }
+
+  devise_for :customers, controllers: {
+  sessions: 'customers/sessions',
+  registrations: 'customers/registrations'
+  }
+
   namespace :customers do
     get 'comments/create'
     get 'comments/destroy'
@@ -24,15 +34,8 @@ Rails.application.routes.draw do
     get 'posts/update'
     get 'posts/destroy'
   end
-  root to: 'home#about'
+  root 'customers/posts#index'
   get 'homes/about'
-  devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
-  }
 
-  devise_for :customers, controllers: {
-  sessions: 'customers/sessions',
-  registrations: 'customers/registrations'
-  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
