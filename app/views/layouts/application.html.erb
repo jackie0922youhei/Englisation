@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <% if admin_signed_in? %>
+      <header class="admin_header">
+        <div class="header-content">
+          <%= link_to 'Englisation', customers_posts_index_path, class: "logo" %>
+          <ul class="flex">
+            <li>
+              <%= link_to '会員一覧', admin_customers_path %>
+            </li>
+          </ul>
+        </div>
+      </header>
+    <& end %>
     <%= yield %>
   </body>
 </html>
