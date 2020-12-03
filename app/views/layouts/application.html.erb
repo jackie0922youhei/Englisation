@@ -23,10 +23,10 @@
     <% elsif customer_signed_in? %>
       <header>
         <div class="header-content">
-          <%= link_to 'Englisation', customers_posts_path, class: "logo" %>
+          <%= link_to 'Englisation', posts_path, class: "logo" %>
           <ul class="flex">
             <p>Welcome aboard <%= current_customer.username %>!</p>
-            <li><%= link_to 'マイページ', customers_mypage_path %></li>
+            <li><%= link_to 'マイページ', mypage_path %></li>
             <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
           </ul>
         </div>
