@@ -39,8 +39,10 @@
       <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
     </tr>
   </table>
-  <%= f.label :is_teacher, "Please check here if you're not Japanese" %>
-  <%= f.check_box :customer, :is_teacher, true, false %>
+  <div class="field">
+    <%= f.label :is_teacher, "Please check here if you're not Japanese" %>
+    <%= f.check_box :customer, :is_teacher, {class: "check_box"}, true, false %>
+  </div>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
