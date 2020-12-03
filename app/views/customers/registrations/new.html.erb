@@ -1,29 +1,50 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
-
+  <table class="table">
+    <tr>
+      <th><%= f.label :username, "ユーザーネーム" %></th>
+      <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email, "メールアドレス" %></th>
+      <td><%= f.email_field :email, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <th>名前</th>
+      <td><%= f.label :first_name, "(姓)" %>　<%= f.text_field :first_name %></td>
+      <td><%= f.label :last_name, "(名)" %>　<%= f.text_field :last_name %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td><%= f.label :first_name_kana, "(セイ)" %>　<%= f.text_field :first_name_kana %></td>
+      <td><%= f.label :last_name_kana, "(メイ)" %>　<%= f.text_field :last_name_kana %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telephone_number, "電話番号(ハイフンなし10or11桁)" %></th>
+      <td><%= f.text_field :telephone_number %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, "パスワード" %></th>
+      <td>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+  </table>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :is_teacher, "Please check here if you're not Japanese" %>
+     <!--f.check_box :customer, :is_teacher, {class: "check_box"}, true, false -->
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
-
-<%= render "customers/shared/links" %>
+<%= link_to 'すでに会員の方はこちら', new_customer_session_path %>
