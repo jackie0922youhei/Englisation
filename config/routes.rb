@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   }
 
   namespace :customers do
-    root 'customers/posts#index'
     get 'customers/mypage' => 'customers#show', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
     end
   end
   get 'homes/about'
+  root 'posts#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
