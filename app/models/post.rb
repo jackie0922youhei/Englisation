@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
 
   belongs_to :customer
+  has_many :comments
+  has_many :favorites
+  has_many :reviews
 
 end

@@ -8,13 +8,11 @@ class Customers::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.customer_id = current_customer.id
     if @post.save
       redirect_to posts_path
     else
       @posts = Post.all.order(created_at: :desc)
-      @customer = current_customer
-    @teachers = Customer.all.where(is_teacher: true)
+      @teachers = Customer.all.where(is_teacher: true)
       render :index
     end
   end

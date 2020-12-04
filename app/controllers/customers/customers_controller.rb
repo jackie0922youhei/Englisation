@@ -2,6 +2,7 @@ class Customers::CustomersController < ApplicationController
 
   def show
     @customer = current_customer
+    @posts = current_customer.posts.all.order(created_at: :desc)
   end
 
   def edit

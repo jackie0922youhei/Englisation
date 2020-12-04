@@ -1,21 +1,54 @@
-<div class="col-xs-2">
-  <h4>アカウント情報</h4>
-  <%= attachment_image_tag @customer, :image, format: "jpeg", size:'100x100', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
-  
+<% if flash[:notice] %>
+  <p class="text-active"><%= flash[:notice] %></p>
+<% end %>
+<div class="col-xs-3">
+  <% if customer_signed_in? %>
+    <h4>アカウント情報</h4>
+    <%= attachment_image_tag @customer, :image, format: "jpeg", size:'150x150', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
+    <table class="table">
+      <tr>
+        <th>ユーザネーム</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td></td>
+      </tr>
+    </table>
+  <% else %>
+    <%= link_to "会員登録はこちら", new_customer_registration_path %><br>
+    <%= link_to "すでに会員の方はこちら", new_customer_session_path %>
+  <% end %>
+  <div class="teacher_index">
+    <h4>講師一覧</h4>
+
+  </div>
 </div>
-<div class="col-xs-6">
+<div class="col-xs-5">
   <h3>投稿一覧</h3>
   <% @posts.each do |post| %>
-    <%= post.customer.image_id %>
-    <%= post.body %>
+    <%= attachment_image_tag post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+    <%= post.body %><br>
     <%= post.comments.count %>件
     <%= post.favorites.count %>件
+    <hr>
   <% end %>
 </div>
 <div class="col-xs-2">
-  <%= form_with model:@post, url:new_post_path, local: true do |f| %>
-    <%= f.text_area :body, :placeholder =>"気軽につぶやこう！！" %>
-    <%= f.text_field :reference, :placeholder =>"参考になった映画など" %>
-    <%= f.submit "英語でつぶやく！！", class: "btn btn-primary" %>
+  <% if customer_signed_in? %>
+    <%= form_with model:@post, url:posts_path, local: true do |f| %>
+      <%= f.text_area :body, :placeholder =>"気軽につぶやこう！！", size: "40x5" %>
+      <%= f.text_field :reference, :placeholder =>"参考になった映画など", size: "40x30" %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.submit "英語でつぶやく！！", class: "btn btn-primary" %>
+    <% end %>
   <% end %>
 </div>
