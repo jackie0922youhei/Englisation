@@ -1,2 +1,6 @@
-<h1>Customers::Posts#show</h1>
-<p>Find me in app/views/customers/posts/show.html.erb</p>
+<h3>つぶやき内容</h3>
+<%= attachment_image_tag @customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+<%= @post.body %><br>
+<%= @post.reference %>
+<%= @post.comments.count %>件
+<%= @post.favorites.count %>件

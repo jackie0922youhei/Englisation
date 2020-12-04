@@ -18,6 +18,8 @@ class Customers::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @customer = @post.customer
   end
 
   def edit
