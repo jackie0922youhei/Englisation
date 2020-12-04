@@ -2,7 +2,7 @@
   <p class="text-active"><%= flash[:notice] %></p>
 <% end %>
 <h3>マイページ
-  <%= link_to "編集する", edit_information_path, class: "btn btn-success ml2" %>
+  <%= link_to "編集する", edit_path(current_customer), class: "btn btn-success ml2" %>
   <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-success ml2" %>
 </h3>
 <div class="col-xs-5">
