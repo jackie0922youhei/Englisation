@@ -6,22 +6,28 @@
   <%= @post.body %><br>
   <%= @post.reference %>
   <%= @post.comments.count %>件
-  <% if @post.favorited_by?(current_customer) %>
-    <%= link_to post_favorites_path(@post), method: :delete do %>
-      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= @post.favorites.count %> いいね
+  <% if customer_signed_in? %>
+    <% if @post.favorited_by?(current_customer) %>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+        <%= @post.favorites.count %> いいね
+      <% end %>
+    <% else %>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <%= @post.favorites.count %> いいね
+      <% end %>
     <% end %>
   <% else %>
-    <%= link_to post_favorites_path(@post), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-      <%= @post.favorites.count %> いいね
-    <% end %>
+    <%= @post.favorites.count %> いいね
   <% end %>
-  <%= form_with model: @comment, url: post_comments_path(@post), local: true do |f| %>
-    <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
-    <%= f.hidden_field :customer_id, :value => current_customer.id %>
-    <%= f.hidden_field :post_id, :value => @post.id %>
-    <%= f.submit "送信！！", class: "btn btn-primary" %>
+  <% if customer_signed_in? %>
+    <%= form_with model: @comment, url: post_comments_path(@post), local: true do |f| %>
+      <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.submit "送信！！", class: "btn btn-primary" %>
+    <% end %>
   <% end %>
   <h4>コメント一覧</h4>
   <% @post.comments.each do |comment| %>

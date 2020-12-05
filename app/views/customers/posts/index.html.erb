@@ -8,19 +8,19 @@
     <table class="table">
       <tr>
         <th>ユーザネーム</th>
-        <td></td>
+        <td><%= @customer.username %></td>
       </tr>
       <tr>
-        <th></th>
-        <td></td>
+        <th>フォロー数</th>
+        <td><%= @customer.followings.count %> 人</td>
       </tr>
       <tr>
-        <th></th>
-        <td></td>
+        <th>フォロワー数</th>
+        <td><%= @customer.followers.count %> 人</td>
       </tr>
       <tr>
-        <th></th>
-        <td></td>
+        <th>つぶやき数</th>
+        <td><%= @customer.posts.count %></td>
       </tr>
     </table>
   <% else %>
