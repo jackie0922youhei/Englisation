@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :customers do
-    resources only: [:edit, :update]
+    get '/:id/edit' => 'customers#edit', as: 'edit_mypage'
+    patch '/:id/update' => 'customers#update', as: 'update_mypage'
     get '/:id/mypage' => 'customers#show', as: 'mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
