@@ -3,6 +3,7 @@ class Customers::CustomersController < ApplicationController
   def show
     @customer = current_customer
     @posts = current_customer.posts.all.order(created_at: :desc)
+    @post = Post.find_by(customer_id: @customer.id, id: params[:id])
   end
 
   def edit
