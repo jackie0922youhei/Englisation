@@ -1,4 +1,4 @@
-<%= form_with model: @customer, url: update_information_path, local: true do |f| %>
+<%= form_with model: @customer, url: update_mypage_path(@customer.id), local: true do |f| %>
   <div class="col-xs-3">
     <%= f.label :image, "画像" %>
     <%= attachment_image_tag @customer, :image, format: "jpeg", size:'200x200', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
