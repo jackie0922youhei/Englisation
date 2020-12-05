@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   }
 
   scope module: :customers do
+    resources :customers, only: [:index] do
+      resource :relationships, only: [:create, :destroy]
+      member do
+        get :follows, :followers
+      end
+    end
     get '/:id/edit' => 'customers#edit', as: 'edit_mypage'
     patch '/:id/update' => 'customers#update', as: 'update_mypage'
     get '/:id/mypage' => 'customers#show', as: 'mypage'
@@ -31,6 +37,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
   get 'homes/about'
   root 'customers/posts#index'
 

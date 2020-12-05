@@ -1,0 +1,24 @@
+<h3>フォロー一覧</h3>
+<table class="table">
+  <tr>
+    <th></th>
+    <th>ユーザネーム</th>
+    <th>会員ステータス</th>
+    <th></th>
+  </tr>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= attachment_image_tag customer, :image, format: "jpeg", size:'80x80', id: "img_prev", fallback: "no-image.png", class: "customer_image" %></td>
+      <td><%= customer.username %></td>
+      <td>
+        <% if customer.is_teacher == true %>
+          <span class="text-active">講師	</span>
+        <% else %>
+          <span class="text-active">一般会員</span>
+        <% end %>
+      </td>
+      <td><%= link_to "このユーザーのつぶやき一覧", mypage_path(customer) %></td>
+    </tr>
+    <hr>
+  <% end %>
+</table>

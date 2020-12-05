@@ -28,6 +28,16 @@ class Customers::CustomersController < ApplicationController
     reset_session
     redirect_to root_path, notice: 'またのご利用をお待ちしております。'
   end
+  
+  def follows
+    customer = Customer.find(params[:id])
+    @customers = customer.followings
+  end
+
+  def followers
+    customer = Customer.find(params[:id])
+    @customers = customer.followers
+  end
 
   private
 
