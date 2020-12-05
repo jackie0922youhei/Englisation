@@ -7,14 +7,30 @@
   <%= @post.favorites.count %>件
   <%= form_with model: @comment, url: post_comments_path(@post), local: true do |f| %>
     <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
-    <%= f.hidden_field :customer_id, :value => current_customer %>
-    <%= f.hidden_field :post_id, :value => @post %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
     <%= f.submit "送信！！", class: "btn btn-primary" %>
   <% end %>
   <h4>コメント一覧</h4>
-  <% @comments.each do |comment| %>
+  <% @post.comments.each do |comment| %>
     <%= attachment_image_tag comment.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
     <%= comment.body %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if @post.favorited_by?(current_customer) %>
+      <li>
+        <%= link_to post_favorites_path(@post), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+          <%= @post.favorites.count %> いいね
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to post_favorites_path(@post), method: :post do %>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <%= @post.favorites.count %> いいね
+        <% end %>
+      </li>
+    <% end %>
     <% if comment.customer == current_customer %>
       <div>
         <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class: "btn btn-danger pull-right" %>

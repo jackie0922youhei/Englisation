@@ -2,7 +2,7 @@ class Customers::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
-    if @comment.save
+    if @comment.save!
       redirect_to post_path(@post.id)
     else
       @comments = Comment.all

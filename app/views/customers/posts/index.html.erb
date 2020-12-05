@@ -45,6 +45,7 @@
       <%= attachment_image_tag post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
       <%= post.body %><br>
       <%= post.reference %>
+      <%= post.created_at.strftime('%Y/%m/%d') %>
       <%= post.comments.count %>件
       <%= post.favorites.count %>件
     <% end %>
