@@ -1,9 +1,8 @@
 class Customers::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
-    @post = Post.find(params[:post_id])
-    if @comment.save!
-      redirect_to post_path(@post.id)
+    if @comment.save
+      redirect_to post_path(@comment.post.id)
     else
       @comments = Comment.all
       render :'customers/posts/show'
