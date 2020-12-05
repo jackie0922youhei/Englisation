@@ -19,7 +19,8 @@ class Customers::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @customer = @post.customer
+    @comments = @post.comments.all
+    @comment = Comment.new
   end
 
   def edit
