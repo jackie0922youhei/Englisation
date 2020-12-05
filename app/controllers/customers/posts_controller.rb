@@ -20,6 +20,7 @@ class Customers::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @review = Review.new
   end
 
   def edit

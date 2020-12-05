@@ -32,7 +32,8 @@
   <h4>コメント一覧</h4>
   <% @post.comments.each do |comment| %>
     <%= attachment_image_tag comment.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-    <%= comment.body %>
+    <%= comment.customer.username %><br>
+    <%= comment.body %><br>
     <%= comment.created_at.strftime('%Y/%m/%d') %>
     <% if comment.customer == current_customer %>
       <div>
@@ -42,4 +43,26 @@
     <hr>
   <% end %>
 </div>
-<div class="col-xs-5"></div>
+<div class="col-xs-5">
+  <h4>レビュー一覧</h4>
+  <% @post.reviews.each do |review| %>
+    <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+    <%= review.customer.username %><br>
+    <%= review.body %><br>
+    <%= review.created_at.strftime('%Y/%m/%d') %>
+    <% if review.customer == current_customer %>
+      <div>
+        <%= link_to "削除", post_review_path(@post, review), method: :delete, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+    <hr>
+  <% end %>
+  <% if customer_signed_in? %>
+    <%= form_with model: @review, url: post_reviews_path(@post), local: true do |f| %>
+      <%= f.text_area:body, :placeholder =>"レビューはこちらに！！", size: "60x3" %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.submit "レビュー！！", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>
