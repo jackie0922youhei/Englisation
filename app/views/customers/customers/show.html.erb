@@ -9,6 +9,12 @@
 </h3>
 <div class="col-xs-5">
   <%= attachment_image_tag @customer, :image, format: "jpeg", fallback: "no-image.png", size:'200x200', class: "customer_image" %>
+  <%=link_to follows_customer_path(@customer.id) do %>
+    <%= @customer.followings.count %>フォロー
+  <% end %><br>
+  <%=link_to followers_customer_path(@customer.id) do %>
+    <%= @customer.followers.count %>フォロワー
+  <% end %>
   <% if current_customer != @customer %>
     <% if @customer.followed_by?(current_customer) %>
       <p><%=link_to "フォロー済み", customer_relationships_path(@customer.id), method: :delete %></p>

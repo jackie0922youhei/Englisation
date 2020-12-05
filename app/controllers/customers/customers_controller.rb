@@ -36,7 +36,7 @@ class Customers::CustomersController < ApplicationController
 
   def followers
     customer = Customer.find(params[:id])
-    @customers = cus.followers
+    @customers = customer.followers
   end
 
   private
