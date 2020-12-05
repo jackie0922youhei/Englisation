@@ -14,11 +14,14 @@ Rails.application.routes.draw do
   }
 
   scope module: :customers do
-    resources only: [:edit, :update] do
+    resources :customers, only: [:index] do
       resource :relationships, only: [:create, :destroy]
-      get :follows, on: :member
-      get :followers, on: :member
+      member do
+        get :follows, :followers
+      end
     end
+    get '/:id/edit' => 'customers#edit', as: 'edit_mypage'
+    patch '/:id/update' => 'customers#update', as: 'update_mypage'
     get '/:id/mypage' => 'customers#show', as: 'mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'

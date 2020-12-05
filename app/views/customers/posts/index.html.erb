@@ -64,6 +64,13 @@
         <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
       </div>
     <% end %>
+    <% if current_customer != post.customer %>
+      <% if post.customer.followed_by?(current_customer) %>
+        <p><%=link_to "フォロー済み", customer_relationships_path(post.customer.id), method: :delete %></p>
+      <% else %>
+        <p><%=link_to "フォローする", customer_relationships_path(post.customer.id), method: :post %></p>
+      <% end %>
+    <% end %>
     <hr>
   <% end %>
 </div>

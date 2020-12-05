@@ -1,8 +1,8 @@
 class Customers::CustomersController < ApplicationController
 
   def show
-    @customer = current_customer
-    @posts = current_customer.posts.all.order(created_at: :desc)
+    @customer = Customer.find(params[:id])
+    @posts = @customer.posts.all.order(created_at: :desc)
   end
 
   def edit
@@ -27,6 +27,16 @@ class Customers::CustomersController < ApplicationController
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path, notice: 'またのご利用をお待ちしております。'
+  end
+  
+  def follows
+    customer = Customer.find(params[:id])
+    @customers = customer.followings
+  end
+
+  def followers
+    customer = Customer.find(params[:id])
+    @customers = cus.followers
   end
 
   private
