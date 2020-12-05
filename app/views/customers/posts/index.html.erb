@@ -59,12 +59,17 @@
         <%= post.favorites.count %> いいね
       <% end %>
     <% end %>
+    <% if post.customer == current_customer %>
+      <div>
+        <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
+      </div>
+    <% end %>
     <hr>
   <% end %>
 </div>
 <div class="col-xs-2">
   <% if customer_signed_in? %>
-    <%= form_with model:@post, url:posts_path, local: true do |f| %>
+    <%= form_with model:@post_new, url:posts_path, local: true do |f| %>
       <%= f.text_area :body, :placeholder =>"気軽につぶやこう！！", size: "40x5" %>
       <%= f.text_field :reference, :placeholder =>"参考になった映画など", size: "40x30" %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
