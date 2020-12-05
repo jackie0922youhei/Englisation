@@ -14,10 +14,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :customers do
-    get 'customers/mypage' => 'customers#show', as: 'mypage'
-    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
-    patch 'customers/information' => 'customers#update', as: 'update_information'
-    put 'customers/information' => 'customers#update'
+    resources only: [:edit, :update]
+    get '/:id/mypage' => 'customers#show', as: 'mypage'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'

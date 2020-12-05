@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/1524ec8d55.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -26,7 +27,7 @@
           <%= link_to 'Englisation', posts_path, class: "logo" %>
           <ul class="flex">
             <p>Welcome aboard <%= current_customer.username %>!</p>
-            <li><%= link_to 'マイページ', mypage_path %></li>
+            <li><%= link_to 'マイページ', mypage_path(current_customer) %></li>
             <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
           </ul>
         </div>
