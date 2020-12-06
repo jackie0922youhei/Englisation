@@ -4,7 +4,7 @@ class Customers::FavoritesController < ApplicationController
     favorite = current_customer.favorites.new(post_id: post.id)
     favorite.save
     #通知の作成
-    @post.create_notification_by(current_customer)
+    post.create_notification_by(current_customer)
     redirect_to post_path(post)
   end
 

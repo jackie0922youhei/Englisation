@@ -1,3 +1,6 @@
+<% visiter = notification.visiter %>
+<% post = notification.post %>
+
 <div class="user-view clearfix ">
   <%= link_to mypage_path(notification.visiter) do %>
     <%= attachment_image_tag visiter, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle" %>
