@@ -4,8 +4,9 @@ class Customers::RelationshipsController < ApplicationController
     follow.save
     @customer = current_customer
     #通知の作成
-    @customer.create_notification_follow!(current_customer)
-    redirect_to mypage_path(@customer.id)
+    followed_customer = Customer.find(params[:customer_id])
+    followed_customer.create_notification_follow!(current_customer)
+    redirect_to mypage_path(current_customer.id)
   end
 
   def destroy
