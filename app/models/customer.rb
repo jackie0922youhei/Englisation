@@ -16,18 +16,18 @@ class Customer < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :followers, through: :passive_relationships, source: :following
   
-  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", foreign_key: "action_customer_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "reciever_id", dependent: :destroy
   
   def followed_by?(customer)
     passive_relationships.find_by(following_id: customer.id).present?
   end
   
   def create_notification_follow!(current_customer)
-    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ",current_customer.id, id, 'follow'])
     if temp.blank?
       notification = current_customer.active_notifications.new(
-        visited_id: id,
+        reciever_id: id,
         action: 'follow'
       )
       notification.save if notification.valid?

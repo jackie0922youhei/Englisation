@@ -1,9 +1,9 @@
-<% visiter = notification.visiter %>
+<% action_customer = notification.action_customer %>
 <% post = notification.post %>
 
 <div class="user-view clearfix ">
-  <%= link_to mypage_path(notification.visiter) do %>
-    <%= attachment_image_tag visiter, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle" %>
+  <%= link_to mypage_path(notification.action_customer) do %>
+    <%= attachment_image_tag action_customer, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle" %>
   <% end %>
   <%= notification_form(notification) %>
   <span class="moderate-font">

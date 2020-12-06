@@ -5,12 +5,12 @@ class Notification < ApplicationRecord
   belongs_to :post, optional: true
   belongs_to :comment, optional: true
   belongs_to :review, optional: true
-  belongs_to :visiter, class_name: 'Customer', foreign_key: 'visiter_id', optional: true
-  belongs_to :visited, class_name: 'Customer', foreign_key: 'visited_id', optional: true
+  belongs_to :action_customer, class_name: 'Customer', foreign_key: 'action_customer_id', optional: true
+  belongs_to :reciever, class_name: 'Customer', foreign_key: 'reciever_id', optional: true
 
 
-  def self.create_favorite_post(post:, from:)
-    # 処理
-  end
+  # def self.create_favorite_post(post:, from:)
+  #   # 処理
+  # end
 
 end
