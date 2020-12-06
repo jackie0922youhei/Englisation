@@ -3,6 +3,10 @@ class Customers::RelationshipsController < ApplicationController
     follow = current_customer.active_relationships.build(follower_id: params[:customer_id])
     follow.save
     @customer = current_customer
+    #通知の作成
+    @user = Customer.find(params[:following_id])
+    current_user.follow(@user)
+    @customer.create_notification_follow!(current_customer)
     redirect_to mypage_path(@customer.id)
   end
 

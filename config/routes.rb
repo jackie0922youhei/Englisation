@@ -31,10 +31,11 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:create, :edit, :update, :destroy]
     end
-    resources :notifications, only: [:index] do
-      collection do
-        delete :destroy_all
-      end
+  end
+  
+  resources :notifications, only: [:index] do
+    collection do
+      delete :destroy_all
     end
   end
 
