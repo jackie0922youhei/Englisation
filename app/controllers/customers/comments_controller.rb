@@ -2,6 +2,9 @@ class Customers::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      @comment_post = @comment.post
+      #通知の作成
+      @comment_post.create_notification_comment!(current_customer, @comment.id)
       redirect_to post_path(@comment.post.id)
     else
       @comments = Comment.all
