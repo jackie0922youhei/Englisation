@@ -1,26 +1,36 @@
 <div class="col-xs-5">
   <h3>つぶやき内容</h3>
-  <%= link_to mypage_path(@post.customer.id) do %>
-    <%= attachment_image_tag @post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
-  <% end %>
-  <%= @post.body %><br>
-  <%= @post.reference %>
-  <%= @post.comments.count %>件
-  <% if customer_signed_in? %>
-    <% if @post.favorited_by?(current_customer) %>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+  <div class="post_box">
+    <div class="post_box_left">
+      <%= link_to mypage_path(@post.customer.id) do %>
+        <%= attachment_image_tag @post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+      <% end %>
+    </div>
+    <div class="post_box_right">
+      <div class="post_body">
+        <%= @post.body %>
+      </div>
+      <div class="post_reference">
+        <%= @post.reference %>
+      </div>
+      <%= @post.comments.count %>件
+      <% if customer_signed_in? %>
+        <% if @post.favorited_by?(current_customer) %>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+            <%= @post.favorites.count %> いいね
+          <% end %>
+        <% else %>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <%= @post.favorites.count %> いいね
+          <% end %>
+        <% end %>
+      <% else %>
         <%= @post.favorites.count %> いいね
       <% end %>
-    <% else %>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
-        <%= @post.favorites.count %> いいね
-      <% end %>
-    <% end %>
-  <% else %>
-    <%= @post.favorites.count %> いいね
-  <% end %>
+    </div>
+  </div>
   <% if customer_signed_in? %>
     <%= form_with model: @comment, url: post_comments_path(@post), local: true do |f| %>
       <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
@@ -31,10 +41,16 @@
   <% end %>
   <h4>コメント一覧</h4>
   <% @post.comments.each do |comment| %>
-    <%= attachment_image_tag comment.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-    <%= comment.customer.username %><br>
-    <%= comment.body %><br>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <div class="comment_box">
+      <div class="comment_box_left">
+        <%= attachment_image_tag comment.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+      </div>
+      <div class="comment_box_right">
+        FROM　<%= comment.customer.username %><br>
+        <%= comment.body %><br>
+        <%= comment.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
     <% if comment.customer == current_customer %>
       <div>
         <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class: "btn btn-danger" %>
@@ -46,10 +62,16 @@
 <div class="col-xs-5">
   <h4>レビュー一覧</h4>
   <% @post.reviews.each do |review| %>
-    <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-    <%= review.customer.username %><br>
-    <%= review.body %><br>
-    <%= review.created_at.strftime('%Y/%m/%d') %>
+    <div class="review_box">
+      <div class="review_box_left">
+        <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+      </div>
+      <div class="review_box_right">
+        FROM　<%= review.customer.username %><br>
+        <%= review.body %><br>
+        <%= review.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
     <% if review.customer == current_customer %>
       <div>
         <%= link_to "削除", post_review_path(@post, review), method: :delete, class: "btn btn-danger" %>
