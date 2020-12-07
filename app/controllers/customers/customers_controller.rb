@@ -1,4 +1,5 @@
 class Customers::CustomersController < ApplicationController
+  before_action :check_guest, only: [:update, :withdraw]
 
   def show
     @customer = Customer.find(params[:id])
@@ -28,7 +29,7 @@ class Customers::CustomersController < ApplicationController
     reset_session
     redirect_to root_path, notice: 'またのご利用をお待ちしております。'
   end
-  
+
   def follows
     customer = Customer.find(params[:id])
     @customers = customer.followings
@@ -37,6 +38,13 @@ class Customers::CustomersController < ApplicationController
   def followers
     customer = Customer.find(params[:id])
     @customers = customer.followers
+  end
+
+  # ゲストユーザーの削除機能・編集機能を制限
+  def check_guest
+    if current_customer.username == 'sample_user'
+      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+    end
   end
 
   private
