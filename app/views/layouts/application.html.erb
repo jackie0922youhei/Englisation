@@ -31,7 +31,7 @@
             <% if unchecked_notifications.any? %>
               <i class="fa fa-circle" style="color: gold;"></i>
             <% end %>
-            <li><%= link_to "NOTICE", notifications_path, class: "btn-default" %></li>
+            <li><%= link_to "NOTICE", notifications_path %></li>
             <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
           </ul>
         </div>
@@ -43,6 +43,7 @@
           <ul class="flex">
             <li><%= link_to '新規登録', new_customer_registration_path %></li>
             <li><%= link_to 'ログイン', new_customer_session_path %></li>
+            <li><%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %></li>
           </ul>
         </div>
       </header>

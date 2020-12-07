@@ -17,6 +17,12 @@ class Customers::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  def new_guest
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
 
   protected
 

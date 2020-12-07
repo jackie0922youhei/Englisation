@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   registrations: 'customers/registrations'
   }
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'customers/sessions#new_guest'
+  end
+
   scope module: :customers do
     resources :customers, only: [:index] do
       resource :relationships, only: [:create, :destroy]
