@@ -1,0 +1,9 @@
+<% if current_customer != customer %>
+  <div id="follow_form">
+    <% if customer.followed_by?(current_customer) %>
+      <%= render 'customers/relationships/unfollow', customer: customer %>
+    <% else %>
+      <%= render 'customers/relationships/follow', customer: customer %>
+    <% end %>
+  </div>
+<% end %>

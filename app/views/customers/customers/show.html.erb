@@ -20,13 +20,7 @@
         <%= @customer.followers.count %>フォロワー
       <% end %><br>
       <% if customer_signed_in? %>
-        <% if current_customer != @customer %>
-          <% if @customer.followed_by?(current_customer) %>
-            <p><%=link_to "フォロー解除", customer_relationships_path(@customer.id), method: :delete, class: "btn btn-danger" %></p>
-          <% else %>
-            <p><%=link_to "フォローする", customer_relationships_path(@customer.id), method: :post, class: "btn btn-primary" %></p>
-          <% end %>
-        <% end %>
+        <%= render 'customers/relationships/follow_form', customer: @customer %>
       <% end %>
     </div>
   </div>
