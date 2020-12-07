@@ -3,7 +3,7 @@ class Customers::PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     @customer = current_customer
     @teachers = Customer.all.where(is_teacher: true)
-    @post_new = Post.new
+    @post = Post.new
   end
 
   def create

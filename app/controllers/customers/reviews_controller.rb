@@ -1,8 +1,9 @@
 class Customers::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
+    @post = Post.find(params[:post_id])
     if @review.save!
-      redirect_to post_path(@review.post.id)
+      render :create
     else
       render :'customers/posts/show'
     end
@@ -26,7 +27,7 @@ class Customers::ReviewsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_customer.reviews.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    redirect_to post_path(@post.id)
+    render :destroy
   end
 
   private
