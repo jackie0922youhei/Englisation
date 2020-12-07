@@ -7,23 +7,26 @@
       <% end %>
     </div>
     <div class="post_box_right">
+      <div class="post_customer">
+        <%= @post.customer.username %>
+      </div>
       <div class="post_body">
         <%= @post.body %>
       </div>
       <div class="post_reference">
         <%= @post.reference %>
       </div>
-      <%= @post.comments.count %>件
+      コメント <%= @post.comments.count %> 件<br>
       <% if customer_signed_in? %>
         <% if @post.favorited_by?(current_customer) %>
           <%= link_to post_favorites_path(@post), method: :delete do %>
             <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-            <%= @post.favorites.count %> いいね
+            <%= @post.favorites.count %> 件
           <% end %>
         <% else %>
           <%= link_to post_favorites_path(@post), method: :post do %>
             <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <%= @post.favorites.count %> いいね
+            <%= @post.favorites.count %> 件
           <% end %>
         <% end %>
       <% else %>

@@ -52,28 +52,28 @@
       <div class="post_box_right">
         <div class="post_body">
           <%= link_to post_path(post) do %>
-            <%= post.body %><br>
+            <%= post.body %>
           <% end %>
         </div>
         <div class="post_reference">
-          <%= post.reference %><br>
+          <%= post.reference %>
         </div>
         <%= post.created_at.strftime('%Y/%m/%d') %><br>
-        <%= post.comments.count %>件
+        コメント <%= post.comments.count %> 件<br>
         <% if post.favorited_by?(@customer) %>
           <% if customer_signed_in? %>
             <%= link_to post_favorites_path(post), method: :delete do %>
               <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
             <% end %>
           <% end %>
-          <%= post.favorites.count %> いいね<br>
+          <%= post.favorites.count %> 件<br>
         <% else %>
           <% if customer_signed_in? %>
             <%= link_to post_favorites_path(post), method: :post do %>
               <i class="fa fa-heart-o" aria-hidden="true"></i>
             <% end %>
           <% end %>
-          <%= post.favorites.count %> いいね<br>
+          <%= post.favorites.count %> 件<br>
         <% end %>
       </div>
     </div>
