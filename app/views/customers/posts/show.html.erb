@@ -32,12 +32,7 @@
     </div>
   </div>
   <% if customer_signed_in? %>
-    <%= form_with model: @comment, url: post_comments_path(@post), method: :post, remote: true do |f| %>
-      <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.submit "送信！！", class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'customers/comments/comment_form', post: @post, comment: @comment %>
   <% end %>
   <h4>コメント一覧</h4>
   <div id="comment_box" class="comment_box">
@@ -50,11 +45,6 @@
     <%= render 'customers/reviews/reviews_area', post: @post %>
   </div>
   <% if customer_signed_in? %>
-    <%= form_with model: @review, url: post_reviews_path(@post), method: :post, remote: true do |f| %>
-      <%= f.text_area:body, :placeholder =>"レビューはこちらに！！", size: "60x3" %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.submit "レビュー！！", class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
   <% end %>
 </div>
