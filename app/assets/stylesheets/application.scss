@@ -116,8 +116,11 @@ footer {
 
 // コメント関係
 .comment_box {
-  display: flex;
   margin-bottom: 10px;
+}
+
+.comment_box_left {
+  display: flex;
 }
 
 .comment_box_right {
@@ -126,8 +129,11 @@ footer {
 
 // レビュー関係
 .review_box {
-  display: flex;
   margin-bottom: 10px;
+}
+
+.review_box_left {
+  display: flex;
 }
 
 .review_box_right {
