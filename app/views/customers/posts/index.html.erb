@@ -92,12 +92,7 @@
 </div>
 <div class="col-xs-2">
   <% if customer_signed_in? %>
-    <%= form_with model:@post_new, url:posts_path, local: true do |f| %>
-      <%= f.text_area :body, :placeholder =>"気軽につぶやこう！！", size: "40x5" %>
-      <%= f.text_field :reference, :placeholder =>"参考になった映画など", size: "40x30" %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.submit "英語でつぶやく！！", class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'customers/posts/post_form', post: @post %>
   <% end %>
   <h4>閲覧数ランキング</h4>
 </div>
