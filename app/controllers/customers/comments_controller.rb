@@ -1,11 +1,12 @@
 class Customers::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
     if @comment.save
       @comment_post = @comment.post
       #通知の作成
       @comment_post.create_notification_comment!(current_customer, @comment.id)
-      redirect_to post_path(@comment.post.id)
+      render :create
     else
       @comments = Comment.all
       render :'customers/posts/show'
@@ -15,7 +16,7 @@ class Customers::CommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_customer.comments.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    redirect_to post_path(@post.id)
+    render :destroy
   end
 
   def edit

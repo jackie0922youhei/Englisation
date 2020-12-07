@@ -32,7 +32,7 @@
     </div>
   </div>
   <% if customer_signed_in? %>
-    <%= form_with model: @comment, url: post_comments_path(@post), local: true do |f| %>
+    <%= form_with model: @comment, url: post_comments_path(@post), method: :post, remote: true do |f| %>
       <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <%= f.hidden_field :post_id, :value => @post.id %>
@@ -40,25 +40,9 @@
     <% end %>
   <% end %>
   <h4>コメント一覧</h4>
-  <% @post.comments.each do |comment| %>
-    <div class="comment_box">
-      <div class="comment_box_left">
-        <%= attachment_image_tag comment.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-      </div>
-      <div class="comment_box_right">
-        FROM　<%= comment.customer.username %><br>
-        <%= comment.body %><br>
-        <%= comment.created_at.strftime('%Y/%m/%d') %>
-      </div>
-    </div>
-    <% if comment.customer == current_customer %>
-      <div>
-        <%= link_to "削除", post_comment_path(@post, comment), method: :delete, class: "btn btn-danger" %>
-        <%= link_to "編集", edit_post_comment_path(@post, comment), class: "btn btn-success" %>
-      </div>
-    <% end %>
-    <hr>
-  <% end %>
+  <div id="comment_box" class="comment_box">
+    <%= render 'customers/comments/comments_area', post: @post %>
+  </div>
 </div>
 <div class="col-xs-5">
   <h4>レビュー一覧</h4>
