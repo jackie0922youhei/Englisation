@@ -13,12 +13,7 @@
       <%= attachment_image_tag @customer, :image, format: "jpeg", fallback: "no-image.png", size:'200x200', class: "customer_image" %>
     </div>
     <div class="profile_box_right">
-      <%=link_to follows_customer_path(@customer.id) do %>
-        <%= @customer.followings.count %>フォロー
-      <% end %><br>
-      <%=link_to followers_customer_path(@customer.id) do %>
-        <%= @customer.followers.count %>フォロワー
-      <% end %><br>
+      <%= render 'customers/relationships/follow_count', customer: @customer %>
       <% if customer_signed_in? %>
         <%= render 'customers/relationships/follow_form', customer: @customer %>
       <% end %>
