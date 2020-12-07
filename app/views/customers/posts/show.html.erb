@@ -46,27 +46,11 @@
 </div>
 <div class="col-xs-5">
   <h4>レビュー一覧</h4>
-  <% @post.reviews.each do |review| %>
-    <div class="review_box">
-      <div class="review_box_left">
-        <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-      </div>
-      <div class="review_box_right">
-        FROM　<%= review.customer.username %><br>
-        <%= review.body %><br>
-        <%= review.created_at.strftime('%Y/%m/%d') %>
-      </div>
-    </div>
-    <% if review.customer == current_customer %>
-      <div>
-        <%= link_to "削除", post_review_path(@post, review), method: :delete, class: "btn btn-danger" %>
-        <%= link_to "編集", edit_post_review_path(@post, review), class: "btn btn-success" %>
-      </div>
-    <% end %>
-    <hr>
-  <% end %>
+  <div id="review_box" class="review_box">
+    <%= render 'customers/reviews/reviews_area', post: @post %>
+  </div>
   <% if customer_signed_in? %>
-    <%= form_with model: @review, url: post_reviews_path(@post), local: true do |f| %>
+    <%= form_with model: @review, url: post_reviews_path(@post), method: :post, remote: true do |f| %>
       <%= f.text_area:body, :placeholder =>"レビューはこちらに！！", size: "60x3" %>
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <%= f.hidden_field :post_id, :value => @post.id %>

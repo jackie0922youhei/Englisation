@@ -1,0 +1,16 @@
+<div id="review-<%= review.id %>">
+  <div class="review_box_left">
+    <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+  </div>
+  <div class="review_box_right">
+    FROM　<%= review.customer.username %><br>
+    <%= review.body %><br>
+    <%= review.created_at.strftime('%Y/%m/%d') %>
+  </div>
+  <% if review.customer == current_customer %>
+    <div>
+      <%= link_to "削除", post_review_path(review.post, review), method: :delete, remote: true, class: "btn btn-danger" %>
+      <%= link_to "編集", edit_post_review_path(review.post, review), class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
