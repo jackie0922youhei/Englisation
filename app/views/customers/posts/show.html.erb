@@ -17,18 +17,12 @@
         <%= @post.reference %>
       </div>
       コメント <%= @post.comments.count %> 件<br>
-      <% if customer_signed_in? %>
-        <div id="favorites_buttons_<%= @post.id %>">
-          <%= render partial: 'customers/favorites/favorite', locals: { post: @post} %>
-        </div>
-      <% else %>
-        <%= @post.favorites.count %> いいね
-      <% end %>
+      <div id="favorites_buttons_<%= @post.id %>">
+        <%= render partial: 'customers/favorites/favorite', locals: { post: @post} %>
+      </div>
     </div>
   </div>
-  <% if customer_signed_in? %>
-    <%= render 'customers/comments/comment_form', post: @post, comment: @comment %>
-  <% end %>
+  <%= render 'customers/comments/comment_form', post: @post, comment: @comment %>
   <h4>コメント一覧</h4>
   <div id="comment_box" class="comment_box">
     <%= render 'customers/comments/comments_area', post: @post %>
@@ -39,7 +33,5 @@
   <div id="review_box" class="review_box">
     <%= render 'customers/reviews/reviews_area', post: @post %>
   </div>
-  <% if customer_signed_in? %>
-    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
-  <% end %>
+  <%= render 'customers/reviews/review_form', post: @post, review: @review %>
 </div>
