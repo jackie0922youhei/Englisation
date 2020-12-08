@@ -30,7 +30,7 @@ class Customers::ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:body, :post_id, :customer_id, :rate)
+    params.require(:review).permit(:body, :post_id, :customer_id).merge(rate: params['score']['rate'])
   end
 
 end
