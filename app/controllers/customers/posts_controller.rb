@@ -9,7 +9,7 @@ class Customers::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to posts_path
+      render :create
     else
       @posts = Post.all.order(created_at: :desc)
       @teachers = Customer.all.where(is_teacher: true)
@@ -31,7 +31,7 @@ class Customers::PostsController < ApplicationController
 
   def destroy
     @post = current_customer.posts.find_by(params[:id]).destroy
-    redirect_to posts_path
+    render :destroy
   end
 
   private
