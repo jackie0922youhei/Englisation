@@ -36,7 +36,7 @@ class Customers::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :customer_id, :reference, :tag_list_id)
+    params.require(:post).permit(:body, :customer_id, :reference, :tag_list)
   end
 
 end

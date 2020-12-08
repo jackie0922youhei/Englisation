@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-
+  acts_as_taggable
+  
   belongs_to :customer
   has_many :comments
   has_many :favorites
