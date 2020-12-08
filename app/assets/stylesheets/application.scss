@@ -86,14 +86,16 @@ footer {
 
 // 投稿関係
 .post_box {
+  margin-bottom: 10px;
+}
+
+.post_box_left {
   display: flex;
 }
 
-// .post_box_left {
-//   display: flex;
-// }
-
 .post_box_right {
+  display: flex;
+  flex-direction: column;
   margin-left: 50px;
 }
 
@@ -137,5 +139,21 @@ footer {
 }
 
 .review_box_right {
+  margin-left: 30px;
+}
+
+// 投稿詳細
+.post_show {
+ display: flex;
+ margin-bottom: 10px;
+}
+
+.post_show_left {
+  display: flex;
+}
+
+.post_show_right {
+  display: flex;
+  flex-direction: column;
   margin-left: 30px;
 }
