@@ -6,7 +6,6 @@ class Customers::CommentsController < ApplicationController
       @comment_post = @comment.post
       #通知の作成
       @comment_post.create_notification_comment!(current_customer, @comment.id)
-      render :create
     else
       @comments = Comment.all
       render :'customers/posts/show'
@@ -16,7 +15,6 @@ class Customers::CommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_customer.comments.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    render :destroy
   end
 
   def edit

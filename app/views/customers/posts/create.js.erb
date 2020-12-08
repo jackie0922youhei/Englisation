@@ -1,3 +1,3 @@
-$('#post_box').prepend("<%= j(render 'post',{ post: @post }) %>");
-$('textarea').val('')
-$('input').val('')
+$('#post_box').prepend("<%= j(render @posts) %>");
+$('textarea').val('');
+$('input').val('');
