@@ -16,3 +16,14 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.raty.js
+
+$(function () {
+  $('#star').raty({　　　
+    size: 36,
+    starOff: "/assets/images/star-off.png",
+    starOn: "/assets/images/star-on.png",
+    starHalf: "/assets/images/star-.png",
+    scoreName: "score"
+  });
+});
