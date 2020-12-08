@@ -24,7 +24,7 @@ $(function () {
     starOff: "/assets/star-off.png",
     starOn: "/assets/star-on.png",
     starHalf: "/assets/star-half.png",
-    scoreName: "score",
+    scoreName: "score[rate]",
     half: true
   });
 });

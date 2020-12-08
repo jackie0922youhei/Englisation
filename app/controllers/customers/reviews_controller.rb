@@ -2,9 +2,7 @@ class Customers::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @post = Post.find(params[:post_id])
-    if @review.save!
-      render :create
-    else
+    unless @review.save!
       render :'customers/posts/show'
     end
   end
@@ -32,7 +30,7 @@ class Customers::ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:body, :post_id, :customer_id, :rate)
+    params.require(:review).permit(:body, :post_id, :customer_id).merge(rate: params['score']['rate'])
   end
 
 end

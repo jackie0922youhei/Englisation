@@ -3,6 +3,9 @@
     <%= attachment_image_tag review.customer, :image, format: "jpeg", size:'60x60', fallback: "no-image.png" %>
       <p class="review_box_right">
         FROM　<%= review.customer.username %><br>
+        <div id="star-rate<%= review.id%>" data-score="<%= review.rate %>">
+          <%= review.rate %>
+        </div>
         <%= review.body %><br>
         <%= review.created_at.strftime('%Y/%m/%d') %>
       </p>
@@ -15,3 +18,14 @@
   <% end %>
   <hr>
 </div>
+
+<script>
+  $('#star-rate<%= review.id%>').raty({
+    size      : 36,
+    starOff   : "/assets/star-off.png",
+    starOn    : "/assets/star-on.png",
+    starHalf  : "/assets/star-half.png",
+    half: true,
+    readOnly: true
+  });
+</script>
