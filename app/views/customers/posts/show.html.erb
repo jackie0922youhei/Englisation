@@ -16,6 +16,9 @@
       <div class="post_reference">
         <%= @post.reference %><br>
       </div>
+      <span id="tag_box" class="tag_box">
+        <%= render @post.tags %>
+      </span>
       <div id="comment_count">
         <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
       </div>

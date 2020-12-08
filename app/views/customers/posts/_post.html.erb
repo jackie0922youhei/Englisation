@@ -15,6 +15,9 @@
       <span class="post_reference">
         <%= post.reference %><br>
       </span>
+      <span id="tag_box" class="tag_box">
+        <%= render post.tags %>
+      </span>
       <%= post.created_at.strftime('%Y/%m/%d') %><br>
       コメント <%= post.comments.count %> 件<br>
       <span id="favorites_buttons_<%= post.id %>">
