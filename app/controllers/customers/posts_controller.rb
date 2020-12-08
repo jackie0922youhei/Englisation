@@ -1,12 +1,12 @@
 class Customers::PostsController < ApplicationController
   def index
-    if params[:tag]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
-    else
-    @posts = Post.all.order(created_at: :desc)
     @customer = current_customer
     @teachers = Customer.all.where(is_teacher: true)
     @post = Post.new
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    else
+    @posts = Post.all.order(created_at: :desc)
     end
   end
 
