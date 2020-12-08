@@ -10,7 +10,6 @@
     <%= f.label :tag_list, "タグ" %>
     <%= f.text_field :tag_list, :placeholder =>"2つ以上は「,」で区切ってね", value: post.tag_list.join(','), class: "form-control" %>
   </div>
-  <%= f.hidden_field :customer_id, :value => current_customer.id %>
   <div class="post_button">
     <%= f.submit "英語でつぶやく！！", class: "btn btn-primary" %>
   </div>

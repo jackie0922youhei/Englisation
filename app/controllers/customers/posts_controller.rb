@@ -7,11 +7,11 @@ class Customers::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
-      render :create
-    else
-      @posts = Post.all.order(created_at: :desc)
+    @post = Post.new
+    @posts = Post.all.order(created_at: :desc)
+    post = Post.new(post_params)
+    post.customer_id = current_customer.id
+    unless post.save
       @teachers = Customer.all.where(is_teacher: true)
       render :index
     end
@@ -30,8 +30,8 @@ class Customers::PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_customer.posts.find_by(params[:id]).destroy
-    render :destroy
+    @posts = Post.all.order(created_at: :desc)
+    Post.find(params[:id]).destroy
   end
 
   private

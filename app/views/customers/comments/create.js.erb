@@ -1,3 +1,3 @@
 $('#comment_box').html("<%= j(render 'customers/comments/comments_area',{ post: @post }) %>");
-$('textarea').val('')
+$('textarea').val('');
 $('#comment_count').html("<%= j(render 'customers/comments/comment_count',{ post: @post }) %>");
