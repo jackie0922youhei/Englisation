@@ -60,20 +60,12 @@
         </div>
         <%= post.created_at.strftime('%Y/%m/%d') %><br>
         コメント <%= post.comments.count %> 件<br>
-        <% if post.favorited_by?(@customer) %>
-          <% if customer_signed_in? %>
-            <%= link_to post_favorites_path(post), method: :delete do %>
-              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-            <% end %>
-          <% end %>
-          <%= post.favorites.count %> 件<br>
+        <% if customer_signed_in? %>
+          <div id="favorites_buttons_<%= post.id %>">
+            <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
+          </div>
         <% else %>
-          <% if customer_signed_in? %>
-            <%= link_to post_favorites_path(post), method: :post do %>
-              <i class="fa fa-heart-o" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-          <%= post.favorites.count %> 件<br>
+          <%= post.favorites.count %> いいね
         <% end %>
       </div>
     </div>
