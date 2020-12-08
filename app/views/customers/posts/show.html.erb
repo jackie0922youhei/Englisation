@@ -1,22 +1,24 @@
 <div class="col-xs-5">
   <h3>つぶやき内容</h3>
-  <div class="post_box">
-    <div class="post_box_left">
+  <div class="post_show">
+    <div class="post_show_left">
       <%= link_to mypage_path(@post.customer.id) do %>
         <%= attachment_image_tag @post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
       <% end %>
     </div>
-    <div class="post_box_right">
+    <div class="post_show_right">
       <div class="post_customer">
-        <%= @post.customer.username %>
+        <%= @post.customer.username %><br>
       </div>
       <div class="post_body">
-        <%= @post.body %>
+        <%= @post.body %><br>
       </div>
       <div class="post_reference">
-        <%= @post.reference %>
+        <%= @post.reference %><br>
       </div>
-      コメント <%= @post.comments.count %> 件<br>
+      <div id="comment_count">
+        <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
+      </div>
       <div id="favorites_buttons_<%= @post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: @post} %>
       </div>

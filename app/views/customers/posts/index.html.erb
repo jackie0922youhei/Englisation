@@ -41,37 +41,9 @@
 </div>
 <div class="col-xs-4">
   <h3>投稿一覧</h3>
-  <% @posts.each do |post| %>
-    <div class="post_box">
-      <div class="post_box_left">
-        <%= attachment_image_tag post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
-      </div>
-      <div class="post_box_right">
-        <div class="post_customer">
-          <%= post.customer.username %>
-        </div>
-        <div class="post_body">
-          <%= link_to post_path(post) do %>
-            <%= post.body %>
-          <% end %>
-        </div>
-        <div class="post_reference">
-          <%= post.reference %>
-        </div>
-        <%= post.created_at.strftime('%Y/%m/%d') %><br>
-        コメント <%= post.comments.count %> 件<br>
-        <div id="favorites_buttons_<%= post.id %>">
-          <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
-        </div>
-      </div>
-    </div>
-    <% if post.customer == current_customer %>
-      <div>
-        <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
-      </div>
-    <% end %>
-    <hr>
-  <% end %>
+  <div id="post_box" class="post_box">
+    <%= render @posts %>
+  </div>
 </div>
 <div class="col-xs-3">
   <% if customer_signed_in? %>
