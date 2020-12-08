@@ -16,7 +16,9 @@
       <div class="post_reference">
         <%= @post.reference %><br>
       </div>
-      コメント <%= @post.comments.count %> 件<br>
+      <div id="comment_count">
+        <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
+      </div>
       <div id="favorites_buttons_<%= @post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: @post} %>
       </div>
