@@ -1,3 +1,5 @@
 <span class="badge badge-primary">
-  <%= tag %>
+  <%= link_to posts_path(tag_name: tag), class: "text-white" do %>
+    <%= tag %>
+  <% end %>
 </span>

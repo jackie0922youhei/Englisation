@@ -2,9 +2,8 @@ class Customers::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @post = Post.find(params[:post_id])
-    if @review.save!
-      render :create
-    else
+    unless @review.save
+      @comment = Comment.new
       render :'customers/posts/show'
     end
   end
@@ -27,7 +26,6 @@ class Customers::ReviewsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_customer.reviews.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    render :destroy
   end
 
   private
