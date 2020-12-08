@@ -1,6 +1,10 @@
 <% if customer_signed_in? %>
   <%= form_with model: review, url: post_reviews_path(post), method: :post, remote: true do |f| %>
-    <%= f.text_area:body, :placeholder =>"レビューはこちらに！！", size: "60x3" %>
+    <div class="form-group row" id="star">
+      <%= f.label :rate, '評価' %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
+    <%= f.text_area :body, :placeholder =>"レビューはこちらに！！", size: "60x3" %>
     <%= f.hidden_field :customer_id, :value => current_customer.id %>
     <%= f.hidden_field :post_id, :value => post.id %>
     <%= f.submit "レビュー！！", class: "btn btn-primary" %>
