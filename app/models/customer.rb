@@ -10,6 +10,10 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  
+  has_many :entries
+  has_many :direct_messages
+  has_many :rooms, through: :entries
 
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
   has_many :followings, through: :active_relationships, source: :follower

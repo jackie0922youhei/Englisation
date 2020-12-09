@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         delete :destroy_all
       end
     end
+    resources :rooms, only: [:index, :show, :create, :destroy]
   end
 
   get 'homes/about'

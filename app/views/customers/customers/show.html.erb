@@ -16,6 +16,24 @@
       <%= render 'customers/relationships/follow_count', customer: @customer %>
       <% if customer_signed_in? %>
         <%= render 'customers/relationships/follow_form', customer: @customer %>
+        <% unless @customer.id == current_customer.id %>
+          <% if @room_existance == true %>
+            <%= link_to room_path(@room_id) do %>
+              <button id="dm_submit">
+                <i class="fas fa-envelope"></i>
+              </button>
+            <% end %>
+          <% else %>
+            <%= form_for @room, url: rooms_path do |f| %>
+              <%= fields_for @entry do |entry| %>
+                <%= entry.hidden_field :customer_id, :value=> @customer.id %>
+              <% end %>
+              <button type="submit" id="dm_submit">
+                <i class="fas fa-envelope"></i>
+              </button>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>
