@@ -24,7 +24,7 @@
               </button>
             <% end %>
           <% else %>
-            <%= form_for @room, url: room_index_path do |f| %>
+            <%= form_for @room, url: rooms_path do |f| %>
               <%= fields_for @entry do |entry| %>
                 <%= entry.hidden_field :customer_id, :value=> @customer.id %>
               <% end %>
