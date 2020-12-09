@@ -4,6 +4,30 @@ class Customers::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts.all.order(created_at: :desc)
+    #チャット
+    if customer_signed_in?
+      #Entry内のcustomer_idがcurrent_customerと同じEntry
+      @current_customer_entries = Entry.where(customer_id: current_customer.id)
+      #Entry内のcustomer_idがMYPAGEのparams.idと同じEntry
+      @customer_entries = Entry.where(customer_id: @customer.id)
+      #@customer.idとcurrent_customer.idが同じでなければ
+      unless @customer.id == current_customer.id
+        @current_customer_entries.each do |current_customer_entry|
+          @customer_entries.each do |customer_entry|
+            #もしcurrent_customer側のルームidと＠customer側のルームidが同じであれば存在するルームに飛ぶ
+            if current_customer_entry.room_id == customer_entry.room_id then
+              @room_existance = true
+              @room_id = current_customer_entry.room_id
+            end
+          end
+        end
+        #ルームが存在していなければルームとエントリーを作成する
+        unless @room_existance
+          @room = Room.new
+          @entry = Entry.new
+        end
+      end
+    end
   end
 
   def edit
