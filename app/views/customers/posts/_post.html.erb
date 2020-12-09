@@ -42,6 +42,7 @@
 </div>
 
 <script>
+$(function () {
   $('#average-review-rate<%= post.id %>').raty({
     size      : 36,
     starOff   : "/assets/star-off.png",
@@ -50,4 +51,5 @@
     half: true,
     readOnly: true
   });
+});
 </script>
