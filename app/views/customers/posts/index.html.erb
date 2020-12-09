@@ -2,32 +2,9 @@
   <p class="text-active"><%= flash[:notice] %></p>
 <% end %>
 <div class="col-xs-3">
-  <% if customer_signed_in? %>
-    <h4>アカウント情報</h4>
-    <%= attachment_image_tag current_customer, :image, format: "jpeg", size:'150x150', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
-    <table class="table">
-      <tr>
-        <th>ユーザネーム</th>
-        <td><%= current_customer.username %></td>
-      </tr>
-      <tr>
-        <th>フォロー数</th>
-        <td><%= current_customer.followings.count %> 人</td>
-      </tr>
-      <tr>
-        <th>フォロワー数</th>
-        <td><%= current_customer.followers.count %> 人</td>
-      </tr>
-      <tr>
-        <th>つぶやき数</th>
-        <td><%= current_customer.posts.count %></td>
-      </tr>
-    </table>
-  <% else %>
-    <%= link_to "会員登録はこちら", new_customer_registration_path %><br>
-    <%= link_to "すでに会員の方はこちら", new_customer_session_path %><br>
-    <%= link_to "関係者はこちら", new_admin_session_path %>
-  <% end %>
+  <div id="profile_area">
+    <%= render 'customers/customers/profile' %>
+  </div>
   <div class="teacher_index">
     <h4>講師一覧</h4>
     <% @teachers.each do |teacher| %>
