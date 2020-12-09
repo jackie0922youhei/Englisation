@@ -1,5 +1,5 @@
 <%=link_to follows_customer_path(customer.id) do %>
-  <%= render 'customers/relationships/following_count', customer: customer %>
+  <%= customer.followings.count %>フォロー
 <% end %><br>
 <%=link_to followers_customer_path(customer.id) do %>
   <div id="follow_count">
