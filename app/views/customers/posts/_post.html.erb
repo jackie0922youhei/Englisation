@@ -15,6 +15,14 @@
       <span class="post_reference">
         <%= post.reference %><br>
       </span>
+      <% if post.reviews.blank? %>
+        <% average_review_rate = 0 %>
+      <% else %>
+        <% average_review_rate = post.reviews.average(:rate).round(2) %>
+      <% end %>
+      <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>">
+        <%= average_review_rate %>
+      </span><br>
       <span id="tag_box" class="tag_box">
         <%= render post.tags %>
       </span>
@@ -32,3 +40,14 @@
   <% end %>
   <hr>
 </div>
+
+<script>
+  $('#average-review-rate<%= post.id %>').raty({
+    size      : 36,
+    starOff   : "/assets/star-off.png",
+    starOn    : "/assets/star-on.png",
+    starHalf  : "/assets/star-half.png",
+    half: true,
+    readOnly: true
+  });
+</script>

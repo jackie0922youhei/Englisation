@@ -45,7 +45,7 @@ class Customers::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :customer_id, :reference, :tag_list)
+    params.require(:post).permit(:body, :customer_id, :reference, :tag_list).merge(rate: params['score']['rate'])
   end
 
 end
