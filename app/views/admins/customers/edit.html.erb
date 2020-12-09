@@ -1,0 +1,62 @@
+<%= form_with model: @customer, url: admins_customer_path(@customer), local:true do |f| %>
+  <div class="col-xs-3">
+    <%= attachment_image_tag @customer, :image, format: "jpeg", size:'200x200', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
+    <span class="btn btn-file btn-info">
+      <%= f.attachment_field :image %>画像選択
+    </span>
+		<p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+  </div>
+  <div class="col-xs-7">
+    <table class="table">
+      <tr>
+        <th>ユーザネーム</th>
+        <td><%= f.text_field :username, autocomplete: "username", :placeholder =>"#{@customer.username}" %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス </th>
+        <td><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td>
+          <%= f.text_field :first_name, :placeholder =>"#{@customer.first_name}" %>
+        </td>
+        <td>
+          <%= f.text_field :last_name, :placeholder =>"#{@customer.last_name}" %>
+        </td>
+      </tr>
+      <tr>
+        <th>カナ氏名</th>
+        <td>
+          <%= f.text_field :first_name_kana, :placeholder =>"#{@customer.first_name_kana}" %>
+        </td>
+        <td>
+          <%= f.text_field :last_name_kana, :placeholder =>"#{@customer.last_name_kana}" %>
+        </td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= f.text_field :telephone_number, :placeholder =>"#{@customer.telephone_number}" %></td>
+      </tr>
+      <tr>
+        <th>会員属性</th>
+        <td>
+          <%= f.radio_button :is_teacher, false %><%= f.label :is_teacher, "生徒", value: false, class: "text-active" %>
+        </td>
+        <td>
+          <%= f.radio_button :is_teacher, true %><%= f.label :is_teacher, "講師", value: true, class: "text-active" %>
+        </td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <td>
+          <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, "有効", value: false, class: "text-active" %>
+        </td>
+        <td>
+          <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, "退会済み",value: true, class: "text-invalid" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <%= f.submit "変更を保存", class:"btn btn-lg" %>
+<% end %>
