@@ -24,6 +24,7 @@
 </div>
 
 <script>
+$(function () {
   $('#star-rate<%= review.id%>').raty({
     size      : 36,
     starOff   : "/assets/star-off.png",
@@ -32,4 +33,5 @@
     half: true,
     readOnly: true
   });
+});
 </script>
