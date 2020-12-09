@@ -25,6 +25,11 @@ class Customers::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @review = Review.new
+    if @post.reviews.blank?
+      @average_review_rate = 0
+    else
+      @average_review_rate = @post.reviews.average(:rate).round(2)
+    end
   end
 
   def edit
