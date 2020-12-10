@@ -11,6 +11,7 @@
       <td>
         <!--最新メッセージ内容の最初の7文字を表示する-->
         <% dm = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last).content %>
+        <!--truncateは、文字列を切り捨てて省略表示する！-->
         <%= truncate(dm, length: 10) %>
       </td>
       <td>

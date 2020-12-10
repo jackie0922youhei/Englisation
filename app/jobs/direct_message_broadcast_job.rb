@@ -1,4 +1,5 @@
 class DirectMessageBroadcastJob < ApplicationJob
+  # queue_asメソッドは、ジョブを実行するキューの名前を指定するもの
   queue_as :default
 
   # performメソッドでブロードキャストを実行

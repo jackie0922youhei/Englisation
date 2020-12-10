@@ -1,5 +1,6 @@
 <% @entries.each do |entry| %>
-  <!-- eachで回したentryユーザーがログインユーザーであれば、@classに"current_customer"の文字列を代入する。ログインユーザーであれば、空白を代入する -->
+   <!--eachで回したentryユーザーがログインユーザーであれば、@classに"current_customer"の文字列を代入する-->
+   <!--ログインユーザーであれば、空白を代入する -->
   <% current_customer == entry.customer ? @class = "current_customer" : @class = ""  %>
   <!-- eachで回したentryユーザーがログインユーザーでなければ、entryユーザー名を表示する -->
   <% if entry.customer != current_customer %>

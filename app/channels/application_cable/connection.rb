@@ -1,4 +1,6 @@
 module ApplicationCable
+  # Connectionオブジェクトは、全てのChannel Subscriptionsの親となる
+  # 各ユーザーが開くブラウザタブ、ウィンドウ、デバイスごとに、ConsumerのConnectionのペアが1つづつ作成される
   class Connection < ActionCable::Connection::Base
     # ApplicationCable::Connectionクラスを使って、認証情報を定義
     # identified_byはコネクションを識別するキーとなるもの
