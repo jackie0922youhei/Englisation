@@ -3,6 +3,7 @@ class DirectMessageBroadcastJob < ApplicationJob
 
   # performメソッドでブロードキャストを実行
   def perform(direct_message)
+    # ActionCable.server.broadcastが、サーバサイドのroom_channelで登録されたコメントを、クライアントにブロードキャスト
     ActionCable.server.broadcast "room_channel_#{direct_message.room_id}", direct_message: render_direct_message(direct_message)
     # Do something later
   end

@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+クライアントサイドの処理を行なうチャンネル!!
+
 document.addEventListener 'turbolinks:load', ->
   if App.room
     App.cable.subscriptions.remove App.room
