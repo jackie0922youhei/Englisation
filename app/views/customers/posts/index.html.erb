@@ -20,5 +20,8 @@
   <% if customer_signed_in? %>
     <%= render 'customers/posts/post_form', post: @post %>
   <% end %>
-  <h4>閲覧数ランキング</h4>
+  <h4>いいね数ランキング</h4>
+  <table class="table">
+    <!--render @favorite_rankings-->
+  </table>
 </div>

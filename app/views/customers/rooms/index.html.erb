@@ -9,10 +9,15 @@
         <% end %>
       </td>
       <td>
-        <!--最新メッセージ内容の最初の7文字を表示する-->
-        <% dm = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last).content %>
-        <!--truncateは、文字列を切り捨てて省略表示する！-->
-        <%= truncate(dm, length: 10) %>
+        <% if another_entry.room.direct_messages.present? %>
+          <!--最新メッセージ内容の最初の7文字を表示する-->
+          <% direct_message = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last) %>
+          <!--truncateは、文字列を切り捨てて省略表示する！-->
+          <!--DMが削除されていなかったら、truncateを実行する-->
+          <% if direct_message.present? %>
+            <%= truncate(direct_message.content, length: 10) %>
+          <% end %>
+        <% end %>
       </td>
       <td>
         <h6 style="color: #C0C0C0;">

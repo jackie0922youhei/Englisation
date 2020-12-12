@@ -17,13 +17,19 @@ App.room = App.cable.subscriptions.create { channel: "RoomChannel", room: $('#di
     # appendメソッドはhtml要素を動的に追加することができるメソッド
     $('#direct_messages').append data['direct_message']
   #サーバーサイドのspeakアクションにdirect_messageパラメータを渡す
-  speak: (direct_message) ->
-    @perform 'speak', direct_message: direct_message
+  speak: (object) ->
+    @perform 'speak', direct_message: object.content, roomId: object.roomId
  # キーイベント「keypress」：キーが修飾キーでなかった場合に発生
-$('#chat-input').on 'keypress', (event) ->
+# $('#chat-input').on 'keypress', (event) ->
+$(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
+  # event.preventDefault()
   #return キーのキーコードが13
+  console.log(document.getElementById('chat-input').getAttribute('data-room-id'))
+  console.log(event.target.value)
   if event.keyCode is 13
     #speakメソッド,event.target.valueを引数に.
-    App.room.speak event.target.value
+    roomId = document.getElementById('chat-input').getAttribute('data-room-id')
+    content =  event.target.value
+    App.room.speak { roomId: roomId, content: content }
     event.target.value = ''
     event.preventDefault()
