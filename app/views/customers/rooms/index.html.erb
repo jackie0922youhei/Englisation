@@ -13,7 +13,7 @@
           <!--最新メッセージ内容の最初の7文字を表示する-->
           <% direct_message = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last) %>
           <!--truncateは、文字列を切り捨てて省略表示する！-->
-          <!--DMが削除されていなかったら、truncateを実行する-->
+          <!--lastのDMが削除されていなかったら、truncateを実行する！-->
           <% if direct_message.present? %>
             <%= truncate(direct_message.content, length: 10) %>
           <% end %>

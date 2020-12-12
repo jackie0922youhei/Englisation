@@ -10,7 +10,11 @@ class RoomChannel < ApplicationCable::Channel
     # Streamは、Channelにルーティング機能を与える
     # これにより、ChannelはPublishされたコンテンツ(Broadcast)をSubscriberにルーティングできる
     # Subscription作成時に、クライアント側のパラメータをサーバー側に渡すことができる
-    stream_from "room_channel_#{params['room']}"
+
+    result = stream_from "room_channel_#{params['room']}"
+    puts '==========='
+    puts result
+    puts '==========='
   end
 
   #切断されたとき

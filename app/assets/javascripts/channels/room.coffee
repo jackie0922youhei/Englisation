@@ -15,6 +15,8 @@ App.room = App.cable.subscriptions.create { channel: "RoomChannel", room: $('#di
     # Called when there's incoming data on the websocket for this channel
     #投稿を追加
     # appendメソッドはhtml要素を動的に追加することができるメソッド
+    console.log('hoge')
+
     $('#direct_messages').append data['direct_message']
   #サーバーサイドのspeakアクションにdirect_messageパラメータを渡す
   speak: (object) ->
@@ -22,10 +24,7 @@ App.room = App.cable.subscriptions.create { channel: "RoomChannel", room: $('#di
  # キーイベント「keypress」：キーが修飾キーでなかった場合に発生
 # $('#chat-input').on 'keypress', (event) ->
 $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-  # event.preventDefault()
-  #return キーのキーコードが13
-  console.log(document.getElementById('chat-input').getAttribute('data-room-id'))
-  console.log(event.target.value)
+  #return キーのキーコードが13（エンターキーのこと！！！！）
   if event.keyCode is 13
     #speakメソッド,event.target.valueを引数に.
     roomId = document.getElementById('chat-input').getAttribute('data-room-id')
