@@ -2,9 +2,7 @@ module ApplicationHelper
 
   def notification_form(notification)
     @action_customer = notification.action_customer
-    @comment = nil
     @action_customer_comment = notification.comment_id
-    @review = nil
     @action_customer_review = notification.reciever_id
     #notification.actionがfollowかlikeかcommentかreviewか
     case notification.action
