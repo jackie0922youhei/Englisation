@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   acts_as_taggable
-  
+
   belongs_to :customer
-  has_many :comments
-  has_many :favorites
-  has_many :reviews
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   has_many :notifications, dependent: :destroy
 
