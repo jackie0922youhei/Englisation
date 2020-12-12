@@ -3,6 +3,12 @@ class Customers::PostsController < ApplicationController
     @customer = current_customer
     @teachers = Customer.all.where(is_teacher: true)
     @post = Post.new
+    # ①Favorite.group(:post_id)：投稿の番号(postid)が同じものにグループを分ける
+    # ②order('count(post_id) desc')：いいねの多い順に並び替える
+    # ③limit(10)：表示する最大数を10個に指定する
+    # ④pluck(:post_id)：post_idカラムのみを数字で取り出すように指定
+    # ⑤Post.find()：pluckで取り出される数字を投稿のIDとすることでいいね順にpostを取得する事ができる
+    # @favorite_rankings = Post.where(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
     else
@@ -45,7 +51,7 @@ class Customers::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :customer_id, :reference, :tag_list).merge(rate: params['score']['rate'])
+    params.require(:post).permit(:body, :customer_id, :reference, :tag_list)
   end
 
 end

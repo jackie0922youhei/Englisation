@@ -13,16 +13,18 @@
   </span>
 </p><br>
 
-<!-- メッセージの表示位置を指定する -->
+ <!--メッセージの表示位置を指定する -->
 <script>
   //メッセージのユーザーidを取ってくる
-  var direct_message = <%= direct_message.customer.id %>;
+  var direct_message_customer = <%= direct_message.customer.id %>;
+  //getElementById() メソッド：任意のHTMLタグで指定したIDにマッチするドキュメント要素を取得するメソッド
   //id="current_customer"の内容を取得
-  var dm_customer = document.getElementById('current_customer');
-  //dm_customerのdata-idを取得する
-  var current_customer = dm_customer.getAttribute('data-id')
+  var dm_current_customer = document.getElementById('current_customer');
+  //dm_current_customerのdata-idを取得する
+  // getAttributeは、指定した要素の属性を取得することができる
+  var current_customer = dm_current_customer.getAttribute('data-id')
   //dm_customerがログインユーザーであれば右に表示する
-  if(direct_message == current_customer){
+  if(direct_message_customer == current_customer){
     $('p.' + <%= direct_message.id %>).css('text-align', 'right');
   }else{
     $('p.' + <%= direct_message.id %>).css('text-align', 'left');

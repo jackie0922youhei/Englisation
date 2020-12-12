@@ -28,6 +28,7 @@
           <ul class="flex">
             <p>Welcome aboard <%= current_customer.username %>!</p>
             <li><%= link_to 'マイページ', mypage_path(current_customer) %></li>
+            <li><%= link_to "DM", rooms_path %></li>
             <% if unchecked_notifications.any? %>
               <i class="fa fa-circle" style="color: gold;"></i>
             <% end %>
