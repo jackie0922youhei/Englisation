@@ -26,7 +26,7 @@
       <span id="tag_box" class="tag_box">
         <%= render post.tags %>
       </span>
-      <%= post.created_at.strftime('%Y/%m/%d') %><br>
+      <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
       コメント <%= post.comments.count %> 件<br>
       <span id="favorites_buttons_<%= post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
