@@ -3,11 +3,9 @@ class Customers::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
     if @comment.save
-      @comment_post = @comment.post
       #通知の作成
-      @comment_post.create_notification_comment!(current_customer, @comment.id)
+      @comment.post.create_notification_comment!(current_customer, @comment.id)
     else
-      @comments = Comment.all
       render :'customers/posts/show'
     end
   end
