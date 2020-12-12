@@ -8,7 +8,7 @@ class Customers::PostsController < ApplicationController
     # ③limit(10)：表示する最大数を10個に指定する
     # ④pluck(:post_id)：post_idカラムのみを数字で取り出すように指定
     # ⑤Post.find()：pluckで取り出される数字を投稿のIDとすることでいいね順にpostを取得する事ができる
-    # @favorite_rankings = Post.where(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @favorite_rankings = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}")
     else
