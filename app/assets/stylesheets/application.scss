@@ -1,0 +1,172 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ header {
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: #faa;
+  * {
+    position: relative;
+    z-index: 100;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    margin: 0 auto;
+    .logo {
+      padding: 10px 20px;
+      font-family: "Century";
+      font-size: 20px;
+      text-decoration: none;
+    }
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      p {
+        padding: 10px 20px 10px 10px;
+      }
+      li {
+        list-style: none;
+        a {
+          display: block;
+          width: 110px;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          color: #333;
+        }
+      }
+      li:hover {
+        background-color: #fcc;
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.admin_header {
+  background-color: #aaf;
+  .header-content {
+    ul {
+      li:hover {
+        background-color: #ccf;
+      }
+    }
+  }
+}
+main {
+  padding: 100px 0;
+}
+footer {
+  padding: 15px 0;
+  font-size: 14px;
+  text-align: center;
+  background-color: #ccc;
+}
+
+// 投稿関係
+.post_box {
+  margin-bottom: 10px;
+}
+
+.post_box_left {
+  display: flex;
+}
+
+.post_box_right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.post_body {
+  margin-bottom: 20px;
+}
+
+.post_reference {
+  margin-bottom: 10px;
+}
+
+// プロフィール関係
+.profile_box {
+  display: flex;
+}
+
+.profile_box_right {
+  margin-left: 50px;
+}
+
+// コメント関係
+.comment_box {
+  margin-bottom: 10px;
+}
+
+.comment_box_left {
+  display: flex;
+}
+
+.comment_box_right {
+  margin-left: 30px;
+}
+
+// レビュー関係
+.review_box {
+  margin-bottom: 10px;
+}
+
+.review_box_left {
+  display: flex;
+}
+
+.review_box_right {
+  margin-left: 30px;
+}
+
+// 投稿詳細
+.post_show {
+ display: flex;
+ margin-bottom: 10px;
+}
+
+.post_show_left {
+  display: flex;
+}
+
+.post_show_right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+// 投稿フォーム関係
+.post_body {
+  margin-bottom: 10px;
+}
+
+.post_reference {
+  margin-bottom: 10px;
+}
+
+.post_tag {
+  margin-bottom: 10px;
+}

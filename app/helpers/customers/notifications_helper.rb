@@ -1,0 +1,2 @@
+module Customers::NotificationsHelper
+end

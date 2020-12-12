@@ -1,0 +1,18 @@
+<% action_customer = notification.action_customer %>
+<% post = notification.post %>
+
+<div class="user-view clearfix ">
+  <%= link_to mypage_path(notification.action_customer) do %>
+    <%= attachment_image_tag action_customer, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle" %>
+  <% end %>
+  <%= notification_form(notification) %>
+  <span class="moderate-font">
+    <%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
+  </span>
+  <br>
+  <% if !@comment.nil? %>
+    <p class="moderate-font text-center" style="color: #C0C0C0;">
+      <%= @comment %>
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<h3>レビュー編集</h3>
+<% if customer_signed_in? %>
+  <%= form_with model: @review, url: post_review_path(@post, @review), local: true do |f| %>
+    <%= f.text_area :body, :placeholder =>"#{@review.body}", size: "60x3" %>
+    <div>
+      <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

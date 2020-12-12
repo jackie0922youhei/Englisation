@@ -1,0 +1,8 @@
+<% if customer_signed_in? %>
+  <%= form_with model: comment, url: post_comments_path(post), method: :post, remote: true do |f| %>
+    <%= f.text_area:body, :placeholder =>"コメントはこちらに！！", size: "60x3" %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <%= f.hidden_field :post_id, :value => post.id %>
+    <%= f.submit "送信！！", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

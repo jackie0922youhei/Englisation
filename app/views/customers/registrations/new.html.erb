@@ -1,0 +1,50 @@
+<h2>新規登録</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "customers/shared/error_messages", resource: resource %>
+  <table class="table">
+    <tr>
+      <th><%= f.label :username, "ユーザーネーム" %></th>
+      <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email, "メールアドレス" %></th>
+      <td><%= f.email_field :email, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= f.text_field :first_name, :placeholder =>"姓" %></td>
+      <td><%= f.text_field :last_name, :placeholder =>"名" %></td>
+    </tr>
+    <tr>
+      <th>カナ氏名</th>
+      <td><%= f.text_field :first_name_kana, :placeholder =>"姓(カナ)" %></td>
+      <td><%= f.text_field :last_name_kana, :placeholder =>"名(カナ)" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :telephone_number, "電話番号(ハイフンなし10or11桁)" %></th>
+      <td><%= f.text_field :telephone_number %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :password, "パスワード" %></th>
+      <td>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+  </table>
+  <div class="field">
+    <%= f.label :is_teacher, "Please check here if you're not Japanese" %>
+    <%= f.check_box :is_teacher, {class: "check_box"}, true, false %>
+  </div>
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
+<%= link_to 'すでに会員の方はこちら', new_customer_session_path %>

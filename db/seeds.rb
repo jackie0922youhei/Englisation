@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if Admin.find_by(username: "admin1") == nil
+Admin.create!(
+  username: "admin1",
+  email: "a@aa",
+  password: "aaaaaa"
+  )
+end
+
+Customer.create!(
+  is_teacher: true,
+  username: "teacher",
+  email: "ttt@ttt",
+  password: "jjjjjj"
+  )

@@ -1,0 +1,9 @@
+<h3>コメント編集</h3>
+<% if customer_signed_in? %>
+  <%= form_with model: @comment, url: post_comment_path(@post, @comment), local: true do |f| %>
+    <%= f.text_area :body, :placeholder =>"#{@comment.body}", size: "60x3" %>
+    <div>
+      <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% end %>

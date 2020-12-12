@@ -1,0 +1,16 @@
+<%= form_with model:post, url:posts_path, remote: true do |f| %>
+  <div class="post_body">
+    <%= f.text_area :body, :placeholder =>"気軽につぶやこう！！", size: "40x5", class: "form-control" %>
+  </div>
+  <div class="post_reference">
+    <%= f.label :reference, "参考にしたものがあれば" %>
+    <%= f.text_field :reference, :placeholder =>"ほかのみんなにも教えよう！", size: "40x30", class: "form-control" %>
+  </div>
+  <div class="post_tag">
+    <%= f.label :tag_list, "タグ" %>
+    <%= f.text_field :tag_list, :placeholder =>"2つ以上は「,」で区切ってね", value: post.tag_list.join(','), class: "form-control" %>
+  </div>
+  <div class="post_button">
+    <%= f.submit "英語でつぶやく！！", class: "btn btn-primary" %>
+  </div>
+<% end %>
