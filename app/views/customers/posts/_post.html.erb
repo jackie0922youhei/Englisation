@@ -27,7 +27,9 @@
         <%= render post.tags %>
       </span>
       <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
-      コメント <%= post.comments.count %> 件<br>
+      <span>
+        <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
+      </span>
       <span id="favorites_buttons_<%= post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
       </span>
