@@ -1,7 +1,7 @@
 <div id="post-<%= post.id %>">
   <div class="post_box_left">
     <%= link_to mypage_path(post.customer.id) do %>
-      <%= attachment_image_tag post.customer, :image, format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+      <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle pull-left profile-thumb", size:'80x80', fallback: "no-image.png" %>
     <% end %>
     <p class="post_box_right">
       <span class="post_customer">
@@ -27,7 +27,9 @@
         <%= render post.tags %>
       </span>
       <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
-      コメント <%= post.comments.count %> 件<br>
+      <span>
+        <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
+      </span>
       <span id="favorites_buttons_<%= post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
       </span>
