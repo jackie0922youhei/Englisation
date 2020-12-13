@@ -10,3 +10,16 @@
     <%= f.submit "レビュー！！", class: "btn btn-primary" %>
   <% end %>
 <% end %>
+
+<script>
+  $(function(){
+      $('#star').raty({
+    size      : 36,
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    scoreName: "score[rate]"
+  });
+  })
+</script>
