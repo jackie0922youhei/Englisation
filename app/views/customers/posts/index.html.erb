@@ -4,14 +4,13 @@
 <div class="col-xs-3">
   <div id="profile_area">
     <%= render 'customers/customers/profile' %>
-  </div>
+  </div><hr>
   <div class="teacher_index">
     <h4>講師一覧</h4>
     <%= render partial: "customers/customers/teacher", collection: @teachers %>
   </div>
 </div>
 <div class="col-xs-4">
-  <h3>投稿一覧</h3>
   <div id="post_box" class="post_box">
     <%= render @posts %>
   </div>
@@ -20,12 +19,13 @@
   <% if customer_signed_in? %>
     <%= render 'customers/posts/post_form', post: @post %>
   <% end %>
+  <hr>
   <h4>いいね数ランキング</h4>
   <table class="table">
-    <%= render partial: "customers/posts/favorite_ranking", collection: @favorite_rankings %>
+    <%= render partial: "customers/posts/favorite_ranking", collection: @favorite_rankings, locals: { i: 0 } %>
   </table>
   <h4>コメント数ランキング</h4>
   <table class="table">
-    <%= render partial: "customers/posts/comment_ranking", collection: @comment_rankings %>
+    <%= render partial: "customers/posts/comment_ranking", collection: @comment_rankings, locals: { i: 0 } %>
   </table>
 </div>
