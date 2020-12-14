@@ -2,7 +2,7 @@ class Customers::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @post = Post.find(params[:post_id])
-    @comments = @post.comments.page(params[:page]).per(7)
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(7)
     if @comment.save
       #通知の作成
       @comment.post.create_notification_comment!(current_customer, @comment.id)
