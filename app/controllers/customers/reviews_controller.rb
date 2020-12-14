@@ -2,7 +2,7 @@ class Customers::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @post = Post.find(params[:post_id])
-    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(7)
+    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
     if @review.save
       #通知の作成
       @review.post.create_notification_review!(current_customer, @review.id)
