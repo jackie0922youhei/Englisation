@@ -1,37 +1,39 @@
-<div id="review-<%= review.id %>">
-  <div class="review_box_left">
-    <%= link_to mypage_path(review.customer.id) do %>
-      <%= attachment_image_tag review.customer, :image, class: "img-circle pull-left profile-thumb", format: "jpeg", size:'60x60', fallback: "no-image.png" %>
-    <% end %>
-      <p class="review_box_right">
-        <%= link_to mypage_path(review.customer.id) do %>
-          FROM　<%= review.customer.username %>
-        <% end %><br>
-        <span id="star-rate<%= review.id %>" data-score="<%= review.rate %>">
-          <%= review.rate %>
-        </span><br>
-        <%= review.body %><br>
-        <%= review.created_at.strftime("%Y/%m/%d %H:%M") %>
-      </p>
-  </div>
-  <% if review.customer == current_customer %>
-    <div>
-      <%= link_to "削除", post_review_path(review.post, review), method: :delete, remote: true, class: "btn btn-danger" %>
-      <%= link_to "編集", edit_post_review_path(review.post, review), class: "btn btn-success" %>
+<% reviews.each do |review| %>
+  <div id="review-<%= review.id %>">
+    <div class="review_box_left">
+      <%= link_to mypage_path(review.customer.id) do %>
+        <%= attachment_image_tag review.customer, :image, class: "img-circle pull-left profile-thumb", format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+      <% end %>
+        <p class="review_box_right">
+          <%= link_to mypage_path(review.customer.id) do %>
+            FROM　<%= review.customer.username %>
+          <% end %><br>
+          <span id="star-rate<%= review.id %>" data-score="<%= review.rate %>">
+            <%= review.rate %>
+          </span><br>
+          <%= review.body %><br>
+          <%= review.created_at.strftime("%Y/%m/%d %H:%M") %>
+        </p>
     </div>
-  <% end %>
-  <hr>
-</div>
-
-<script>
-$(function () {
-  $('#star-rate<%= review.id%>').raty({
-    size      : 36,
-    starOff: "<%= asset_path('star-off.png') %>",
-    starOn: "<%= asset_path('star-on.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    half: true,
-    readOnly: true
+    <% if review.customer == current_customer %>
+      <div>
+        <%= link_to "削除", post_review_path(review.post, review), method: :delete, remote: true, class: "btn btn-danger" %>
+        <%= link_to "編集", edit_post_review_path(review.post, review), class: "btn btn-success" %>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+  <script>
+  $(function () {
+    $('#star-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,
+      readOnly: true
+    });
   });
-});
-</script>
+  </script>
+<% end %>
+

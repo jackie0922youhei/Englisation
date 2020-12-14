@@ -11,9 +11,9 @@ class Customers::PostsController < ApplicationController
     @favorite_rankings = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     @comment_rankings = Post.find(Comment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(7).order(created_at: :desc)
     else
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
     end
   end
 
@@ -32,6 +32,8 @@ class Customers::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @review = Review.new
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(7)
+    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(7)
     if @post.reviews.blank?
       @average_review_rate = 0
     else

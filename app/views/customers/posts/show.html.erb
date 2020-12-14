@@ -36,7 +36,8 @@
   <hr>
   <h4>コメント一覧</h4>
   <div id="comment_box" class="comment_box">
-    <%= render 'customers/comments/comments_area', post: @post %>
+    <%= render 'customers/comments/comment', comments: @comments %>
+    <%= paginate @comments %>
   </div>
 </div>
 <div class="col-xs-5">
@@ -46,7 +47,8 @@
   <% end %>
   <h4>レビュー一覧</h4>
   <div id="review_box" class="review_box">
-    <%= render 'customers/reviews/reviews_area', post: @post %>
+    <%= render 'customers/reviews/review', reviews: @reviews %>
+    <%= paginate @reviews %>
   </div>
 </div>
 
