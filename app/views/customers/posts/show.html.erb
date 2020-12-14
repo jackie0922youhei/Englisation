@@ -40,8 +40,10 @@
   </div>
 </div>
 <div class="col-xs-5">
-  <%= render 'customers/reviews/review_form', post: @post, review: @review %>
-  <hr>
+  <% if current_customer.is_teacher == true %>
+    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
+    <hr>
+  <% end %>
   <h4>レビュー一覧</h4>
   <div id="review_box" class="review_box">
     <%= render 'customers/reviews/reviews_area', post: @post %>
