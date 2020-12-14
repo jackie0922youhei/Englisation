@@ -6,6 +6,7 @@ class Customers::ReviewsController < ApplicationController
     if @review.save
       #通知の作成
       @review.post.create_notification_review!(current_customer, @review.id)
+      redirect_back(fallback_location: root_path)
     else
       render :'customers/posts/show'
     end
@@ -29,6 +30,7 @@ class Customers::ReviewsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     current_customer.reviews.find_by(id: params[:id], post_id: params[:post_id]).destroy
+    redirect_to post_path(@post)
   end
 
   private

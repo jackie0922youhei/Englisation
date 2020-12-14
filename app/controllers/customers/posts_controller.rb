@@ -22,6 +22,7 @@ class Customers::PostsController < ApplicationController
     @posts = Post.all.order(created_at: :desc)
     post = Post.new(post_params)
     post.customer_id = current_customer.id
+    redirect_to root_path
     unless post.save
       @teachers = Customer.all.where(is_teacher: true)
       render :index
@@ -32,8 +33,8 @@ class Customers::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @review = Review.new
-    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(7)
-    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(7)
+    @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(5)
+    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
     if @post.reviews.blank?
       @average_review_rate = 0
     else
@@ -50,6 +51,7 @@ class Customers::PostsController < ApplicationController
   def destroy
     @posts = Post.all.order(created_at: :desc)
     Post.find(params[:id]).destroy
+    redirect_to root_path
   end
 
   private

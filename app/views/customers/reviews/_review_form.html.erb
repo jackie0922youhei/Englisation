@@ -1,5 +1,5 @@
 <% if customer_signed_in? %>
-  <%= form_with model: review, url: post_reviews_path(post), method: :post, remote: true do |f| %>
+  <%= form_with model: review, url: post_reviews_path(post), local: :post, remote: true do |f| %>
     <div class="form-group row" id="star">
       <%= f.label :rate, '評価' %>
       <%= f.hidden_field :rate, id: :review_star %>
