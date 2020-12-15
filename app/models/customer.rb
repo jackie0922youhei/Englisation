@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   has_many :entries
   has_many :direct_messages
   has_many :rooms, through: :entries
@@ -22,6 +22,9 @@ class Customer < ApplicationRecord
 
   has_many :active_notifications, class_name: "Notification", foreign_key: "action_customer_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "reciever_id", dependent: :destroy
+
+  # customer_idを整数値でランダム生成する
+  before_create :randomize_id
 
   def followed_by?(customer)
     passive_relationships.find_by(following_id: customer.id).present?
@@ -55,6 +58,13 @@ class Customer < ApplicationRecord
     else
       self.add_role(:guest)
     end
+  end
+
+  private
+  def randomize_id
+    begin
+      self.id = SecureRandom.random_number(1_000_000)
+    end while Customer.where(id: self.id).exists?
   end
 
 end
