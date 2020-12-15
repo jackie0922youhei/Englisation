@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://example.com/cable'
   # ActionCableが許可するホストを設定
   # nginxとRailsアプリが同サーバ上でも、サーバのホストを許可する必要がある
-  config.action_cable.allowed_request_origins = [ 'https://englisation.work' ]
+  config.action_cable.allowed_request_origins = [ '54.238.29.160' ]
   ActionCable.server.config.disable_request_forgery_protection = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
