@@ -62,9 +62,11 @@ class Customer < ApplicationRecord
 
   private
   def randomize_id
-    begin
-      self.id = SecureRandom.random_number(1_000_000)
-    end while Customer.where(id: self.id).exists?
+    unless self.id == 1
+      begin
+        self.id = SecureRandom.random_number(1_000_000)
+      end while Customer.where(id: self.id).exists?
+    end
   end
 
 end

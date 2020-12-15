@@ -1,7 +1,8 @@
-<% if flash[:notice] %>
-  <p class="text-active"><%= flash[:notice] %></p>
-<% end %>
 <div class="col-xs-3">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+    <hr>
+  <% end %>
   <div id="profile_area">
     <%= render 'customers/customers/profile' %>
   </div><hr>
