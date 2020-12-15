@@ -190,3 +190,22 @@ footer {
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
 }
+
+// 新規登録、ログイン時のフォーム関係
+.icon-position{
+  position: relative;
+}
+
+.form-control-icon {
+  color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 30%;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  pointer-events: none;
+}

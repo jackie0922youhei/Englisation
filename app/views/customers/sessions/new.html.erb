@@ -4,11 +4,21 @@
   <table class="table">
     <tr>
       <th><%= f.label :username, "ユーザーネーム" %></th>
-      <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.text_field :username, class:"form-control", id:"inputEmail", autofocus: true, autocomplete: "username" %>
+          <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
     <tr>
       <th><%= f.label :password, "パスワード" %></th>
-      <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.password_field :password, class:"form-control", autocomplete: "current-password" %>
+          <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
   </table>
 
@@ -20,7 +30,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログインする" %>
+    <%= f.submit "ログインする", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
   </div>
 <% end %>
 

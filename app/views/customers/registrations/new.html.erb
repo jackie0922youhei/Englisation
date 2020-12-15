@@ -5,38 +5,61 @@
   <table class="table">
     <tr>
       <th><%= f.label :username, "ユーザーネーム" %></th>
-      <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.text_field :username, class:"form-control", id:"inputEmail", autofocus: true, autocomplete: "username" %>
+          <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
     <tr>
       <th><%= f.label :email, "メールアドレス" %></th>
-      <td><%= f.email_field :email, autocomplete: "email" %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.email_field :email, class:"form-control", id:"inputEmail", autocomplete: "email" %>
+          <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
     <tr>
       <th>氏名</th>
-      <td><%= f.text_field :first_name, :placeholder =>"姓" %></td>
-      <td><%= f.text_field :last_name, :placeholder =>"名" %></td>
+      <td><%= f.text_field :first_name, class:"form-control", :placeholder =>"姓" %></td>
+      <td><%= f.text_field :last_name, class:"form-control", :placeholder =>"名" %></td>
     </tr>
     <tr>
       <th>カナ氏名</th>
-      <td><%= f.text_field :first_name_kana, :placeholder =>"姓(カナ)" %></td>
-      <td><%= f.text_field :last_name_kana, :placeholder =>"名(カナ)" %></td>
+      <td><%= f.text_field :first_name_kana, class:"form-control", :placeholder =>"姓(カナ)" %></td>
+      <td><%= f.text_field :last_name_kana, class:"form-control", :placeholder =>"名(カナ)" %></td>
     </tr>
     <tr>
       <th><%= f.label :telephone_number, "電話番号(ハイフンなし10or11桁)" %></th>
-      <td><%= f.text_field :telephone_number %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.text_field :telephone_number, class:"form-control" %>
+          <span class="fa fa-phone-alt form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
     <tr>
-      <th><%= f.label :password, "パスワード" %></th>
+      <th><%= f.label :password, "パスワード(6文字以上の英数字)" %></th>
       <td>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="icon-position">
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+          <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+        </div>
       </td>
     </tr>
     <tr>
       <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
-      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+      <td>
+        <div class="icon-position">
+          <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+          <span class="fa fa-check-circle-o form-control-icon" aria-hidden="true"></span>
+        </div>
+      </td>
     </tr>
   </table>
   <div class="field">
@@ -44,7 +67,7 @@
     <%= f.check_box :is_teacher, {class: "check_box"}, true, false %>
   </div>
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "新規登録", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
   </div>
 <% end %>
 <%= link_to 'すでに会員の方はこちら', new_customer_session_path %>
