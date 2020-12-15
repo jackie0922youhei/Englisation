@@ -1,7 +1,6 @@
 class Customers::RoomsController < ApplicationController
 
   def index
-    @customer = current_customer
     @current_entries = current_customer.entries
     #@current_entriesのルームを配列にする
     current_room_ids = []
@@ -9,7 +8,7 @@ class Customers::RoomsController < ApplicationController
       current_room_ids << current_entry.room.id
     end
     #@current_entriesのルーム且つcurrent_customerでないEntryを新着順で取ってくる
-    @another_entries = Entry.where(room_id: current_room_ids).where.not(customer_id: @customer.id).order(created_at: :desc)
+    @another_entries = Entry.where(room_id: current_room_ids).where.not(customer_id: current_customer.id).order(created_at: :desc)
   end
 
   def show
