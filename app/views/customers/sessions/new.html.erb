@@ -4,7 +4,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <table class="table">
     <tr>
-      <th><%= f.label :username, "ユーザーネーム" %></th>
+      <th><%= f.label :username, required: true, "ユーザーネーム" %></th>
       <td>
         <div class="icon-position">
           <%= f.text_field :username, class:"form-control", id:"inputEmail", autofocus: true, autocomplete: "username" %>
@@ -13,7 +13,7 @@
       </td>
     </tr>
     <tr>
-      <th><%= f.label :password, "パスワード" %></th>
+      <th><%= f.label :password, required: true, "パスワード" %></th>
       <td>
         <div class="icon-position">
           <%= f.password_field :password, class:"form-control", autocomplete: "current-password" %>

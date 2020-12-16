@@ -3,7 +3,7 @@ class Review < ApplicationRecord
   belongs_to :customer
   belongs_to :post
 
-  validates :body, :rate, presence: true
+  validates :body, presence: true
 
   has_many :notifications, dependent: :destroy
 
