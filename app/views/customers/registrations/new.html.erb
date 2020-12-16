@@ -44,9 +44,6 @@
       <th><%= f.label :password, "パスワード(6文字以上の英数字)" %></th>
       <td>
         <div class="icon-position">
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %>
           <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
           <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
         </div>

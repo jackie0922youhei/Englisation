@@ -3,13 +3,15 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable
+         :recoverable, :rememberable, :validatable
 
   # ログインする時に退会済み(is_deleted==true)のcustomerを弾くためのメソッド
   def active_for_authentication?
     # customerのis_deletedがfalseならtrueを返す
     super && (self.is_deleted == false)
   end
+
+  validates :username, :email, :last_name, :first_name, :last_name_kana, :first_name_kana, :telephone_number, presence: true
 
   attachment :image
   has_many :posts, dependent: :destroy
