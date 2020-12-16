@@ -27,20 +27,6 @@
       <td><%= f.text_field :last_name, class:"form-control", required: true, :placeholder =>"名" %></td>
     </tr>
     <tr>
-      <th>カナ氏名</th>
-      <td><%= f.text_field :first_name_kana, class:"form-control", required: true, :placeholder =>"姓(カナ)" %></td>
-      <td><%= f.text_field :last_name_kana, class:"form-control", required: true, :placeholder =>"名(カナ)" %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :telephone_number, "電話番号(ハイフンなし10or11桁)" %></th>
-      <td>
-        <div class="icon-position">
-          <%= f.text_field :telephone_number, required: true, class:"form-control" %>
-          <span class="fa fa-phone-alt form-control-icon" aria-hidden="true"></span>
-        </div>
-      </td>
-    </tr>
-    <tr>
       <th><%= f.label :password, "パスワード(6文字以上の英数字)" %></th>
       <td>
         <div class="icon-position">

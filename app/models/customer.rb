@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
     super && (self.is_deleted == false)
   end
 
-  validates :username, :email, :last_name, :first_name, :last_name_kana, :first_name_kana, :telephone_number, presence: true
+  validates :username, :email, :last_name, :first_name, presence: true
 
   attachment :image
   has_many :posts, dependent: :destroy
