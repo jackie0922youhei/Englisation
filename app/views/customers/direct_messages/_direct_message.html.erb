@@ -5,7 +5,8 @@
 <p class="<%= direct_message.id %>">
   <span class="balloon1-top">
     <h7 class="dm_content">
-      <%= simple_format(h direct_message.content) %>
+      <%#= simple_format(h direct_message.content) %>
+      <%= direct_message.content %>
     </h7><br>
     <h7 style="color: #C0C0C0;">
       <%= direct_message.created_at.strftime("%Y/%m/%d %H:%M") %>
@@ -19,12 +20,12 @@
   var direct_message_customer_id = <%= direct_message.customer.id %>;
   //getElementById() メソッド：任意のHTMLタグで指定したIDにマッチするドキュメント要素を取得するメソッド
   //id="current_customer"の内容を取得
-  var dm_current_customer = document.getElementById('current_customer');
-  //dm_current_customerのdata-idを取得する
+  var direct_message_current_customer_id = document.getElementById('current_customer');
+  //dm_current_customer_idのdata-idを取得する
   // getAttributeは、指定した要素の属性を取得することができる
-  var current_customer = dm_current_customer.getAttribute('data-id')
+  var current_customer_id = direct_message_current_customer_id.getAttribute('data-id')
   //dm_customerがログインユーザーであれば右に表示する
-  if(direct_message_customer_id == current_customer){
+  if(direct_message_customer_id == current_customer_id){
     $('p.' + <%= direct_message.id %>).css('text-align', 'right');
   }else{
     $('p.' + <%= direct_message.id %>).css('text-align', 'left');

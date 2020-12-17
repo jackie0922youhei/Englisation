@@ -1,5 +1,6 @@
+<div class="col-xs-1"></div>
+<div class="col-xs-8">
 <h2>新規登録</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
   <table class="table">
@@ -30,7 +31,7 @@
       <th><%= f.label :password, "パスワード(6文字以上の英数字)" %></th>
       <td>
         <div class="icon-position">
-          <%= f.password_field :password, class:"form-control", required: true, autocomplete: "new-password" %>
+          <%= f.password_field :password, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password" %>
           <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
         </div>
       </td>
@@ -39,7 +40,7 @@
       <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
       <td>
         <div class="icon-position">
-          <%= f.password_field :password_confirmation, class:"form-control", required: true, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password" %>
           <span class="fa fa-check-circle-o form-control-icon" aria-hidden="true"></span>
         </div>
       </td>
@@ -54,3 +55,5 @@
   </div>
 <% end %>
 <%= link_to 'すでに会員の方はこちら', new_customer_session_path %>
+</div>
+<div class="col-xs-1"></div>
