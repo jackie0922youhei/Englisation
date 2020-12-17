@@ -1,9 +1,11 @@
 <tr>
   <td><%= favorite_ranking_counter + 1 %></td>
   <td><%= favorite_ranking.customer.username %></td>
-  <td><%= favorite_ranking.body %></td>
   <td>
     <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
     <%= favorite_ranking.favorites.count %>件
   </td>
+</tr>
+<tr>
+  <td colspan="3"><%= favorite_ranking.body %></td>
 </tr>

@@ -35,21 +35,27 @@
   <%= render 'customers/comments/comment_form', post: @post, comment: @comment %>
   <hr>
   <h4>コメント一覧</h4>
-  <div id="comment_box" class="comment_box">
-    <%= render 'customers/comments/comment', comments: @comments %>
-    <%= paginate @comments %>
-  </div>
+  <% if @comments.blank? %>
+    現在コメントはありません
+  <% else %>
+    <div id="comment_box" class="comment_box">
+      <%= render 'customers/comments/comment', comments: @comments %>
+      <%= paginate @comments %>
+    </div>
+  <% end %>
 </div>
 <div class="col-xs-5">
-  <% if current_customer.is_teacher == true %>
-    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
-    <hr>
-  <% end %>
+  <%= render 'customers/reviews/review_form', post: @post, review: @review %>
+  <hr>
   <h4>レビュー一覧</h4>
-  <div id="review_box" class="review_box">
-    <%= render 'customers/reviews/review', reviews: @reviews %>
-    <%= paginate @reviews %>
-  </div>
+  <% if @reviews.blank? %>
+    現在、投稿に対して、レビューが行われていません
+  <% else %>
+    <div id="review_box" class="review_box">
+      <%= render 'customers/reviews/review', reviews: @reviews %>
+      <%= paginate @reviews %>
+    </div>
+  <% end %>
 </div>
 
 <script>

@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('favicon.ico') %>
     <script src="https://kit.fontawesome.com/1524ec8d55.js" crossorigin="anonymous"></script>
   </head>
 
@@ -14,7 +15,9 @@
     <% if admin_signed_in? %>
       <header class="admin_header">
         <div class="header-content">
-          <%= link_to 'Englisation', posts_path, class: "logo" %>
+          <%= link_to posts_path, class: "logo" do %>
+            <%= image_tag 'logo1.png', :size => '250x50' %>
+          <% end %>
           <ul class="flex">
             <li><%= link_to '会員一覧', admins_customers_path %></li>
             <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
@@ -24,7 +27,9 @@
     <% elsif customer_signed_in? %>
       <header>
         <div class="header-content">
-          <%= link_to 'Englisation', posts_path, class: "logo" %>
+          <%= link_to posts_path, class: "logo" do %>
+            <%= image_tag 'logo1.png', :size => '250x50' %>
+          <% end %>
           <ul class="flex">
             <p>Welcome aboard <%= current_customer.username %>!</p>
             <li><%= link_to 'マイページ', mypage_path(current_customer) %></li>
@@ -40,11 +45,13 @@
     <% else %>
       <header>
         <div class="header-content">
-          <%= link_to 'Englisation', root_path, class: "logo" %>
-          <ul class="flex">
+          <%= link_to posts_path, class: "logo" do %>
+            <%= image_tag 'logo1.png', :size => '250x50' %>
+          <% end %>
+          <ul class="flex" data-animations="zoomIn fadeIn fadeInUp fadeIn">
             <li><%= link_to '新規登録', new_customer_registration_path %></li>
             <li><%= link_to 'ログイン', new_customer_session_path %></li>
-            <li><%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %></li>
+            <li><%= link_to 'ゲストログイン', customers_guest_sign_in_path, id: "guest", method: :post %></li>
           </ul>
         </div>
       </header>
@@ -58,6 +65,6 @@
         </div>
       </div>
     </main>
-    <footer>Copyright © Infratop Inc. All Rights Reserved.</footer>
+    <footer>Copyright © Englisation. All Rights Reserved.</footer>
   </body>
 </html>

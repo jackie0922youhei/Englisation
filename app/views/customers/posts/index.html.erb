@@ -1,7 +1,8 @@
-<% if flash[:notice] %>
-  <p class="text-active"><%= flash[:notice] %></p>
-<% end %>
 <div class="col-xs-3">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+    <hr>
+  <% end %>
   <div id="profile_area">
     <%= render 'customers/customers/profile' %>
   </div><hr>
@@ -22,11 +23,11 @@
   <% end %>
   <hr>
   <h4>いいね数ランキング</h4>
-  <table class="table">
+  <table class="table table-borderless table-striped table-sm">
     <%= render partial: "customers/posts/favorite_ranking", collection: @favorite_rankings %>
   </table>
   <h4>コメント数ランキング</h4>
-  <table class="table">
+  <table class="table table-borderless table-striped table-sm">
     <%= render partial: "customers/posts/comment_ranking", collection: @comment_rankings %>
   </table>
 </div>

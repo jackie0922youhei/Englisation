@@ -67,14 +67,14 @@ class Customers::CustomersController < ApplicationController
   # ゲストユーザーの削除機能・編集機能を制限
   def check_guest
     if current_customer.username == 'sample_user'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+      redirect_to root_path, notice: 'ゲストユーザーの編集・削除はできません！'
     end
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :email, :username, :image, :telephone_number)
+    params.require(:customer).permit(:last_name, :first_name, :email, :username, :image)
   end
 
 end

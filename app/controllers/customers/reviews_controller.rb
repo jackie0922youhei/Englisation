@@ -8,6 +8,7 @@ class Customers::ReviewsController < ApplicationController
       @review.post.create_notification_review!(current_customer, @review.id)
       redirect_back(fallback_location: root_path)
     else
+      @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(5)
       render :'customers/posts/show'
     end
   end

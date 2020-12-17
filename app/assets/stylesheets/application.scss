@@ -22,7 +22,7 @@
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: #faa;
+  background-color: white;
   * {
     position: relative;
     z-index: 100;
@@ -33,7 +33,7 @@
     width: 960px;
     margin: 0 auto;
     .logo {
-      padding: 10px 20px;
+      padding: 10px 10px;
       font-family: "Century";
       font-size: 20px;
       text-decoration: none;
@@ -46,6 +46,9 @@
       }
       li {
         list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         a {
           display: block;
           width: 110px;
@@ -53,6 +56,9 @@
           text-align: center;
           text-decoration: none;
           color: #333;
+        }
+        #guest {
+          width: 120px;
         }
       }
       li:hover {
@@ -65,7 +71,7 @@
   }
 }
 .admin_header {
-  background-color: #aaf;
+  background-color: white;
   .header-content {
     ul {
       li:hover {
@@ -75,8 +81,15 @@
   }
 }
 main {
-  padding: 100px 0;
+  padding: 80px 0;
+  background-color: #f2f2e9;
+  margin-top: 20px;
 }
+
+.row {
+  width: auto;
+}
+
 footer {
   padding: 15px 0;
   font-size: 14px;
@@ -105,6 +118,26 @@ footer {
 
 .post_reference {
   margin-bottom: 10px;
+}
+
+.post-show {
+  position: relative;
+  z-index: 1;
+}
+
+.post-show #post-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent:-999px;
+  z-index: 2;
+}
+
+.inlink {
+  position: relative;
+  z-index: 3;
 }
 
 // プロフィール関係
@@ -186,4 +219,31 @@ footer {
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+}
+
+// 新規登録、ログイン時のフォーム関係
+.icon-position{
+  position: relative;
+}
+
+.form-control-icon {
+  color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 30%;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  pointer-events: none;
+}
+
+#inputEmail {
+  padding-left: 12%;
+}
+
+#inputName {
+  padding-left: 10%;
 }

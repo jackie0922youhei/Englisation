@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   acts_as_taggable
 
+  validates :body, presence: true
+
   belongs_to :customer
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
