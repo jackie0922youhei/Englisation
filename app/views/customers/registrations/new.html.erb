@@ -8,7 +8,7 @@
       <th><%= f.label :username, "ユーザーネーム" %></th>
       <td>
         <div class="icon-position">
-          <%= f.text_field :username, class:"form-control", id:"inputEmail", required: true, autofocus: true, autocomplete: "username" %>
+          <%= f.text_field :username, class:"form-control", id:"inputEmail", required: true, autofocus: true, autocomplete: "username", placeholder:"Username" %>
           <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
         </div>
       </td>
@@ -17,21 +17,21 @@
       <th><%= f.label :email, "メールアドレス" %></th>
       <td>
         <div class="icon-position">
-          <%= f.email_field :email, class:"form-control", id:"inputEmail", required: true, autocomplete: "email" %>
+          <%= f.email_field :email, class:"form-control", id:"inputEmail", required: true, autocomplete: "email", placeholder:"Email" %>
           <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
         </div>
       </td>
     </tr>
     <tr>
       <th>氏名</th>
-      <td><%= f.text_field :first_name, class:"form-control", required: true, :placeholder =>"姓" %></td>
-      <td><%= f.text_field :last_name, class:"form-control", required: true, :placeholder =>"名" %></td>
+      <td><%= f.text_field :last_name, class:"form-control", required: true, :placeholder =>"Last Name" %></td>
+      <td><%= f.text_field :first_name, class:"form-control", required: true, :placeholder =>"First Name" %></td>
     </tr>
     <tr>
       <th><%= f.label :password, "パスワード(6文字以上の英数字)" %></th>
       <td>
         <div class="icon-position">
-          <%= f.password_field :password, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password" %>
+          <%= f.password_field :password, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password", placeholder:"Password" %>
           <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
         </div>
       </td>
@@ -40,7 +40,7 @@
       <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
       <td>
         <div class="icon-position">
-          <%= f.password_field :password_confirmation, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, class:"form-control", id:"inputEmail", required: true, autocomplete: "new-password", placeholder:"Password(Confirmation)" %>
           <span class="fa fa-check-circle-o form-control-icon" aria-hidden="true"></span>
         </div>
       </td>

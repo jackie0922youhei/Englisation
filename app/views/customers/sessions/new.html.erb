@@ -8,7 +8,7 @@
         <th><%= f.label :username, "ユーザーネーム" %></th>
         <td>
           <div class="icon-position">
-            <%= f.text_field :username, class:"form-control", id:"inputEmail", required: true, autofocus: true, autocomplete: "username" %>
+            <%= f.text_field :username, class:"form-control", id:"inputName", required: true, autofocus: true, autocomplete: "username", placeholder:"Username" %>
             <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
           </div>
         </td>
@@ -17,7 +17,7 @@
         <th><%= f.label :password, "パスワード" %></th>
         <td>
           <div class="icon-position">
-            <%= f.password_field :password, class:"form-control", id:"inputEmail", required: true, autocomplete: "current-password" %>
+            <%= f.password_field :password, class:"form-control", id:"inputName", required: true, autocomplete: "current-password", placeholder:"Password" %>
             <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
           </div>
         </td>
