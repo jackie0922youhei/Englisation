@@ -120,6 +120,26 @@ footer {
   margin-bottom: 10px;
 }
 
+.post-show {
+  position: relative;
+  z-index: 1;
+}
+
+.post-show #post-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent:-999px;
+  z-index: 2;
+}
+
+.inlink {
+  position: relative;
+  z-index: 3;
+}
+
 // プロフィール関係
 .profile_box {
   display: flex;

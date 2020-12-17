@@ -1,47 +1,48 @@
-<div id="post-<%= post.id %>">
-  <div class="post_box_left">
-    <%= link_to mypage_path(post.customer.id) do %>
-      <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle pull-left profile-thumb", size:'80x80', fallback: "no-image.png" %>
-    <% end %>
-    <p class="post_box_right">
-      <span class="post_customer">
-        <%= post.customer.username %><br>
-      </span>
-      <span class="post_body">
-        <%= link_to post_path(post) do %>
-          <%= post.body %><br>
-        <% end %>
-      </span>
-      <span class="post_reference">
-        <%= post.reference %><br>
-      </span>
-      <% if post.reviews.blank? %>
-        <% average_review_rate = 0 %>
-      <% else %>
-        <% average_review_rate = post.reviews.average(:rate).round(2) %>
+<div id="post-<%= post.id %>" class="post-show">
+  <%= link_to post_path(post), {id: "post-link"} do %>
+    <div class="post_box_left">
+      <%= link_to mypage_path(post.customer.id), {class: "inlink"} do %>
+        <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle profile-thumb", size:'80x80', fallback: "no-image.png" %>
       <% end %>
-      <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>">
-        <%= average_review_rate %>
-      </span><br>
-      <span id="tag_box" class="tag_box">
-        <%= render post.tags %>
-      </span>
-      <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
-      <span>
-        <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
-      </span>
-      <span id="favorites_buttons_<%= post.id %>">
-        <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
-      </span>
-    </p>
-  </div>
-  <% if post.customer == current_customer %>
-    <div>
-      <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
+      <p class="post_box_right">
+        <span class="post_customer">
+          <%= post.customer.username %><br>
+        </span>
+        <span class="post_body">
+            <%= post.body %><br>
+        </span>
+        <span class="post_reference">
+          <%= post.reference %><br>
+        </span>
+        <% if post.reviews.blank? %>
+          <% average_review_rate = 0 %>
+        <% else %>
+          <% average_review_rate = post.reviews.average(:rate).round(2) %>
+        <% end %>
+        <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>">
+          <%= average_review_rate %>
+        </span><br>
+        <span id="tag_box" class="tag_box">
+          <%= render post.tags %>
+        </span>
+        <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+        <span>
+          <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
+        </span>
+        <span id="favorites_buttons_<%= post.id %>">
+          <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
+        </span>
+      </p>
     </div>
+    <% if post.customer == current_customer %>
+      <div>
+        <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+    <hr>
   <% end %>
-  <hr>
 </div>
+
 
 <script>
 $(function () {
