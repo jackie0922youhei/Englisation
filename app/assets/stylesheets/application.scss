@@ -22,7 +22,7 @@
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: #faa;
+  background-color: white;
   * {
     position: relative;
     z-index: 100;
@@ -33,7 +33,7 @@
     width: 960px;
     margin: 0 auto;
     .logo {
-      padding: 10px 20px;
+      padding: 10px 10px;
       font-family: "Century";
       font-size: 20px;
       text-decoration: none;
@@ -68,7 +68,7 @@
   }
 }
 .admin_header {
-  background-color: #aaf;
+  background-color: white;
   .header-content {
     ul {
       li:hover {
@@ -78,8 +78,15 @@
   }
 }
 main {
-  padding: 100px 0;
+  padding: 80px 0;
+  background-color: #f2f2e9;
+  margin-top: 20px;
 }
+
+.row {
+  width: auto;
+}
+
 footer {
   padding: 15px 0;
   font-size: 14px;
