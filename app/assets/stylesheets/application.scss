@@ -98,6 +98,11 @@ footer {
 }
 
 // 投稿関係
+
+.post_form {
+  margin-bottom: 100px;
+}
+
 .post_box {
   margin-bottom: 10px;
 }
@@ -123,6 +128,9 @@ footer {
 .post-show {
   position: relative;
   z-index: 1;
+  border-bottom: dashed 1px;
+  margin: 20px auto;
+
 }
 
 .post-show #post-link {
@@ -140,9 +148,20 @@ footer {
   z-index: 3;
 }
 
+.trash-box {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
 // プロフィール関係
+.profile-image-box {
+  margin-bottom: 10px;
+}
+
 .profile_box {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .profile_box_right {
