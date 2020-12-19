@@ -247,3 +247,18 @@ footer {
 #inputName {
   padding-left: 10%;
 }
+
+// ランキング関係
+
+.ranking-box {
+  padding: 5px auto;
+}
+
+.table-noborder tbody tr td {
+  border-top: 0px;
+}
+
+.table-noborder tbody {
+  margin-bottom: 10px;
+  background-color: white;
+}
