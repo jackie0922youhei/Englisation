@@ -98,6 +98,11 @@ footer {
 }
 
 // 投稿関係
+
+.post_form {
+  margin-bottom: 100px;
+}
+
 .post_box {
   margin-bottom: 10px;
 }
@@ -150,8 +155,13 @@ footer {
 }
 
 // プロフィール関係
+.profile-image-box {
+  margin-bottom: 10px;
+}
+
 .profile_box {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .profile_box_right {
