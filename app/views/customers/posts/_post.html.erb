@@ -9,7 +9,17 @@
           <%= post.customer.username %><br>
         </span>
         <span class="post_body">
+          <span id="js-post-label-<%= post.id %>">
             <%= post.body %><br>
+          </span>
+          <span id="js-post-error-<%= post.id %>" class="text-danger"></span>
+          <textarea style="display: none;" id="js-textarea-post-<%= post.id %>" class="form-control post-error">
+            <%= post.body %>
+          </textarea>
+          <span id="js-post-button-<%= post.id %>" style="display: none;">
+            <button data-cancel-id=<%= post.id %> type="button" class="btn btn-warning post-cancel-button inlink">キャンセル</button>
+            <button data-update-id=<%= post.id%> type="submit" class="btn btn-success post-update-button inlink">更新</button>
+          </span>
         </span>
         <span class="post_reference">
           <%= post.reference %><br>
@@ -35,8 +45,11 @@
       </p>
       <% if post.customer == current_customer %>
         <div>
-          <%= link_to post_path(post), method: :delete, class: "btn btn-danger inlink pull-right trash-box" do %>
-            <i class="fas fa-trash-alt fa-xs"></i>
+          <span data-post-id=<%= post.id %> class="js-edit-post-button inlink">
+            <i class="fas fa-edit text-primary fa-lg"></i>
+          </span>
+          <%= link_to post_path(post), method: :delete, class: "inlink pull-right trash-box" do %>
+            <i class="fas fa-trash-alt fa-lg"></i>
           <% end %>
         </div>
       <% end %>
@@ -54,6 +67,34 @@ $(function () {
     starHalf: "<%= asset_path('star-half.png') %>",
     half: true,
     readOnly: true
+  });
+  // ①クリックイベント
+  $(document).on("click", ".js-edit-post-button", function () {
+    // ②一意のpostidを代入
+    const postId = $(this).data('post-id');
+    // ③一意のラベルを代入
+    const postLabelArea = $('#js-post-label-' + postId);
+    // ④一意のコメントエリアを代入
+    const postTextArea = $('#js-textarea-post-' + postId);
+    // ⑤一意のボタンエリアを代入
+    const postButton = $('#js-post-button-' + postId);
+    // ③を非表示
+    postLabelArea.hide();
+    // ④を表示
+    postTextArea.show();
+    // ⑤を表示
+    postButton.show();
+  });
+  $(document).on("click", ".post-cancel-button", function () {
+    const postId = $(this).data('cancel-id');
+    const postLabelArea = $('#js-post-label-' + postId);
+    const postTextArea = $('#js-textarea-post-' + postId);
+    const postButton = $('#js-post-button-' + postId);
+    const postError = $('#js-post-error-' + postId);
+    postLabelArea.show();
+    postTextArea.hide();
+    postButton.hide();
+    postError.hide();
   });
 });
 </script>
