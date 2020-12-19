@@ -33,13 +33,14 @@
           <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
         </span>
       </p>
+      <% if post.customer == current_customer %>
+        <div>
+          <%= link_to post_path(post), method: :delete, class: "btn btn-danger inlink pull-right trash-box" do %>
+            <i class="fas fa-trash-alt fa-xs"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% if post.customer == current_customer %>
-      <div>
-        <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger inlink" %>
-      </div>
-    <% end %>
-    <hr>
   <% end %>
 </div>
 

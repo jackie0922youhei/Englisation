@@ -123,6 +123,9 @@ footer {
 .post-show {
   position: relative;
   z-index: 1;
+  border-bottom: dashed 1px;
+  margin: 20px auto;
+
 }
 
 .post-show #post-link {
@@ -138,6 +141,12 @@ footer {
 .inlink {
   position: relative;
   z-index: 3;
+}
+
+.trash-box {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
 }
 
 // プロフィール関係
