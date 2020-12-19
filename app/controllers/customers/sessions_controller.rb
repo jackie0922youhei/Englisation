@@ -45,7 +45,7 @@ class Customers::SessionsController < Devise::SessionsController
     if @customer
       # if (@customer.valid_password?(params[:customer][:password])で、入力されたパスワードが正しいことを確認
       # (@customer.active_for_authentication? == false))で、@customerのactive_for_authentication?メソッドがfalseであるかどうかを確認
-      if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
         flash[:error] = "退会済みです。"
         redirect_to new_customer_session_path
       else
@@ -53,5 +53,4 @@ class Customers::SessionsController < Devise::SessionsController
       end
     end
   end
-
 end

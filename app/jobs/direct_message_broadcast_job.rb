@@ -15,5 +15,4 @@ class DirectMessageBroadcastJob < ApplicationJob
     # direct_messageに単純な文字列ではなく、direct_messages/direct_messagパーシャルのHTMLを返す
     ApplicationController.renderer.render partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message }
   end
-
 end
