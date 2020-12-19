@@ -4,7 +4,7 @@ class Customers::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(5)
     if @comment.save
-      #通知の作成
+      # 通知の作成
       @comment.post.create_notification_comment!(current_customer, @comment.id)
       redirect_back(fallback_location: root_path)
     else
@@ -35,8 +35,8 @@ class Customers::CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:body, :post_id, :customer_id)
   end
-
 end

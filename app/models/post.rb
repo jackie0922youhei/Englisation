@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
   def create_notification_comment!(current_customer, comment_id)
     comment = Comment.find(comment_id)
-    save_notification_comment!(current_customer, comment.id, self.customer_id)
+    save_notification_comment!(current_customer, comment.id, customer_id)
   end
 
   def save_notification_comment!(current_customer, comment_id, reciever_id)
@@ -36,7 +36,7 @@ class Post < ApplicationRecord
 
   def create_notification_review!(current_customer, review_id)
     review = Review.find(review_id)
-    save_notification_review!(current_customer, review.id, self.customer_id)
+    save_notification_review!(current_customer, review.id, customer_id)
   end
 
   def save_notification_review!(current_customer, review_id, reciever_id)
@@ -53,5 +53,4 @@ class Post < ApplicationRecord
     end
     notification.save!
   end
-
 end

@@ -1,10 +1,9 @@
 class RoomChannel < ApplicationCable::Channel
-
   # サーバサイドの処理を行なうチャンネル!!
   # ConsumerはChannelをSubscribeし、Subscriberとして振る舞う
   # 生成されたメッセージは、ActionCable Consumerから送信されるIDに基づいて、これらのChannel Subscriber側にルーティングされる
 
-  #接続されたとき
+  # 接続されたとき
   def subscribed
     # stream_from "some_channel"
     # Streamは、Channelにルーティング機能を与える
@@ -13,7 +12,7 @@ class RoomChannel < ApplicationCable::Channel
     stream_from "room_channel_#{params['room']}"
   end
 
-  #切断されたとき
+  # 切断されたとき
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end

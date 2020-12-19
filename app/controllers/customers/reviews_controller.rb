@@ -4,7 +4,7 @@ class Customers::ReviewsController < ApplicationController
     @post = Post.find(params[:post_id])
     @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
     if @review.save
-      #通知の作成
+      # 通知の作成
       @review.post.create_notification_review!(current_customer, @review.id)
       redirect_back(fallback_location: root_path)
     else
@@ -35,8 +35,8 @@ class Customers::ReviewsController < ApplicationController
   end
 
   private
+
   def review_params
     params.require(:review).permit(:body, :post_id, :customer_id).merge(rate: params['score']['rate'])
   end
-
 end

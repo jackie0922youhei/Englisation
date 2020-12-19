@@ -20,5 +20,4 @@ class Customers::ReviewsControllerTest < ActionDispatch::IntegrationTest
     get customers_reviews_destroy_url
     assert_response :success
   end
-
 end

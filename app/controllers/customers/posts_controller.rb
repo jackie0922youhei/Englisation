@@ -13,7 +13,7 @@ class Customers::PostsController < ApplicationController
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(7).order(created_at: :desc)
     else
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
     end
   end
 
@@ -55,8 +55,8 @@ class Customers::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:body, :customer_id, :reference, :tag_list)
   end
-
 end

@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   # ログインする時に退会済み(is_deleted==true)のcustomerを弾くためのメソッド
   def active_for_authentication?
     # customerのis_deletedがfalseならtrueを返す
-    super && (self.is_deleted == false)
+    super && (is_deleted == false)
   end
 
   validates :username, :email, :last_name, :first_name, presence: true
@@ -39,7 +39,7 @@ class Customer < ApplicationRecord
   end
 
   def create_notification_follow!(current_customer)
-    temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ", current_customer.id, id, 'follow'])
     if temp.blank?
       notification = current_customer.active_notifications.new(
         reciever_id: id,
@@ -63,20 +63,20 @@ class Customer < ApplicationRecord
   after_create :assign_role
 
   def assign_role
-    if self.is_teacher?
-      self.add_role(:teacher)
+    if is_teacher?
+      add_role(:teacher)
     else
-      self.add_role(:guest)
+      add_role(:guest)
     end
   end
 
   private
+
   def randomize_id
-    unless self.id == 1
+    unless id == 1
       begin
         self.id = SecureRandom.random_number(1_000_000)
-      end while Customer.where(id: self.id).exists?
+      end while Customer.where(id: id).exists?
     end
   end
-
 end

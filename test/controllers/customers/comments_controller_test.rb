@@ -20,5 +20,4 @@ class Customers::CommentsControllerTest < ActionDispatch::IntegrationTest
     get customers_comments_update_url
     assert_response :success
   end
-
 end

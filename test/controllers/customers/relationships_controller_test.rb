@@ -10,5 +10,4 @@ class Customers::RelationshipsControllerTest < ActionDispatch::IntegrationTest
     get customers_relationships_destroy_url
     assert_response :success
   end
-
 end

@@ -13,6 +13,7 @@ module ApplicationCable
     end
 
     protected
+
     def find_verified_customer
       # コネクションの識別キーとして、ログイン時に設定したCookieからcustomer_idを取り出している
       if verified_customer = Customer.find_by(id: cookies.encrypted[Rails.application.config.session_options[:key]]['warden.user.customer.key'][0][0])
@@ -21,6 +22,5 @@ module ApplicationCable
         reject_unauthorized_connection
       end
     end
-
   end
 end
