@@ -5,7 +5,10 @@ class Customers::CommentsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(5)
     if @comment.save
       # 通知の作成
-      @comment.post.create_notification_comment!(current_customer, @comment.id)
+      same_customer_notification = Notification.where(action_customer_id: current_customer.id, reciever_id: @post.customer.id, post_id: @post)
+      if same_customer_notification.empty? && (current_customer.id != @post.customer.id)
+        @comment.post.create_notification_comment!(current_customer, @comment.id)
+      end
       redirect_back(fallback_location: root_path)
     else
       @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
