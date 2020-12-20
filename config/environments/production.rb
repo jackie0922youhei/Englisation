@@ -23,7 +23,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :Uglifier.new(harmony: true)
+  config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://example.com/cable'
   # ActionCableが許可するホストを設定
   # nginxとRailsアプリが同サーバ上でも、サーバのホストを許可する必要がある
-  config.action_cable.allowed_request_origins = [ '54.238.29.160' ]
+  config.action_cable.allowed_request_origins = [ 'https://englisation.work' ]
   ActionCable.server.config.disable_request_forgery_protection = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
