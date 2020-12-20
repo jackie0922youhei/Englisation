@@ -18,6 +18,7 @@
 //= require jquery.raty.js
 //= require_tree .
 
+ /* global $*/
 $(function () {
   // ①クリックイベント
   $(document).on("click", ".js-edit-post-button", function () {
