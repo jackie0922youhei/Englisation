@@ -17,8 +17,8 @@
             <%= post.body %>
           </textarea>
           <span id="js-post-button-<%= post.id %>" style="display: none;">
-            <button data-cancel-id=<%= post.id %> type="button" class="btn btn-warning post-cancel-button inlink">キャンセル</button>
-            <button data-update-id=<%= post.id%> type="button" class="btn btn-success post-update-button inlink">更新</button>
+            <button data-cancel-id=<%= post.id %> type="button" class="btn btn-warning post-cancel-button inlink btn-xs">キャンセル</button>
+            <button data-update-id=<%= post.id%> type="button" class="btn btn-success post-update-button inlink btn-xs">更新</button>
           </span>
         </span>
         <span class="post_reference">
@@ -66,7 +66,10 @@ $(function () {
     starOn: "<%= asset_path('star-on.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     half: true,
-    readOnly: true
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
   });
 });
 </script>
