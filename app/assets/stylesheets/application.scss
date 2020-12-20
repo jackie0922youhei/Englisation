@@ -99,16 +99,16 @@ footer {
 
 // 投稿関係
 
-.post_form {
-  margin-bottom: 100px;
-}
-
 .post_box {
   margin-bottom: 10px;
 }
 
 .post_box_left {
   display: flex;
+}
+
+.post-form-bottom {
+  margin-bottom: 100px;
 }
 
 .post_box_right {
@@ -205,6 +205,7 @@ footer {
 .post_show {
  display: flex;
  margin-bottom: 10px;
+ position: relative;
 }
 
 .post_show_left {
@@ -220,14 +221,14 @@ footer {
 #js-edit-box {
   position: absolute;
   right: 17%;
-  top: 40%;
+  top: 85%;
   cursor:  pointer;
 }
 
 #js-trash-box {
   position: absolute;
   right: 12%;
-  top: 40%;
+  top: 85%;
 }
 
 // 投稿フォーム関係
@@ -300,9 +301,4 @@ footer {
 .table-noborder tbody {
   margin-bottom: 10px;
   background-color: white;
-}
-
-// トークルーム関係
-#room-link {
-  z-index: 2;
 }

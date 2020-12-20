@@ -5,11 +5,12 @@
   <% end %>
   <div id="profile_area">
     <%= render 'customers/customers/profile' %>
-  </div><hr>
+  </div>
   <div class="teacher_index">
     <h4>講師一覧</h4>
     <%= render partial: "customers/customers/teacher", collection: @teachers %>
   </div>
+  <%= link_to "関係者はこちら", new_admin_session_path %>
 </div>
 <div class="col-xs-4">
   <div id="post_box" class="post_box">
@@ -21,6 +22,7 @@
   <div class="post_form">
     <% if customer_signed_in? %>
       <%= render 'customers/posts/post_form', post: @post %>
+      <div class="post-form-bottom"></div>
     <% end %>
   </div>
   <div class="ranking-box">

@@ -22,8 +22,5 @@
       <td><%= current_customer.posts.count %></td>
     </tr>
   </table>
-<% else %>
-  <%= link_to "会員登録はこちら", new_customer_registration_path %><br>
-  <%= link_to "すでに会員の方はこちら", new_customer_session_path %><br>
-  <%= link_to "関係者はこちら", new_admin_session_path %>
+  <hr>
 <% end %>
