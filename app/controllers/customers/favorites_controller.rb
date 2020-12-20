@@ -3,7 +3,9 @@ class Customers::FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.new(post_id: @post.id)
     if favorite.save
-      favorite.create_notification
+      if current_customer.id != @post.customer.id
+        favorite.create_notification
+      end
     end
     render :create
   end
