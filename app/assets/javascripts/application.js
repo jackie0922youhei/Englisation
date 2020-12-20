@@ -23,13 +23,13 @@ $(function () {
   // ①クリックイベント
   $(document).on("click", ".js-edit-post-button", function () {
     // ②一意のpostidを代入
-    const postId = $(this).data('post-id');
+    var postId = $(this).data('post-id');
     // ③一意のラベルを代入
-    const postLabelArea = $('#js-post-label-' + postId);
+    var postLabelArea = $('#js-post-label-' + postId);
     // ④一意のコメントエリアを代入
-    const postTextArea = $('#js-textarea-post-' + postId);
+    var postTextArea = $('#js-textarea-post-' + postId);
     // ⑤一意のボタンエリアを代入
-    const postButton = $('#js-post-button-' + postId);
+    var postButton = $('#js-post-button-' + postId);
     // ③を非表示
     postLabelArea.hide();
     // ④を表示
@@ -38,21 +38,21 @@ $(function () {
     postButton.show();
   });
   $(document).on("click", ".post-cancel-button", function () {
-    const postId = $(this).data('cancel-id');
-    const postLabelArea = $('#js-post-label-' + postId);
-    const postTextArea = $('#js-textarea-post-' + postId);
-    const postButton = $('#js-post-button-' + postId);
-    const postError = $('#js-post-error-' + postId);
+    var postId = $(this).data('cancel-id');
+    var postLabelArea = $('#js-post-label-' + postId);
+    var postTextArea = $('#js-textarea-post-' + postId);
+    var postButton = $('#js-post-button-' + postId);
+    var postError = $('#js-post-error-' + postId);
     postLabelArea.show();
     postTextArea.hide();
     postButton.hide();
     postError.hide();
   });
   $(document).on("click", ".post-update-button", function () {
-    const postId = $(this).data('update-id');
-    const textField = $('#js-textarea-post-' + postId);
+    var postId = $(this).data('update-id');
+    var textField = $('#js-textarea-post-' + postId);
     // ②textFieldの内容を取得
-    const body = textField.val();
+    var body = textField.val();
     $.ajax({
       url: '/posts/' + postId,
       type: 'PATCH',
@@ -64,10 +64,10 @@ $(function () {
     })
     // ①ajax通信が成功した時の処理
     .done(function (data) {
-      const postLabelArea = $('#js-post-label-' + postId);
-      const postTextArea = $('#js-textarea-post-' + postId);
-      const postButton = $('#js-post-button-' + postId);
-      const postError = $('#js-post-error-' + postId);
+      var postLabelArea = $('#js-post-label-' + postId);
+      var postTextArea = $('#js-textarea-post-' + postId);
+      var postButton = $('#js-post-button-' + postId);
+      var postError = $('#js-post-error-' + postId);
       postLabelArea.show();
       // ③データベースにupdateされたbodyのvalueが欲しい
       postLabelArea.text(data.body);
@@ -77,7 +77,7 @@ $(function () {
     })
     .fail(function () {
       // ①コメントエラー用の空タグ
-      const postError = $('#js-post-error-' + postId);
+      var postError = $('#js-post-error-' + postId);
       // ②空タグにメッセージを書き換える
       postError.text('コメントを入力してください');
     })
