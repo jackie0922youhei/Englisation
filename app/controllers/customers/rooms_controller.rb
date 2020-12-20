@@ -33,6 +33,6 @@ class Customers::RoomsController < ApplicationController
   def destroy
     room = Room.find(params[:id])
     room.destroy
-    redirect_to room_index_path
+    redirect_to rooms_path
   end
 end

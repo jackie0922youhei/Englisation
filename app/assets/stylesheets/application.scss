@@ -152,6 +152,7 @@ footer {
   position: absolute;
   bottom: 5%;
   right: 13%;
+  cursor:  pointer;
 }
 
 .trash-box {
@@ -220,6 +221,7 @@ footer {
   position: absolute;
   right: 17%;
   top: 40%;
+  cursor:  pointer;
 }
 
 #js-trash-box {
@@ -298,4 +300,9 @@ footer {
 .table-noborder tbody {
   margin-bottom: 10px;
   background-color: white;
+}
+
+// トークルーム関係
+#room-link {
+  z-index: 2;
 }
