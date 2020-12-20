@@ -10,13 +10,9 @@
         <%= @post.customer.username %><br>
       </div>
       <div class="post_body">
-        <span id="js-post-label-<%= @post.id %>">
-          <%= @post.body %><br>
-        </span>
+        <span id="js-post-label-<%= @post.id %>"><%= @post.body %><br></span>
         <span id="js-post-error-<%= @post.id %>" class="text-danger"></span>
-        <textarea style="display: none;" id="js-textarea-post-<%= @post.id %>" class="form-control post-error">
-          <%= @post.body %>
-        </textarea>
+        <textarea style="display: none;" id="js-textarea-post-<%= @post.id %>" class="form-control post-error"><%= @post.body %></textarea>
         <span id="js-post-button-<%= @post.id %>" style="display: none;">
           <button data-cancel-id=<%= @post.id %> type="button" class="btn btn-warning post-cancel-button btn-xs">キャンセル</button>
           <button data-update-id=<%= @post.id%> type="button" class="btn btn-success post-update-button btn-xs">更新</button>
