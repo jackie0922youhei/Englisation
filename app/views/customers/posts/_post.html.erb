@@ -13,9 +13,8 @@
             <%= post.body %><br>
           </span>
           <span id="js-post-error-<%= post.id %>" class="text-danger"></span>
-          <textarea style="display: none;" id="js-textarea-post-<%= post.id %>" class="form-control post-error inlink">
-            <%= post.body %>
-          </textarea>
+          <textarea style="display: none;" id="js-textarea-post-<%= post.id %>" class="form-control post-error inlink"><%= post.body %></textarea>
+          <%#= text_area_tag :body,  %>
           <span id="js-post-button-<%= post.id %>" style="display: none;">
             <button data-cancel-id=<%= post.id %> type="button" class="btn btn-warning post-cancel-button inlink btn-xs">キャンセル</button>
             <button data-update-id=<%= post.id%> type="button" class="btn btn-success post-update-button inlink btn-xs">更新</button>
@@ -29,13 +28,11 @@
         <% else %>
           <% average_review_rate = post.reviews.average(:rate).round(2) %>
         <% end %>
-        <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>">
-          <%= average_review_rate %>
-        </span><br>
+        <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>"></span><br>
         <span id="tag_box" class="tag_box">
           <%= render post.tags %>
         </span>
-        <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+        <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br></span>
         <span>
           <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
         </span>
