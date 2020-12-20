@@ -8,9 +8,7 @@
           <%= link_to mypage_path(review.customer.id) do %>
             FROM　<%= review.customer.username %>
           <% end %><br>
-          <span id="star-rate<%= review.id %>" data-score="<%= review.rate %>">
-            <%= review.rate %>
-          </span><br>
+          <span id="star-rate<%= review.id %>" data-score="<%= review.rate %>"></span><br>
           <%= review.body %><br>
           <%= review.created_at.strftime("%Y/%m/%d %H:%M") %>
         </p>

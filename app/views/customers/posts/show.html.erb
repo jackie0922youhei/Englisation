@@ -30,9 +30,7 @@
         <%= render @post.tags %>
       </span>
 
-      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>">
-        <%= @average_review_rate %>
-      </span><br>
+      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>"></span><br>
 
       <div id="comment_count">
         <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
