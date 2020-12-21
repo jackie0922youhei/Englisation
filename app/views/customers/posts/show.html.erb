@@ -18,16 +18,14 @@
           <button data-update-id=<%= @post.id%> type="button" class="btn btn-success post-update-button btn-xs">更新</button>
         </span>
       </div>
+      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>"></span>
       <div class="post_reference">
         <%= @post.reference %><br>
       </div>
-      <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
       <span id="tag_box" class="tag_box">
         <%= render @post.tags %>
       </span>
-
-      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>"></span><br>
-
+      <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
       <div id="comment_count">
         <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
       </div>

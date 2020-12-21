@@ -26,19 +26,6 @@
         </td>
       </tr>
       <tr>
-        <th>カナ氏名</th>
-        <td>
-          <%= f.text_field :first_name_kana, :placeholder =>"#{@customer.first_name_kana}" %>
-        </td>
-        <td>
-          <%= f.text_field :last_name_kana, :placeholder =>"#{@customer.last_name_kana}" %>
-        </td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= f.text_field :telephone_number, :placeholder =>"#{@customer.telephone_number}" %></td>
-      </tr>
-      <tr>
         <th>会員属性</th>
         <td>
           <%= f.radio_button :is_teacher, false %><%= f.label :is_teacher, "生徒", value: false, class: "text-active" %>
