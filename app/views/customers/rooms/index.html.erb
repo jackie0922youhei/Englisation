@@ -2,11 +2,13 @@
 <% @another_entries.each do |another_entry| %>
   <table class="table table-striped">
     <tr data-link="<%= room_path(another_entry.room.id) %>" style="cursor: pointer;">
-      <td>
+      <td style="width: 5%">
         <%= attachment_image_tag another_entry.customer, :image, class: "img-circle pull-left profile-thumb", format: 'jpeg', fallback: "no-image.png", size: "30x30" %>
+      </td>
+      <td style="width: 15%">
         <%= another_entry.customer.username %>
       </td>
-      <td>
+      <td style="width: 30%">
         <% if another_entry.room.direct_messages.present? %>
           <!--最新メッセージ内容の最初の7文字を表示する-->
           <% direct_message = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last) %>
@@ -17,12 +19,12 @@
           <% end %>
         <% end %>
       </td>
-      <td>
+      <td style="width: 20%"
         <h6 style="color: #C0C0C0;">
           <%= another_entry.updated_at.strftime("%Y/%m/%d %H:%M") %>
         </h6>
       </td>
-      <td>
+      <td style="width: 30%">
         <%= link_to room_path(another_entry.room.id), method: :delete, class: "inlink" do %>
           <i class="fas fa-trash" style="color: black;"></i>
         <% end %>
