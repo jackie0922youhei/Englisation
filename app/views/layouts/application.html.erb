@@ -9,6 +9,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag('favicon.ico') %>
     <script src="https://kit.fontawesome.com/1524ec8d55.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Caveat rel="stylesheet">
+
   </head>
 
   <body>
@@ -51,6 +53,7 @@
             <li><%= link_to '新規登録', new_customer_registration_path %></li>
             <li><%= link_to 'ログイン', new_customer_session_path %></li>
             <li><%= link_to 'ゲストログイン', customers_guest_sign_in_path, id: "guest", method: :post %></li>
+            <li><%= link_to "管理人", new_admin_session_path %></li>
           </ul>
         </div>
       </header>

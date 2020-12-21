@@ -49,6 +49,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
         a {
           display: block;
           width: 110px;
@@ -56,6 +57,8 @@
           text-align: center;
           text-decoration: none;
           color: #333;
+          height: 100%;
+          z-index: 2;
         }
         #guest {
           width: 120px;
@@ -130,7 +133,6 @@ footer {
   z-index: 1;
   border-bottom: dashed 1px;
   margin: 20px auto;
-
 }
 
 .post-show #post-link {
@@ -240,6 +242,11 @@ footer {
   background-color: navy;
 }
 
+.edit_link {
+  text-decoration: none;
+  color: #38aef0 ;
+}
+
 // 投稿フォーム関係
 .post_body {
   margin-bottom: 10px;
@@ -321,4 +328,42 @@ footer {
   font-family: 'Comic Sans MS';
   color: red;
   width: 10%;
+}
+
+// アバウトページ
+.about-top-title {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: blue;
+}
+
+.about-box {
+  display: flex;
+}
+
+.about-box i {
+  margin-bottom: 20px;
+}
+
+.about-content {
+  background-color: white;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 30%;
+}
+
+.registration-button {
+  text-align: center;
+}
+
+.about-body p {
+  font-size: large;
+}
+
+.about-title {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
