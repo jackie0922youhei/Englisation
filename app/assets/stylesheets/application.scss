@@ -329,3 +329,41 @@ footer {
   color: red;
   width: 10%;
 }
+
+// アバウトページ
+.about-top-title {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: blue;
+}
+
+.about-box {
+  display: flex;
+}
+
+.about-box i {
+  margin-bottom: 20px;
+}
+
+.about-content {
+  background-color: white;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 30%;
+}
+
+.registration-button {
+  text-align: center;
+}
+
+.about-body p {
+  font-size: large;
+}
+
+.about-title {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
