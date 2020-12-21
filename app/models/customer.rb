@@ -51,9 +51,9 @@ class Customer < ApplicationRecord
 
   # ゲストユーザーを探す or 作成する機能
   def self.guest
-    find_or_create_by!(username: 'sample_user') do |guest|
+    find_or_create_by!(username: 'ゲストユーザー') do |guest|
       guest.password = SecureRandom.urlsafe_base64
-      guest.email = SecureRandom.urlsafe_base64 + '@' + SecureRandom.urlsafe_base64
+      guest.email = 'sample' + '@' + SecureRandom.urlsafe_base64
       guest.last_name = 'サンプル'
       guest.first_name = '太郎'
     end
