@@ -49,6 +49,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
         a {
           display: block;
           width: 110px;
@@ -56,6 +57,8 @@
           text-align: center;
           text-decoration: none;
           color: #333;
+          height: 100%;
+          z-index: 2;
         }
         #guest {
           width: 120px;
@@ -130,7 +133,6 @@ footer {
   z-index: 1;
   border-bottom: dashed 1px;
   margin: 20px auto;
-
 }
 
 .post-show #post-link {
