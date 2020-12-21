@@ -50,6 +50,8 @@
         justify-content: center;
         align-items: center;
         z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
         a {
           display: block;
           width: 110px;
@@ -59,9 +61,13 @@
           color: #333;
           height: 100%;
           z-index: 2;
+          top: 30%;
+          font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+          font-weight: bold;
+          font-size: medium;
         }
         #guest {
-          width: 120px;
+          width: 100%;
         }
       }
       li:hover {
@@ -87,6 +93,10 @@ main {
   padding: 80px 0;
   background-color: #f2f2e9;
   margin-top: 20px;
+}
+
+.flex p {
+  top: 30%;
 }
 
 .row {
