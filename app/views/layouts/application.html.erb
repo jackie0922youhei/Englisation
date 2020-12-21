@@ -15,9 +15,7 @@
     <% if admin_signed_in? %>
       <header class="admin_header">
         <div class="header-content">
-          <%= link_to posts_path, class: "logo" do %>
-            <%= image_tag 'logo1.png', :size => '250x50' %>
-          <% end %>
+          <%= image_tag 'logo1.png', :size => '250x50' %>
           <ul class="flex">
             <li><%= link_to '会員一覧', admins_customers_path %></li>
             <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
