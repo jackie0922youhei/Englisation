@@ -20,16 +20,16 @@
             <button data-update-id=<%= post.id%> type="button" class="btn btn-success post-update-button inlink btn-xs">更新</button>
           </span>
         </span>
-        <span class="post_reference">
-          <%= post.reference %><br>
-        </span>
         <% if post.reviews.blank? %>
           <% average_review_rate = 0 %>
         <% else %>
           <% average_review_rate = post.reviews.average(:rate).round(2) %>
         <% end %>
         <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>"></span><br>
-        <span id="tag_box" class="tag_box">
+        <span class="post_reference">
+          <%= post.reference %><br>
+        </span>
+        <span id="tag_box" class="tag_box inlink">
           <%= render post.tags %>
         </span>
         <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br></span>

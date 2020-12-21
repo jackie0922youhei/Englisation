@@ -49,6 +49,7 @@
             <%= image_tag 'logo1.png', :size => '250x50' %>
           <% end %>
           <ul class="flex" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+            <li><%= link_to 'About', homes_about_path %></li>
             <li><%= link_to '新規登録', new_customer_registration_path %></li>
             <li><%= link_to 'ログイン', new_customer_session_path %></li>
             <li><%= link_to 'ゲストログイン', customers_guest_sign_in_path, id: "guest", method: :post %></li>
