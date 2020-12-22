@@ -1,3 +1,9 @@
+<div class="row">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+    <hr>
+  <% end %>
+</div>
 <h3>会員一覧</h3>
 <table class="table">
   <tr class="active">

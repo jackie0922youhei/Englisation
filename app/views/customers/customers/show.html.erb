@@ -45,9 +45,23 @@
       <th>氏名</th>
       <td><%= @customer.first_name %>　<%= @customer.last_name %></td>
     </tr>
+    <% if @customer == current_customer %>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    <% end %>
     <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
+      <th>フォロー数</th>
+      <td><%= @customer.followings.count %> 人</td>
+    </tr>
+    <tr>
+      <th>フォロワー数</th>
+      <td><%= @customer.followers.count %> 人</td>
+    </tr>
+    <tr>
+      <th>つぶやき数</th>
+      <td><%= @customer.posts.count %></td>
     </tr>
   </table>
 </div>
