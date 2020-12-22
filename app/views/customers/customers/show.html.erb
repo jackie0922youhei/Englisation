@@ -53,6 +53,10 @@
 </div>
 <div class="col-xs-5">
   <div id="post_box" class="post_box">
-    <%= render @posts %>
+    <% if @customer.posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <h4>このユーザーの投稿はまだありません</h4>
+    <% end %>
   </div>
 </div>
