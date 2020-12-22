@@ -11,7 +11,8 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
 
-  validates :username, :email, :last_name, :first_name, presence: true
+  validates :username, :last_name, :first_name, presence: true
+  validates :email, {presence: true, uniqueness: { case_sensitive: false }}
 
   attachment :image
   has_many :posts, dependent: :destroy

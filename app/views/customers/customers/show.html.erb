@@ -1,11 +1,7 @@
 <% if flash[:notice] %>
   <p class="text-active"><%= flash[:notice] %></p>
 <% end %>
-<h3><%= @customer.username %>さんのページ
-  <% if @customer == current_customer %>
-    <%= link_to "編集する", edit_mypage_path(@customer), class: "btn btn-success ml2" %>
-  <% end %>
-</h3>
+<h3><%= @customer.username %>さんのページ</h3>
 <div class="col-xs-5">
   <div class="profile_box">
     <div class="profile_box_left">
@@ -13,6 +9,9 @@
     </div>
     <div class="profile_box_right">
       <%= render 'customers/relationships/follow_count', customer: @customer %>
+      <% if @customer == current_customer %>
+        <%= link_to "編集する", edit_mypage_path(@customer), class: "btn btn-success ml2" %>
+      <% end %>
       <% if customer_signed_in? %>
         <%= render 'customers/relationships/follow_form', customer: @customer %>
         <% unless @customer.id == current_customer.id %>
