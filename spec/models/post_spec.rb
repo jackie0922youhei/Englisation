@@ -46,5 +46,11 @@ RSpec.describe Post, type: :model do
         expect(Post.reflect_on_association(:notifications).macro).to eq :has_many
       end
     end
+
+    context 'Customerモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Post.reflect_on_association(:customer).macro).to eq :belongs_to
+      end
+    end
   end
 end
