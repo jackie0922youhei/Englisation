@@ -9,7 +9,7 @@ describe '投稿のテスト' do
   	visit new_customer_session_path
   	fill_in 'customer[username]', with: customer.username
   	fill_in 'customer[password]', with: customer.password
-  	click_button 'Log in'
+  	click_button 'ログイン'
   end
   describe 'サイドバーのテスト' do
 		context '表示の確認' do
