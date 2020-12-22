@@ -1,10 +1,18 @@
-<h3>フォロー一覧</h3>
-<table class="table">
-  <tr class="active">
-    <th></th>
-    <th>ユーザネーム</th>
-    <th>会員ステータス</th>
-    <th></th>
-  </tr>
-  <%= render partial: "customers/customers/follow", collection: @customers  %>
-</table>
+<div class="col-xs-1"></div>
+<div class="col-xs-8">
+  <h3 class="text-center">フォロー一覧</h3>
+  <% if @followings.exists? %>
+    <table class="table">
+      <tr class="active">
+        <th></th>
+        <th>ユーザネーム</th>
+        <th>会員ステータス</th>
+        <th></th>
+      </tr>
+      <%= render partial: "customers/customers/follow", collection: @followings %>
+    </table>
+  <% else %>
+    <p>フォローしているユーザーはいません</p>
+  <% end %>
+</div>
+<div class="col-xs-1"></div>

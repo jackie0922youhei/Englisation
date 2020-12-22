@@ -56,12 +56,12 @@ class Customers::CustomersController < ApplicationController
 
   def follows
     customer = Customer.find(params[:id])
-    @customers = customer.followings
+    @followings = customer.followings
   end
 
   def followers
     customer = Customer.find(params[:id])
-    @customers = customer.followers
+    @followers = customer.followers
   end
 
   # ゲストユーザーの削除機能・編集機能を制限

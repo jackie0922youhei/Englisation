@@ -1,6 +1,6 @@
 <div class="col-xs-1"></div>
 <div class="col-xs-8">
-  <h3>メッセージ一覧</h3>
+  <h3 class="text-center">メッセージ一覧</h3>
   <% @another_entries.each do |another_entry| %>
     <table class="table table-striped">
       <tr data-link="<%= room_path(another_entry.room.id) %>" style="cursor: pointer;">
