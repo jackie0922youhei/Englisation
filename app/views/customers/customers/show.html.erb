@@ -19,7 +19,8 @@
           <% if @room_existance == true %>
             <%= link_to room_path(@room_id) do %>
               <button id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
+                <span>DM</span>
               </button>
             <% end %>
           <% else %>
@@ -28,7 +29,7 @@
                 <%= entry.hidden_field :customer_id, :value=> @customer.id %>
               <% end %>
               <button type="submit" id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
               </button>
             <% end %>
           <% end %>
@@ -45,9 +46,23 @@
       <th>氏名</th>
       <td><%= @customer.first_name %>　<%= @customer.last_name %></td>
     </tr>
+    <% if @customer == current_customer %>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    <% end %>
     <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
+      <th>フォロー数</th>
+      <td><%= @customer.followings.count %> 人</td>
+    </tr>
+    <tr>
+      <th>フォロワー数</th>
+      <td><%= @customer.followers.count %> 人</td>
+    </tr>
+    <tr>
+      <th>つぶやき数</th>
+      <td><%= @customer.posts.count %></td>
     </tr>
   </table>
 </div>
