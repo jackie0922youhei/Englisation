@@ -39,9 +39,10 @@ RSpec.describe Customer, type: :model do
 
     it "is invalid with a duplicate email address" do
       customer = build(:customer)
+      customer.save
       another_customer = build(:customer, email: customer.email)
       another_customer.valid?
-      expect(another_customer.errors[:email]).to eq false;
+      expect(another_customer.errors[:email]).to include("はすでに存在します")
     end
 
     it "is invalid with a password that has less than 5 characters " do
