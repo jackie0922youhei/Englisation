@@ -18,6 +18,18 @@
       <th>メールアドレス</th>
       <td><%= @customer.email %></td>
     </tr>
+    <tr>
+      <th>フォロー数</th>
+      <td><%= @customer.followings.count %> 人</td>
+    </tr>
+    <tr>
+      <th>フォロワー数</th>
+      <td><%= @customer.followers.count %> 人</td>
+    </tr>
+    <tr>
+      <th>つぶやき数</th>
+      <td><%= @customer.posts.count %></td>
+    </tr>
   </table>
 </div>
 <div class="col-xs-5">

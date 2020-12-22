@@ -19,7 +19,8 @@
           <% if @room_existance == true %>
             <%= link_to room_path(@room_id) do %>
               <button id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
+                <span>DM</span>
               </button>
             <% end %>
           <% else %>
@@ -28,7 +29,7 @@
                 <%= entry.hidden_field :customer_id, :value=> @customer.id %>
               <% end %>
               <button type="submit" id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
               </button>
             <% end %>
           <% end %>
