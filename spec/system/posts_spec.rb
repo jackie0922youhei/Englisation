@@ -11,28 +11,43 @@ describe '投稿のテスト' do
   	fill_in 'customer[password]', with: customer.password
   	click_button 'ログイン'
   end
-  describe 'サイドバーのテスト' do
+  describe 'ヘッダーのテスト' do
 		context '表示の確認' do
-		  it 'New postと表示される' do
-	    	expect(page).to have_content 'New post'
+		  it 'マイページと表示される' do
+	    	expect(page).to have_content 'マイページ'
 		  end
-		  it 'titleフォームが表示される' do
-		  	expect(page).to have_field 'post[title]'
+		  it 'DMと表示される' do
+		  	expect(page).to have_content 'DM'
 		  end
-		  it 'opinionフォームが表示される' do
-		  	expect(page).to have_field 'post[body]'
+		  it 'NOTICEと表示される' do
+		  	expect(page).to have_content 'NOTICE'
 		  end
-		  it 'Create postボタンが表示される' do
-		  	expect(page).to have_button 'Create post'
+		  it 'ログアウトが表示される' do
+		  	expect(page).to have_content 'ログアウト'
 		  end
+		end
+	end
+
+	describe '投稿のテスト' do
+		let(:customer) { create(:customer) }
+  	let!(:customer2) { create(:customer) }
+  	let!(:post) { create(:post, customer: customer) }
+  	let!(:post2) { create(:post, customer: customer2) }
+  	before do
+  		visit new_customer_session_path
+  		fill_in 'customer[username]', with: 'Ali'
+  		fill_in 'customer[password]', with: customer.password
+  		click_button 'ログイン'
+  	end
+		context '投稿の確認' do
 		  it '投稿に成功する' do
-		  	fill_in 'post[title]', with: Faker::Lorem.characters(number:5)
-		  	fill_in 'post[body]', with: Faker::Lorem.characters(number:20)
-		  	click_button 'Create post'
-		  	expect(page).to have_content 'successfully'
+		  	fill_in 'post[body]', with: Faker::Lorem.characters(number:40)
+		  	fill_in 'post[reference]', with: Faker::Lorem.characters(number:20)
+		  	click_button '英語でつぶやく'
+		  	expect(page).to eq('/posts')
 		  end
 		  it '投稿に失敗する' do
-		  	click_button 'Create post'
+		  	click_button '英語でつぶやく'
 		  	expect(page).to have_content 'error'
 		  	expect(current_path).to eq('/posts')
 		  end
