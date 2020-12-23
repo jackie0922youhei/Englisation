@@ -13,6 +13,9 @@ describe '投稿のテスト' do
   end
   describe 'ヘッダーのテスト' do
 		context '表示の確認' do
+			it 'ウェルカムメッセージが表示される' do
+	    	expect(page).to have_content 'Welcome aboard customer.username'
+		  end
 		  it 'マイページと表示される' do
 	    	expect(page).to have_content 'マイページ'
 		  end
@@ -27,6 +30,48 @@ describe '投稿のテスト' do
 		  end
 		end
 	end
+end
+
+describe '投稿一覧のテスト' do
+  let(:customer) { create(:customer) }
+  let!(:customer2) { create(:customer) }
+  let!(:post) { create(:post, customer: customer) }
+  let!(:post2) { create(:post, customer: customer2) }
+  before do
+  	visit new_customer_session_path
+  	fill_in 'customer[username]', with: customer.username
+  	fill_in 'customer[password]', with: customer.password
+  	click_button 'ログイン'
+  end
+  describe 'ヘッダーのテスト' do
+		context '投稿一覧の表示の確認' do
+		  it '投稿者のusernameが表示される' do
+	    	expect(page).to have_content post.customer.username
+		  end
+		  it '投稿者のimage画像が表示される' do
+		  	expect(page).to have_content post.customer.image_id
+		  end
+		  it 'つぶやきの本文が表示される' do
+		  	expect(page).to have_content post.body
+		  end
+		  it 'つぶやきへのレビュー評価が表示される' do
+		  	expect(page).to have_content post.reviews.average(:rate)
+		  end
+		  it 'つぶやきの参照元が表示される' do
+		  	expect(page).to have_content post.reference
+		  end
+		  it 'つぶやきの投稿日時が表示される' do
+		  	expect(page).to have_content post.created_at.strftime("%Y/%m/%d %H:%M")
+		  end
+		  it 'つぶやきへのいいねの件数が表示される' do
+		  	expect(page).to have_content post.favorites.count
+		  end
+		  it 'つぶやきへのコメント数が表示される' do
+		  	expect(page).to have_content post.comments.count
+		  end
+		end
+	end
+end
 
 	describe '投稿のテスト' do
 		let(:customer) { create(:customer) }
@@ -35,7 +80,7 @@ describe '投稿のテスト' do
   	let!(:post2) { create(:post, customer: customer2) }
   	before do
   		visit new_customer_session_path
-  		fill_in 'customer[username]', with: 'Ali'
+  		fill_in 'customer[username]', with: customer.username
   		fill_in 'customer[password]', with: customer.password
   		click_button 'ログイン'
   	end
@@ -48,7 +93,7 @@ describe '投稿のテスト' do
 		  end
 		  it '投稿に失敗する' do
 		  	click_button '英語でつぶやく'
-		  	expect(page).to have_content 'error'
+		  	expect(page).to have_content 'つぶやき本文を入力してください'
 		  	expect(current_path).to eq('/posts')
 		  end
 		end
@@ -167,4 +212,3 @@ describe '投稿のテスト' do
   		end
   	end
   end
-end

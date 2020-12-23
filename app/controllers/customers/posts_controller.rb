@@ -45,9 +45,6 @@ class Customers::PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @post = Post.find(params[:id])
     @post.update!(post_update_params)
