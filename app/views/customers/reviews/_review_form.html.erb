@@ -1,6 +1,9 @@
 <% if customer_signed_in? %>
   <% if current_customer.is_teacher == true %>
-    <%= form_with model: review, url: post_reviews_path(post), local: :post, remote: true do |f| %>
+    <%= form_with model: review, url: post_reviews_path(post), method: :post, local: true do |f| %>
+      <div id="reviews_error">
+        <%= render 'layouts/errors', model: review %>
+      </div>
       <div class="form-group row" id="star">
         <%= f.label :rate, '評価' %>
         <%= f.hidden_field :rate, id: :review_star %>
