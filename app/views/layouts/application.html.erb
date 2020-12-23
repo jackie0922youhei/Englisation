@@ -31,7 +31,7 @@
             <%= image_tag 'logo1.png', :size => '250x50' %>
           <% end %>
           <ul class="flex">
-            <p>Welcome aboard <%= current_customer.username %>!</p>
+            <p>Welcome aboard<br><%= current_customer.username %>!</p>
             <li><%= link_to 'About', homes_about_path %></li>
             <li><%= link_to 'マイページ', mypage_path(current_customer) %></li>
             <li><%= link_to "DM", rooms_path %></li>
