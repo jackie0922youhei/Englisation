@@ -18,13 +18,16 @@ class Customers::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @posts = Post.all.order(created_at: :desc)
-    post = Post.new(post_params)
-    post.customer_id = current_customer.id
-    redirect_to root_path
-    unless post.save
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
+    @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
+    if @post.save
+      redirect_to root_path
+    else
+      @customer = current_customer
       @teachers = Customer.all.where(is_teacher: true)
+      @favorite_rankings = Post.find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
+      @comment_rankings = Post.find(Comment.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
       render :index
     end
   end

@@ -20,13 +20,13 @@ RSpec.describe Notification, type: :model do
       end
     end
 
-    context 'Postモデルとの関係' do
+    context 'Commentモデルとの関係' do
       it 'N:1となっている' do
         expect(Notification.reflect_on_association(:comment).macro).to eq :belongs_to
       end
     end
 
-    context 'Postモデルとの関係' do
+    context 'Reviewモデルとの関係' do
       it 'N:1となっている' do
         expect(Notification.reflect_on_association(:review).macro).to eq :belongs_to
       end
