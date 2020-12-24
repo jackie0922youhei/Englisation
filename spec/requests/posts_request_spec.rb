@@ -4,7 +4,7 @@ RSpec.describe "Posts", type: :request do
   describe '投稿一覧ページ' do
     context "投稿一覧ページが正しく表示される" do
       before do
-        get posts_path
+        get root_path
       end
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
