@@ -18,19 +18,19 @@ describe 'ヘッダーのテスト' do
         about_link = find_all('a')[1].native.inner_text
         about_link = about_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link about_link
-        is_expected.to eq('/home/about')
+        is_expected.to eq('/homes/about')
       end
       it '新規登録画面に遷移する' do
         signup_link = find_all('a')[2].native.inner_text
         signup_link = signup_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link signup_link
-        is_expected.to eq(new_user_registration_path)
+        is_expected.to eq(new_customer_registration_path)
       end
       it 'ログイン画面に遷移する' do
         login_link = find_all('a')[3].native.inner_text
         login_link = login_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link login_link
-        is_expected.to eq(new_user_session_path)
+        is_expected.to eq(new_customer_session_path)
       end
     end
   end
@@ -50,7 +50,7 @@ describe 'ヘッダーのテスト' do
 	  	context '表示の確認' do
 	  	  subject { page }
 	  		it 'ウェルカムメッセージが表示される' do
-	      	expect(page).to have_content 'Welcome aboard customer.username'
+	      	expect(page).to have_content 'Welcome aboard <%= customer.username %>'
 	  	  end
 	  	  it 'マイページと表示される' do
 	      	expect(page).to have_content 'マイページ'
@@ -73,25 +73,13 @@ describe 'ヘッダーのテスト' do
         home_link = find_all('a')[0].native.inner_text
         home_link = home_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link home_link
-        is_expected.to eq('/posts/')
-      end
-      it 'Users画面に遷移する' do
-        users_link = find_all('a')[1].native.inner_text
-        users_link = users_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link users_link
-        is_expected.to eq('/users')
-      end
-      it 'Books画面に遷移する' do
-        books_link = find_all('a')[2].native.inner_text
-        books_link = books_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link books_link
-        is_expected.to eq('/books')
+        is_expected.to eq('/')
       end
       it 'logoutする' do
         logout_link = find_all('a')[3].native.inner_text
         logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link logout_link
-        expect(page).to have_content 'Signed out successfully.'
+        expect(page).to have_content 'ログアウトしました'
       end
     end
   end

@@ -41,38 +41,44 @@ describe '投稿一覧のテスト' do
 	end
 end
 
-describe '投稿のテスト' do
+describe '投稿の確認' do
 	let(:customer) { create(:customer) }
  	let!(:customer2) { create(:customer) }
  	let!(:post) { create(:post, customer: customer) }
- 	let!(:post2) { create(:post, customer: customer2) }
  	before do
  		visit new_customer_session_path
  		fill_in 'customer[username]', with: customer.username
  		fill_in 'customer[password]', with: customer.password
  		click_button 'ログイン'
  	end
-	context '投稿の確認' do
-	  it '投稿に成功する' do
-	  	fill_in 'post[body]', with: Faker::Lorem.characters(number:40)
+	context '投稿入力あり' do
+		before do
+			fill_in 'post[body]', with: Faker::Lorem.characters(number:40)
 	  	fill_in 'post[reference]', with: Faker::Lorem.characters(number:20)
 	  	click_button '英語でつぶやく'
+	  end
+	  it '投稿に成功する' do
 	  	expect(current_path).to eq('/')
 	  end
-	  it '投稿に失敗する' do
-	  	click_button '英語でつぶやく'
+	end
+	context '投稿入力なし' do
+		before do
+			fill_in 'post[body]', with: ''
+	  	fill_in 'post[reference]', with: ''
+			click_button '英語でつぶやく'
+		end
+		it '投稿に失敗する' do
 	  	expect(page).to have_content 'つぶやき本文を入力してください'
-	  	expect(current_path).to eq('/')
+	  	expect(current_path).to eq('/posts')
 	  end
 	end
 end
 
- describe '詳細画面のテスト' do
+ describe '投稿詳細画面のテスト' do
  	let(:customer) { create(:customer, is_teacher: is_teacher) }
- 	let!(:customer2) { create(:customer) }
  	let!(:post) { create(:post, customer: customer) }
- 	let!(:post2) { create(:post, customer: customer2) }
  	let(:is_teacher) { false }
+ 	let!(:review) { create(:review, customer: customer, post: post)}
  	before do
  		visit new_customer_session_path
  		fill_in 'customer[username]', with: customer.username
