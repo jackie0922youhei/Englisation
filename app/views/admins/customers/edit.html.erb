@@ -1,6 +1,6 @@
 <%= form_with model: @customer, url: admins_customer_path(@customer), local:true do |f| %>
   <div class="col-xs-3">
-    <%= attachment_image_tag @customer, :image, format: "jpeg", size:'200x200', id: "img_prev", fallback: "no-image.png", class: "customer_image" %>
+    <%= attachment_image_tag @customer, :image, format: "jpeg", size:'200x200', id: "img_prev", fallback: "no-image.png", class: "customer_image img" %>
     <span class="btn btn-file">
       <%= f.attachment_field :image %>画像選択
     </span>

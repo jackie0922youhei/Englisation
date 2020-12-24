@@ -1,5 +1,5 @@
 <p class="<%= direct_message.id %>" style= "color: black; margin-top: 0;">
-  <%= attachment_image_tag direct_message.customer, :image, class: "img-circle profile-thumb", fallback: "no-image.png", size: "40x40" %>
+  <%= attachment_image_tag direct_message.customer, :image, class: "img-circle profile-thumb img", fallback: "no-image.png", size: "40x40" %>
   <span style= "color: black;"><%= direct_message.customer.username %></span>
 </p>
 <p class="<%= direct_message.id %>">

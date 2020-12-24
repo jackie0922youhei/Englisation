@@ -3,7 +3,7 @@
 
 <div class="user-view clearfix ">
   <%= link_to mypage_path(notification.action_customer) do %>
-    <%= attachment_image_tag action_customer, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle" %>
+    <%= attachment_image_tag action_customer, :image, :fill,100,100, format: "jpeg", fallback: "no-image.png", size: "50x50", class:"profile-img-circle img" %>
   <% end %>
   <%= notification_form(notification) %>
   <span class="moderate-font">
