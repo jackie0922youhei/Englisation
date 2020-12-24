@@ -2,42 +2,42 @@ require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
   context "ユーザーが正しく保存される" do
-    it "is valid with a username, last_name, first_name, email, and password" do
+    it "全ての項目を入力すれば保存できる" do
       customer = build(:customer)
       expect(customer).to be_valid
     end
 
-    it "is invalid without a username" do
+    it "usernameがなければ保存できない" do
       customer = build(:customer, username: nil)
       expect(customer.valid?).to eq(false)
       expect(customer.errors[:username]).to include("を入力してください")
     end
 
-    it "is invalid without a last_name" do
+    it "last_nameがなければ保存できない" do
       customer = build(:customer, last_name: nil)
       expect(customer.valid?).to eq(false)
       expect(customer.errors[:last_name]).to include("を入力してください")
     end
 
-    it "is invalid without a first_name" do
+    it "first_nameがなければ保存できない" do
       customer = build(:customer, first_name: nil)
       expect(customer.valid?).to eq(false)
       expect(customer.errors[:first_name]).to include("を入力してください")
     end
 
-    it "is invalid without a password" do
+    it "passwordがなければ保存できない" do
       customer = build(:customer, password: nil)
       customer.valid?
       expect(customer.errors[:password]).to include("を入力してください")
     end
 
-    it "is invalid without a password_confirmation although with a password" do
+    it "password_confirmationとpasswordが一致しなければ保存できない" do
       customer = build(:customer, password_confirmation: "")
       customer.valid?
       expect(customer.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
 
-    it "is invalid with a duplicate email address" do
+    it "emailが重複していたら保存できない" do
       customer = build(:customer)
       customer.save
       another_customer = build(:customer, email: customer.email)
@@ -45,13 +45,13 @@ RSpec.describe Customer, type: :model do
       expect(another_customer.errors[:email]).to include("はすでに存在します")
     end
 
-    it "is invalid with a password that has less than 5 characters " do
+    it "passwordが5文字以下なら保存できない" do
       customer = build(:customer, password: "00000", password_confirmation: "00000")
       customer.valid?
       expect(customer.errors[:password][0]).to include("は6文字以上で入力してください")
     end
 
-    it "is invalid a password that has more than 6 characters" do
+    it "6文字以上のpasswordなら保存できる" do
       customer = build(:customer, password: "000000", password_confirmation: "000000")
       customer.valid?
       expect(customer).to be_valid
