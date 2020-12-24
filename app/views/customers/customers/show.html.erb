@@ -5,7 +5,7 @@
 <div class="col-xs-5">
   <div class="profile_box">
     <div class="profile_box_left">
-      <%= attachment_image_tag @customer, :image, format: "jpeg", alt: @customer.image_id ? "ユーザーアイコン" : "画像準備中", class: "img-circle pull-left profile-thumb customer_image", fallback: "no-image.png", size:'200x200' %>
+      <%= attachment_image_tag @customer, :image, format: "jpeg", alt: @customer.image_id ? "ユーザーアイコン" : "画像準備中", class: "img-circle pull-left profile-thumb customer_image img", fallback: "no-image.png", size:'200x200' %>
     </div>
     <div class="profile_box_right">
       <%= render 'customers/relationships/follow_count', customer: @customer %>

@@ -4,7 +4,6 @@ describe '投稿一覧のテスト' do
   let(:customer) { create(:customer) }
   let!(:customer2) { create(:customer) }
   let!(:post) { create(:post, customer: customer) }
-  # let!(:post2) { create(:post, customer: customer2) }
   let!(:review) { create(:review, customer: customer, post: post)}
   before do
   	visit new_customer_session_path
@@ -58,12 +57,12 @@ describe '投稿のテスト' do
 	  	fill_in 'post[body]', with: Faker::Lorem.characters(number:40)
 	  	fill_in 'post[reference]', with: Faker::Lorem.characters(number:20)
 	  	click_button '英語でつぶやく'
-	  	expect(current_path).to eq('/posts')
+	  	expect(current_path).to eq('/')
 	  end
 	  it '投稿に失敗する' do
 	  	click_button '英語でつぶやく'
 	  	expect(page).to have_content 'つぶやき本文を入力してください'
-	  	expect(current_path).to eq('/posts')
+	  	expect(current_path).to eq('/')
 	  end
 	end
 end
@@ -97,13 +96,13 @@ end
 				expect(page).to have_content post.customer.username
 			end
 			it '投稿者のimage画像が表示される' do
-				expect(page).to have_content post.customer.image_id
+				expect(within(".post_show_left") {first("img")}).to be_truthy
 			end
 			it 'つぶやきの本文が表示される' do
 				expect(page).to have_content post.body
 			end
 			it 'つぶやきへのレビュー評価が表示される' do
-				expect(page).to have_content post.reviews.average(:rate)
+				expect(page.has_selector?("#average-review-rate1[data-score='#{post.reviews.average(:rate).round(2)}']")).to be_truthy
 			end
 			it 'つぶやきの参照元が表示される' do
 				expect(page).to have_content post.reference
@@ -144,31 +143,4 @@ end
  			fill_in 'customer[password]', with: customer.password
  			click_button 'ログイン'
  		end
-  	context '表示の確認' do
-  		it '自分と他人のタイトルのリンク先が正しい' do
-  			expect(page).to have_link post.title, href: post_path(post)
-  			expect(page).to have_link post2.title, href: post_path(post2)
-  		end
-  		it '自分と他人のつぶやきが表示される' do
-  			expect(page).to have_content post.body
-  			expect(page).to have_content post2.body
-  		end
-  	end
-  end
-
-  describe '詳細画面のテスト' do
-  	context '自分・他人共通の投稿詳細画面の表示を確認' do
-  		it 'ユーザー画像・名前のリンク先が正しい' do
-  			visit post_path(post)
-  			expect(page).to have_link post.customer.username, href: customer_path(post.customer)
-  		end
-  		it '投稿の本文が表示される' do
-  			visit post_path(post)
-  			expect(page).to have_content post.body
-  		end
-  		it '投稿の参照元が表示される' do
-  			visit post_path(post)
-  			expect(page).to have_content post.reference
-  		end
-  	end
-  end
+	end

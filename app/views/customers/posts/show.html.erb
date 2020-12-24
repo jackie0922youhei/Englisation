@@ -2,7 +2,7 @@
   <div class="post_show">
     <div class="post_show_left">
       <%= link_to mypage_path(@post.customer.id) do %>
-        <%= attachment_image_tag @post.customer, :image, class: "img-circle pull-left profile-thumb", format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+        <%= attachment_image_tag @post.customer, :image, class: "img-circle pull-left profile-thumb img", format: "jpeg", size:'80x80', fallback: "no-image.png" %>
       <% end %>
     </div>
     <div class="post_show_right">

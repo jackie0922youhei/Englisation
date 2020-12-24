@@ -2,7 +2,7 @@
   <%= link_to post_path(post), {id: "post-link"} do %>
     <div class="post_box_left">
       <%= link_to mypage_path(post.customer.id), {class: "inlink"} do %>
-        <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle profile-thumb", size:'80x80', fallback: "no-image.png" %>
+        <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle profile-thumb img", size:'80x80', fallback: "no-image.png" %>
       <% end %>
       <p class="post_box_right">
         <span class="post_customer">

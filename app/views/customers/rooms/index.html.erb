@@ -5,7 +5,7 @@
     <table class="table table-striped">
       <tr data-link="<%= room_path(another_entry.room.id) %>" style="cursor: pointer;">
         <td style="width: 5%">
-          <%= attachment_image_tag another_entry.customer, :image, class: "img-circle pull-left profile-thumb", format: 'jpeg', fallback: "no-image.png", size: "30x30" %>
+          <%= attachment_image_tag another_entry.customer, :image, class: "img-circle pull-left profile-thumb img", format: 'jpeg', fallback: "no-image.png", size: "30x30" %>
         </td>
         <td style="width: 15%">
           <%= another_entry.customer.username %>
