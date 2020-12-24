@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
-    resources :posts, only: [:create, :update, :destroy, :index, :show] do
+    resources :posts, only: [:create, :update, :destroy, :show] do
       resources :comments, only: [:create, :edit, :update, :destroy]
       resource :favorites, only: [:create, :destroy]
       resources :reviews, only: [:create, :edit, :update, :destroy]

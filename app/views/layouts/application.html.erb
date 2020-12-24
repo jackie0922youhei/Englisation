@@ -16,7 +16,7 @@
   <body>
     <% if admin_signed_in? %>
       <header class="admin_header">
-        <div class="header-content">
+        <div class="header-content home">
           <%= image_tag 'logo1.png', :size => '250x50' %>
           <ul class="flex">
             <li><%= link_to '会員一覧', admins_customers_path %></li>
@@ -26,8 +26,8 @@
       </header>
     <% elsif customer_signed_in? %>
       <header>
-        <div class="header-content">
-          <%= link_to posts_path, class: "logo" do %>
+        <div class="header-content home">
+          <%= link_to root_path, class: "logo" do %>
             <%= image_tag 'logo1.png', :size => '250x50' %>
           <% end %>
           <ul class="flex">
@@ -45,8 +45,8 @@
       </header>
     <% else %>
       <header>
-        <div class="header-content">
-          <%= link_to posts_path, class: "logo" do %>
+        <div class="header-content home">
+          <%= link_to root_path, class: "logo" do %>
             <%= image_tag 'logo1.png', :size => '250x50' %>
           <% end %>
           <ul class="flex" data-animations="zoomIn fadeIn fadeInUp fadeIn">

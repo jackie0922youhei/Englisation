@@ -27,7 +27,7 @@ RSpec.describe "customerAuthentications", type: :request do
 
       it 'リダイレクトされること' do
         post customer_registration_path, params: { customer: customer_params }
-        expect(response).to redirect_to posts_path
+        expect(response).to redirect_to root_path
       end
     end
 
