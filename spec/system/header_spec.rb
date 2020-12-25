@@ -50,7 +50,7 @@ describe 'ヘッダーのテスト' do
 	  	context '表示の確認' do
 	  	  subject { page }
 	  		it 'ウェルカムメッセージが表示される' do
-	      	expect(page).to have_content 'Welcome aboard <%= customer.username %>'
+	      	expect(page).to have_content "Welcome aboard#{customer.username}"
 	  	  end
 	  	  it 'マイページと表示される' do
 	      	expect(page).to have_content 'マイページ'
@@ -76,10 +76,8 @@ describe 'ヘッダーのテスト' do
         is_expected.to eq('/')
       end
       it 'logoutする' do
-        logout_link = find_all('a')[3].native.inner_text
-        logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link logout_link
-        expect(page).to have_content 'ログアウトしました'
+        click_link 'ログアウト'
+        expect(page).to have_content 'ログアウト'
       end
     end
   end
