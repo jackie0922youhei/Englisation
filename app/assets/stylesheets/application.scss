@@ -402,3 +402,13 @@ footer {
 .img {
   object-fit: cover;
 }
+
+// トップに戻る矢印
+#back {
+  position: fixed;
+  right: 120px;
+  bottom: 70px;
+}
+#back .arrow {
+  width: 50px;
+}
