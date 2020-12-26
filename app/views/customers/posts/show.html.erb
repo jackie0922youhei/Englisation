@@ -55,17 +55,19 @@
   <% end %>
 </div>
 <div class="col-xs-5">
-  <%= render 'customers/reviews/review_form', post: @post, review: @review %>
-  <hr>
-  <h4>レビュー一覧</h4>
-  <% if @reviews.blank? %>
-    現在、投稿に対して、レビューが行われていません
-  <% else %>
-    <div id="review_box" class="review_box">
-      <%= render 'customers/reviews/review', reviews: @reviews %>
-      <%= paginate @reviews %>
-    </div>
-  <% end %>
+  <div class="post-review-box">
+    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
+    <hr>
+    <h4>レビュー一覧</h4>
+    <% if @reviews.blank? %>
+      現在、投稿に対して、レビューが行われていません
+    <% else %>
+      <div id="review_box" class="review_box">
+        <%= render 'customers/reviews/review', reviews: @reviews %>
+        <%= paginate @reviews %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <script>

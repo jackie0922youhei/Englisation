@@ -223,6 +223,14 @@ footer {
  display: flex;
  margin-bottom: 10px;
  position: relative;
+ border-radius: 15px;
+ background-color: white;
+ padding: 10px;
+ width: 95%;
+}
+
+.post-review-box {
+  margin-left: 20px;
 }
 
 .post_show_left {
@@ -390,6 +398,7 @@ footer {
   margin: 15px;
 }
 
+// プロフィール画像
 .img {
   object-fit: cover;
 }
