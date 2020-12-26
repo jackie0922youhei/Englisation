@@ -22,7 +22,7 @@
 
   <%= form_with do |f| %>
     <%= f.text_field :content, class: "form-control" %>
-    <span id="chat-input" data-behavior="room_speaker" data-room-id="<%= @room.id %> target" class="btn btn-primary">DM</span>
+    <div id="chat-input target" data-behavior="room_speaker" data-room-id="<%= @room.id %>" class="btn btn-primary">DM</div>
   <% end %>
 </div>
 

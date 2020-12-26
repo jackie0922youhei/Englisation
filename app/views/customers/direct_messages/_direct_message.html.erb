@@ -15,6 +15,8 @@
 
  <!--メッセージの表示位置を指定する -->
 <script>
+  //メッセージのユーザーidを取ってくる
+  var direct_message_customer_id = <%= direct_message.customer.id %>;
   //getElementById() メソッド：任意のHTMLタグで指定したIDにマッチするドキュメント要素を取得するメソッド
   //id="current_customer"の内容を取得(current_customerじゃなければ、elseに飛ぶ)
   var direct_message_current_customer_id = document.getElementById('current_customer');
@@ -22,7 +24,7 @@
   // getAttributeは、指定した要素の属性を取得することができる
   var current_customer_id = direct_message_current_customer_id.getAttribute('data-id')
   //dm_customerがログインユーザーであれば右に表示する
-  if(<%= direct_message.customer.id %> == current_customer_id){
+  if(direct_message_customer_id == current_customer_id){
     $('p.' + <%= direct_message.id %>).css('text-align', 'right');
   }else{
     $('p.' + <%= direct_message.id %>).css('text-align', 'left');
