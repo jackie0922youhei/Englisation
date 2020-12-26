@@ -63,8 +63,8 @@
       <th>フォロワー数</th>
       <td>
         <span id="follow_count">
-          <%= render 'customers/relationships/follower_count', customer: @customer %> 人　➡
-        </span>
+          <%= render 'customers/relationships/follower_count', customer: @customer %>
+        </span> 人　➡
         <%=link_to followers_customer_path(@customer.id) do %>
           <span class="follow-link">ユーザー一覧</span>
         <% end %>
