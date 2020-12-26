@@ -13,7 +13,7 @@ class Customers::RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     # ルームが作成されているかどうか
-    if Entry.where(:customer_id => current_customer.id, :room_id => @room.id).present?
+    if Entry.where(customer_id: current_customer.id, room_id: @room.id).present?
       @direct_messages = @room.direct_messages
       @entries = @room.entries
     else
@@ -22,11 +22,11 @@ class Customers::RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create(:name => "DM")
+    @room = Room.create(name: "DM")
     # entryにログインユーザーを作成
-    @entry1 = Entry.create(:room_id => @room.id, :customer_id => current_customer.id)
+    @entry1 = Entry.create(room_id: @room.id, customer_id: current_customer.id)
     # entryにparamsユーザーを作成
-    @entry2 = Entry.create(params.require(:entry).permit(:customer_id, :room_id).merge(:room_id => @room.id))
+    @entry2 = Entry.create(params.require(:entry).permit(:customer_id, :room_id).merge(room_id: @room.id))
     redirect_to room_path(@room.id)
   end
 

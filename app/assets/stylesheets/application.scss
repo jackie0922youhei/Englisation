@@ -114,7 +114,6 @@ footer {
 }
 
 // 投稿関係
-
 .post_box {
   margin-bottom: 10px;
 }
@@ -328,7 +327,6 @@ footer {
 }
 
 // ランキング関係
-
 .ranking-box {
   padding: 5px auto;
 }
@@ -411,4 +409,37 @@ footer {
 }
 #back .arrow {
   width: 50px;
+}
+
+// DM画面
+.balloon1-top {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  color: #555;
+  background-color: aqua;
+}
+.balloon1-top:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid aqua;
+}
+.balloon1-top h7 {
+  margin: 0;
+  padding: 0;
+}
+
+.room_show {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.DM-button {
+  display: inline-block;
 }
