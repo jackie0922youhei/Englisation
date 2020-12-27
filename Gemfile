@@ -87,3 +87,5 @@ gem 'kaminari'
 gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', '~> 1.0'
+
+gem 'dotenv-rails'
