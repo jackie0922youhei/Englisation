@@ -18,6 +18,7 @@
           <button data-update-id=<%= @post.id%> type="button" class="btn btn-success post-update-button btn-xs">更新</button>
         </span>
       </div>
+      <p class="sentiment-score">感情分析スコア<%= @post.score %></p>
       <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>"></span>
       <div class="post_reference">
         <%= @post.reference %><br>
