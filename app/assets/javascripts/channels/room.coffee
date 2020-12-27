@@ -20,7 +20,7 @@ $ ->
     @perform 'speak', direct_message: object.content, roomId: object.roomId
 $(document).on 'click','[data-behavior~=room_speaker]', (event) ->
     #speakメソッド,event.target.valueを引数に.
-    roomId = document.getElementById('chat-input').getAttribute('data-room-id')
+    roomId = document.getElementById('target').getAttribute('data-room-id')
     content = document.getElementById('content').value
     App.room.speak {roomId: roomId, content: content}
     document.getElementById('content').value = ''
