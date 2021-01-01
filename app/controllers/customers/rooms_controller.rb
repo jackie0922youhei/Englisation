@@ -3,7 +3,7 @@ class Customers::RoomsController < ApplicationController
     @current_entries = current_customer.entries
     # ここをmapメソッドとかを利用して、リファクタリングできないものか
     # @current_entries.each do |current_entry|
-    #   current_entry.update(room_id: current_entry.room.id)
+    #   current_entry.merge(room_id: current_entry.room.id)
     # end
     # @current_entriesのルームを配列にする
     current_room_ids = []
