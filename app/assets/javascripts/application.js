@@ -16,7 +16,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.raty.js
-
 //= require infinite-scroll.pkgd.min
 
  /* global $*/

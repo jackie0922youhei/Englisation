@@ -444,6 +444,10 @@ footer {
   display: inline-block;
 }
 
+.direct_messages {
+  overflow: scroll;
+  height: 500px;
+}
 .direct_messages > .is_current_customer {
   text-align: right;
 }

@@ -1,6 +1,4 @@
  /* global $*/
-// 初回読み込み、リロード、ページ切り替えでturbolinksを動かす。
-// $(document).on("turbolinks:load", function() {
 $(function() {
   if ($("ul.pagination a[rel=next]").length){
     // コンテナ(スコープとなるセレクタ)に対し無限スクロールを実行
@@ -19,6 +17,6 @@ $(function() {
       status: ".page-load-status",
       // ページネーションリンクを表示するかどうかを指定(display: noneと同じ)
       hideNav: ".pagination"
-    })
+    });
   }
 })
