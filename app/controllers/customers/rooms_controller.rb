@@ -14,7 +14,8 @@ class Customers::RoomsController < ApplicationController
     @room = Room.find(params[:id])
     # ルームが作成されているかどうか
     if Entry.where(customer_id: current_customer.id, room_id: @room.id).present?
-      @direct_messages = @room.direct_messages.last(5)
+      @direct_messages = @room.direct_messages.all.page(params[:page]).per(5)
+      # @direct_messages = @room.direct_messages.last(5)
       @entries = @room.entries
     else
       redirect_back(fallback_location: root_path)

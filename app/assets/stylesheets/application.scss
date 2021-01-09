@@ -443,3 +443,11 @@ footer {
 .DM-button {
   display: inline-block;
 }
+
+.direct_messages > .is_current_customer {
+  text-align: right;
+}
+
+.direct_messages > .is_not_current_customer {
+  text-align: left;
+}
