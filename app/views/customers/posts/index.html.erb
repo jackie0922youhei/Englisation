@@ -20,6 +20,7 @@
 <div class="col-xs-3">
   <% if customer_signed_in? %>
     <%= render 'customers/posts/post_form', post: @post %>
+    <%= render 'layouts/search' %>
   <% end %>
   <hr>
   <div class="ranking-box">
