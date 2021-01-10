@@ -41,10 +41,7 @@ class Customer < ApplicationRecord
   def create_notification_follow!(current_customer)
     temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ",current_customer.id, id, 'follow'])
     if temp.blank?
-      notification = current_customer.active_notifications.new(
-        reciever_id: id,
-        action: 'follow'
-      )
+      notification = current_customer.active_notifications.new(reciever_id: id, action: 'follow')
       notification.save!
     end
   end
@@ -67,6 +64,18 @@ class Customer < ApplicationRecord
       self.add_role(:teacher)
     else
       self.add_role(:guest)
+    end
+  end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Customer.where(username: content)
+    elsif method == 'forward'
+      Customer.where('username LIKE ?', content + '%')
+    elsif method == 'backward'
+      Customer.where('username LIKE ?', '%' + content)
+    else
+      Customer.where('username LIKE ?', '%' + content + '%')
     end
   end
 
