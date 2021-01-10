@@ -12,7 +12,6 @@ $(function() {
       $.ajax({
         url: $("ul.pagination").find("a[rel=next]").prop('search').replace(/[0-9]/, nextLoadPage)
       }).done(function(data) {
-        console.log($(data).find('.direct_messages'))
         $(".direct_messages").prepend($(data).find(".direct_messages").html());
         $(".direct_messages").scrollTop($(".direct_messages").first().height());
         nextLoadPage++;

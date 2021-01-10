@@ -1,7 +1,7 @@
 <% if direct_message.customer.id == current_customer.id %>
-  <div class="chat is_current_customer">
+  <div class="is_current_customer">
 <% else %>
-  <div class="chat is_not_current_customer">
+  <div class="is_not_current_customer">
 <% end %>
     <p class="<%= direct_message.id %>" style= "color: black; margin-top: 0;">
       <%= attachment_image_tag direct_message.customer, :image, class: "img-circle profile-thumb img", fallback: "no-image.png", size: "40x40" %>
