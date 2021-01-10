@@ -17,6 +17,7 @@
   <% end %>
 
   <div id="direct_messages" class="direct_messages" data-room_id="<%= @room.id %>">
+    <!--@direct_messagesの並びを降順にするために、to_aでArray型に変更して、reverseで並び替えしている-->
     <% @direct_messages.to_a.reverse.each do |direct_message| %>
       <%= render direct_message %>
     <% end %>
