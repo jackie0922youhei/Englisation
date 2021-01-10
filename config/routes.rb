@@ -44,8 +44,8 @@ Rails.application.routes.draw do
 
   get 'homes/about'
   root 'customers/posts#index'
-  get 'customers/search/search'
-  get '/search', to: 'customers/search#search'
+  get 'customers/searches/search'
+  get '/search', to: 'customers/searches#search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

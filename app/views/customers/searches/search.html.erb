@@ -1,0 +1,7 @@
+<% if @model == 'customer' %>
+	<h3>"<%= @content %>"  ユーザー検索結果</h3>
+  <%= render 'customers/customers/search_index', customers: @records %>
+<% elsif @model == 'post' %>
+	<h3>"<%= @content %>"  つぶやき検索結果</h3>
+  <%= render 'customers/posts/search_index', posts: @records %>
+<% end %>
