@@ -16,9 +16,12 @@
     <% end %>
   <% end %>
 
-  <div id="direct_messages" data-room_id="<%= @room.id %>">
-    <%= render @direct_messages %>
+  <div id="direct_messages" class="direct_messages" data-room_id="<%= @room.id %>">
+    <% @direct_messages.to_a.reverse.each do |direct_message| %>
+      <%= render direct_message %>
+    <% end %>
   </div>
+  <%= paginate @direct_messages %>
 
   <%= form_with do |f| %>
     <%= f.text_field :content, class: "form-control" %>
@@ -26,18 +29,4 @@
   <% end %>
 </div>
 
-<script>
-  //トークルーム遷移時に入力フォーム記載場所にスクロールする(最新トークは下にあるため)
-  // 移動させたい位置の要素を取得
-  // getElementById() メソッド：任意のHTMLタグで指定したIDにマッチするドキュメント要素を取得するメソッド
-  var element = document.getElementById('target');
-  // getBoundingClientRectメソッド：ターゲット要素の位置を、ブラウザの表示領域の左上を(0, 0)として、そこからの相対位置で示す
-  var rect = element.getBoundingClientRect();
-  var position = rect.top;
-  // setTimeout：繰り返さずに一度だけ、一定時間後に特定の処理を行う
-  setTimeout( function() {
-    // scrollToメソッド：絶対位置を指定してスクロールをさせる
-    // 第一引数にx座標、第二引数にy座標のスクロール量を指定
-    scrollTo(0, position);}
-    , 1000);
-</script>
+<%= javascript_include_tag "customers/reverse_scroll.js" %>

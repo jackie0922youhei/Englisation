@@ -1,30 +1,20 @@
-<p class="<%= direct_message.id %>" style= "color: black; margin-top: 0;">
-  <%= attachment_image_tag direct_message.customer, :image, class: "img-circle profile-thumb img", fallback: "no-image.png", size: "40x40" %>
-  <span style= "color: black;"><%= direct_message.customer.username %></span>
-</p>
-<p class="<%= direct_message.id %>">
-  <span class="balloon1-top">
-    <h7 class="dm_content">
-      <%= direct_message.content %>
-    </h7><br>
-    <h7 style="color: #C0C0C0;">
-      <%= direct_message.created_at.strftime("%Y/%m/%d %H:%M") %>
-    </h7>
-  </span>
-</p><br>
-
- <!--メッセージの表示位置を指定する -->
-<script>
-  //getElementById() メソッド：任意のHTMLタグで指定したIDにマッチするドキュメント要素を取得するメソッド
-  //id="current_customer"の内容を取得(current_customerじゃなければ、elseに飛ぶ)
-  var direct_message_current_customer_id = document.getElementById('current_customer');
-  //dm_current_customer_idのdata-idを取得する
-  // getAttributeは、指定した要素の属性を取得することができる
-  var current_customer_id = direct_message_current_customer_id.getAttribute('data-id')
-  //dm_customerがログインユーザーであれば右に表示する
-  if(<%= direct_message.customer.id %> == current_customer_id){
-    $('p.' + <%= direct_message.id %>).css('text-align', 'right');
-  }else{
-    $('p.' + <%= direct_message.id %>).css('text-align', 'left');
-  }
-</script>
+<% if direct_message.customer.id == current_customer.id %>
+  <div class="chat is_current_customer">
+<% else %>
+  <div class="chat is_not_current_customer">
+<% end %>
+    <p class="<%= direct_message.id %>" style= "color: black; margin-top: 0;">
+      <%= attachment_image_tag direct_message.customer, :image, class: "img-circle profile-thumb img", fallback: "no-image.png", size: "40x40" %>
+      <span style= "color: black;"><%= direct_message.customer.username %></span>
+    </p>
+      <p class="<%= direct_message.id %>">
+      <span class="balloon1-top">
+        <h7 class="dm_content">
+          <%= direct_message.content %>
+        </h7><br>
+        <h7 style="color: #C0C0C0;">
+          <%= direct_message.created_at.strftime("%Y/%m/%d %H:%M") %>
+        </h7>
+      </span>
+    </p><br>
+  </div>
