@@ -2,44 +2,55 @@
   <%= link_to post_path(post), {id: "post-link"} do %>
     <div class="post_box_left">
       <%= link_to mypage_path(post.customer.id), {class: "inlink"} do %>
-        <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle profile-thumb", size:'80x80', fallback: "no-image.png" %>
+        <%= attachment_image_tag post.customer, :image, format: "jpeg", class: "img-circle profile-thumb img", size:'80x80', fallback: "no-image.png" %>
       <% end %>
       <p class="post_box_right">
         <span class="post_customer">
           <%= post.customer.username %><br>
         </span>
         <span class="post_body">
+          <span id="js-post-label-<%= post.id %>">
             <%= post.body %><br>
+          </span>
+          <span id="js-post-error-<%= post.id %>" class="text-danger"></span>
+          <textarea style="display: none;" id="js-textarea-post-<%= post.id %>" class="form-control post-error inlink"><%= post.body %></textarea>
+          <span id="js-post-button-<%= post.id %>" style="display: none;">
+            <button data-cancel-id=<%= post.id %> type="button" class="btn btn-warning post-cancel-button inlink btn-xs">キャンセル</button>
+            <button data-update-id=<%= post.id%> type="button" class="btn btn-success post-update-button inlink btn-xs">更新</button>
+          </span>
         </span>
-        <span class="post_reference">
-          <%= post.reference %><br>
-        </span>
+        <span class="sentiment-score">感情分析スコア<%= post.score %></span>
         <% if post.reviews.blank? %>
           <% average_review_rate = 0 %>
         <% else %>
           <% average_review_rate = post.reviews.average(:rate).round(2) %>
         <% end %>
-        <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>">
-          <%= average_review_rate %>
-        </span><br>
-        <span id="tag_box" class="tag_box">
+        <span id="average-review-rate<%= post.id %>" data-score="<%= average_review_rate %>"></span>
+        <span class="post_reference">
+          <%= post.reference %><br>
+        </span>
+        <span id="tag_box" class="tag_box inlink">
           <%= render post.tags %>
         </span>
-        <%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+        <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %><br></span>
         <span>
           <i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i> <%= post.comments.count %> 件
-        </span>
-        <span id="favorites_buttons_<%= post.id %>">
-          <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
+          <span id="favorites_buttons_<%= post.id %>">
+            <%= render partial: 'customers/favorites/favorite', locals: { post: post} %>
+          </span>
         </span>
       </p>
+      <% if post.customer == current_customer %>
+        <div>
+          <span data-post-id=<%= post.id %> class="js-edit-post-button inlink">
+            <i class="fas fa-edit text-primary fa-lg"></i>
+          </span>
+          <%= link_to post_path(post), method: :delete, class: "inlink pull-right trash-box" do %>
+            <i class="fas fa-trash-alt fa-lg"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-    <% if post.customer == current_customer %>
-      <div>
-        <%= link_to "削除", post_path(post), method: :delete, class: "btn btn-danger inlink" %>
-      </div>
-    <% end %>
-    <hr>
   <% end %>
 </div>
 
@@ -52,7 +63,10 @@ $(function () {
     starOn: "<%= asset_path('star-on.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     half: true,
-    readOnly: true
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
   });
 });
 </script>

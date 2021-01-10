@@ -1,34 +1,46 @@
-<h3>メッセージ一覧</h3>
-<% @another_entries.each do |another_entry| %>
-  <table class="table table-striped">
-    <tr>
-      <td>
-        <%= link_to room_path(another_entry.room.id) do %>
-          <%= attachment_image_tag another_entry.customer, :image, class: "img-circle pull-left profile-thumb", format: 'jpeg', fallback: "no-image.png", size: "30x30" %>
+<div class="col-xs-1"></div>
+<div class="col-xs-8">
+  <h3 class="text-center">メッセージ一覧</h3>
+  <% @another_entries.each do |another_entry| %>
+    <table class="table table-striped">
+      <tr data-link="<%= room_path(another_entry.room.id) %>" style="cursor: pointer;">
+        <td style="width: 5%">
+          <%= attachment_image_tag another_entry.customer, :image, class: "img-circle pull-left profile-thumb img", format: 'jpeg', fallback: "no-image.png", size: "30x30" %>
+        </td>
+        <td style="width: 15%">
           <%= another_entry.customer.username %>
-        <% end %>
-      </td>
-      <td>
-        <% if another_entry.room.direct_messages.present? %>
-          <!--最新メッセージ内容の最初の7文字を表示する-->
-          <% direct_message = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last) %>
-          <!--truncateは、文字列を切り捨てて省略表示する！-->
-          <!--lastのDMが削除されていなかったら、truncateを実行する！-->
-          <% if direct_message.present? %>
-            <%= truncate(direct_message.content, length: 10) %>
+        </td>
+        <td style="width: 30%">
+          <% if another_entry.room.direct_messages.present? %>
+            <!--最新メッセージ内容の最初の7文字を表示する-->
+            <% direct_message = DirectMessage.find_by(id: another_entry.room.direct_message_ids.last) %>
+            <!--truncateは、文字列を切り捨てて省略表示する！-->
+            <!--lastのDMが削除されていなかったら、truncateを実行する！→そのためにfind_byメソッドを使用-->
+            <% if direct_message.present? %>
+              <%= truncate(direct_message.content, length: 10) %>
+            <% end %>
           <% end %>
-        <% end %>
-      </td>
-      <td>
-        <h6 style="color: #C0C0C0;">
-          <%= another_entry.updated_at.strftime("%Y/%m/%d %H:%M") %>
-        </h6>
-      </td>
-      <td>
-        <%= link_to room_path(another_entry.room.id), method: :delete do %>
-          <i class="fas fa-trash" style="color: black;"></i>
-        <% end %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+        </td>
+        <td style="width: 20%"
+          <h6 style="color: #C0C0C0;">
+            <%= another_entry.updated_at.strftime("%Y/%m/%d %H:%M") %>
+          </h6>
+        </td>
+        <td style="width: 30%">
+          <%= link_to room_path(another_entry.room.id), method: :delete, class: "inlink" do %>
+            <i class="fas fa-trash" style="color: black;"></i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<div class="col-xs-1"></div>
+
+<script>
+  $(function () {
+    $("tr[data-link]").click(function() {
+      window.location = $(this).data("link")
+    })
+  })
+</script>

@@ -1,5 +1,6 @@
+<div class="teacher-box">
   <%= link_to mypage_path(teacher) do %>
-    <%= attachment_image_tag teacher, :image, class: "img-circle", format: "jpeg", size:'60x60', fallback: "no-image.png" %>
+    <%= attachment_image_tag teacher, :image, class: "img-circle img", format: "jpeg", size:'60x60', fallback: "no-image.png" %>
     <%= teacher.username %>
   <% end %>
-  <hr>
+</div>

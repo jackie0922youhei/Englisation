@@ -2,13 +2,17 @@ class Customers::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @post = Post.find(params[:post_id])
-    @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
     if @review.save
-      #通知の作成
-      @review.post.create_notification_review!(current_customer, @review.id)
-      redirect_back(fallback_location: root_path)
+      # 通知の作成
+      same_customer_notification = Notification.where(action_customer_id: current_customer.id, reciever_id: @post.customer.id, post_id: @post)
+      if same_customer_notification.empty? && (current_customer.id != @post.customer.id)
+        @review.post.create_notification_review!(current_customer, @review.id)
+      end
+      redirect_to post_path(@post.id)
     else
+      @comment = Comment.new
       @comments = @post.comments.order(created_at: :desc).page(params[:page]).per(5)
+      @reviews = @post.reviews.order(created_at: :desc).page(params[:page]).per(5)
       render :'customers/posts/show'
     end
   end
@@ -35,8 +39,8 @@ class Customers::ReviewsController < ApplicationController
   end
 
   private
+
   def review_params
     params.require(:review).permit(:body, :post_id, :customer_id).merge(rate: params['score']['rate'])
   end
-
 end

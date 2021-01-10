@@ -4,24 +4,24 @@ class Customers::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts.all.order(created_at: :desc)
-    #チャット
+    # チャット
     if customer_signed_in?
-      #Entry内のcustomer_idがcurrent_customerと同じEntry
+      # Entry内のcustomer_idがcurrent_customerと同じEntry
       @current_customer_entries = Entry.where(customer_id: current_customer.id)
-      #Entry内のcustomer_idがMYPAGEのparams.idと同じEntry
+      # Entry内のcustomer_idがMYPAGEのparams.idと同じEntry
       @customer_entries = Entry.where(customer_id: @customer.id)
-      #@customer.idとcurrent_customer.idが同じでなければ
+      # @customer.idとcurrent_customer.idが同じでなければ
       unless @customer.id == current_customer.id
         @current_customer_entries.each do |current_customer_entry|
           @customer_entries.each do |customer_entry|
-            #もしcurrent_customer側のルームidと＠customer側のルームidが同じであれば存在するルームに飛ぶ
-            if current_customer_entry.room_id == customer_entry.room_id then
+            # もしcurrent_customer側のルームidと＠customer側のルームidが同じであれば存在するルームに飛ぶ
+            if current_customer_entry.room_id == customer_entry.room_id
               @room_existance = true
               @room_id = current_customer_entry.room_id
             end
           end
         end
-        #ルームが存在していなければルームとエントリーを作成する
+        # ルームが存在していなければルームとエントリーを作成する
         unless @room_existance
           @room = Room.new
           @entry = Entry.new
@@ -56,17 +56,17 @@ class Customers::CustomersController < ApplicationController
 
   def follows
     customer = Customer.find(params[:id])
-    @customers = customer.followings
+    @followings = customer.followings
   end
 
   def followers
     customer = Customer.find(params[:id])
-    @customers = customer.followers
+    @followers = customer.followers
   end
 
   # ゲストユーザーの削除機能・編集機能を制限
   def check_guest
-    if current_customer.username == 'sample_user'
+    if current_customer.username == 'ゲストユーザー'
       redirect_to root_path, notice: 'ゲストユーザーの編集・削除はできません！'
     end
   end
@@ -76,5 +76,4 @@ class Customers::CustomersController < ApplicationController
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :email, :username, :image)
   end
-
 end

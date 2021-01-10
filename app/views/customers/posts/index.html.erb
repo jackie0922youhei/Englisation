@@ -5,7 +5,7 @@
   <% end %>
   <div id="profile_area">
     <%= render 'customers/customers/profile' %>
-  </div><hr>
+  </div>
   <div class="teacher_index">
     <h4>講師一覧</h4>
     <%= render partial: "customers/customers/teacher", collection: @teachers %>
@@ -19,8 +19,11 @@
 </div>
 <div class="col-xs-3">
   <% if customer_signed_in? %>
-    <%= render 'customers/posts/post_form', post: @post %>
-    <%= render 'layouts/search' %>
+    <div class="post_form">
+      <%= render 'customers/posts/post_form', post: @post %>
+      <div class="post-form-bottom"></div>
+      <%= render 'layouts/search' %>
+    </div>
   <% end %>
   <hr>
   <div class="ranking-box">

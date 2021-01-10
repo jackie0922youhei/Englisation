@@ -2,7 +2,7 @@
   <div class="post_show">
     <div class="post_show_left">
       <%= link_to mypage_path(@post.customer.id) do %>
-        <%= attachment_image_tag @post.customer, :image, class: "img-circle pull-left profile-thumb", format: "jpeg", size:'80x80', fallback: "no-image.png" %>
+        <%= attachment_image_tag @post.customer, :image, class: "img-circle pull-left profile-thumb img", format: "jpeg", size:'80x80', fallback: "no-image.png" %>
       <% end %>
     </div>
     <div class="post_show_right">
@@ -10,26 +10,37 @@
         <%= @post.customer.username %><br>
       </div>
       <div class="post_body">
-        <%= @post.body %><br>
+        <span id="js-post-label-<%= @post.id %>"><%= @post.body %><br></span>
+        <span id="js-post-error-<%= @post.id %>" class="text-danger"></span>
+        <textarea style="display: none;" id="js-textarea-post-<%= @post.id %>" class="form-control post-error"><%= @post.body %></textarea>
+        <span id="js-post-button-<%= @post.id %>" style="display: none;">
+          <button data-cancel-id=<%= @post.id %> type="button" class="btn btn-warning post-cancel-button btn-xs">キャンセル</button>
+          <button data-update-id=<%= @post.id%> type="button" class="btn btn-success post-update-button btn-xs">更新</button>
+        </span>
       </div>
+      <p class="sentiment-score">感情分析スコア<%= @post.score %></p>
+      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>"></span>
       <div class="post_reference">
         <%= @post.reference %><br>
       </div>
-      <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
       <span id="tag_box" class="tag_box">
         <%= render @post.tags %>
       </span>
-
-      <span id="average-review-rate<%= @post.id %>" data-score="<%= @average_review_rate %>">
-        <%= @average_review_rate %>
-      </span><br>
-
+      <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %><br>
       <div id="comment_count">
         <%= render partial: 'customers/comments/comment_count', locals: { post: @post} %>
       </div>
       <div id="favorites_buttons_<%= @post.id %>">
         <%= render partial: 'customers/favorites/favorite', locals: { post: @post} %>
       </div>
+      <% if @post.customer == current_customer %>
+        <span data-post-id=<%= @post.id %> id="js-edit-box" class="js-edit-post-button inlink">
+          <i class="fas fa-edit text-primary fa-lg"></i>
+        </span>
+        <%= link_to post_path(@post), method: :delete, id: "js-trash-box", class: "inlink pull-right trash-box" do %>
+          <i class="fas fa-trash-alt fa-lg"></i>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <%= render 'customers/comments/comment_form', post: @post, comment: @comment %>
@@ -45,17 +56,19 @@
   <% end %>
 </div>
 <div class="col-xs-5">
-  <%= render 'customers/reviews/review_form', post: @post, review: @review %>
-  <hr>
-  <h4>レビュー一覧</h4>
-  <% if @reviews.blank? %>
-    現在、投稿に対して、レビューが行われていません
-  <% else %>
-    <div id="review_box" class="review_box">
-      <%= render 'customers/reviews/review', reviews: @reviews %>
-      <%= paginate @reviews %>
-    </div>
-  <% end %>
+  <div class="post-review-box">
+    <%= render 'customers/reviews/review_form', post: @post, review: @review %>
+    <hr>
+    <h4>レビュー一覧</h4>
+    <% if @reviews.blank? %>
+      現在、投稿に対して、レビューが行われていません
+    <% else %>
+      <div id="review_box" class="review_box">
+        <%= render 'customers/reviews/review', reviews: @reviews %>
+        <%= paginate @reviews %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <script>

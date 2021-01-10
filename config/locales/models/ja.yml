@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      post: つぶやき
+      comment: コメント
+      review: レビュー
+    attributes:
+      post:
+        body: つぶやき本文
+        reference: 参考元
+        tag_list_id: タグ
+      comment:
+        body: コメント本文
+      review:
+        body: レビュー本文
+        rate: 評価

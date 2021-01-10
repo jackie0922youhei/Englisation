@@ -1,26 +1,24 @@
 <% if flash[:notice] %>
   <p class="text-active"><%= flash[:notice] %></p>
 <% end %>
-<h3><%= @customer.username %>さんのページ
-  <% if @customer == current_customer %>
-    <%= link_to "編集する", edit_mypage_path(@customer), class: "btn btn-success ml2" %>
-    <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-success ml2" %>
-  <% end %>
-</h3>
+<h3><%= @customer.username %>さんのページ</h3>
 <div class="col-xs-5">
   <div class="profile_box">
     <div class="profile_box_left">
-      <%= attachment_image_tag @customer, :image, format: "jpeg", class: "img-circle pull-left profile-thumb", fallback: "no-image.png", size:'200x200', class: "customer_image" %>
+      <%= attachment_image_tag @customer, :image, format: "jpeg", alt: @customer.image_id ? "ユーザーアイコン" : "画像準備中", class: "img-circle pull-left profile-thumb customer_image img", fallback: "no-image.png", size:'200x200' %>
     </div>
     <div class="profile_box_right">
-      <%= render 'customers/relationships/follow_count', customer: @customer %>
+      <% if @customer == current_customer %>
+        <%= link_to "編集する", edit_mypage_path(@customer), class: "btn btn-success ml2" %>
+      <% end %>
       <% if customer_signed_in? %>
         <%= render 'customers/relationships/follow_form', customer: @customer %>
         <% unless @customer.id == current_customer.id %>
           <% if @room_existance == true %>
             <%= link_to room_path(@room_id) do %>
               <button id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
+                <span>DM</span>
               </button>
             <% end %>
           <% else %>
@@ -29,7 +27,7 @@
                 <%= entry.hidden_field :customer_id, :value=> @customer.id %>
               <% end %>
               <button type="submit" id="dm_submit">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope fa-2x"></i>
               </button>
             <% end %>
           <% end %>
@@ -42,19 +40,48 @@
       <th>ユーザネーム</th>
       <td><%= @customer.username %></td>
     </tr>
+    <% if @customer == current_customer %>
+      <tr>
+        <th>氏名</th>
+        <td><%= @customer.first_name %>　<%= @customer.last_name %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    <% end %>
     <tr>
-      <th>氏名</th>
-      <td><%= @customer.first_name %>　<%= @customer.last_name %></td>
+      <th>フォロー数</th>
+      <td>
+        <%= @customer.followings.count %> 人　➡
+        <%=link_to follows_customer_path(@customer.id) do %>
+          <span class="follow-link">︎ユーザー一覧</span>
+        <% end %>
+      </td>
     </tr>
     <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
+      <th>フォロワー数</th>
+      <td>
+        <span id="follow_count">
+          <%= render 'customers/relationships/follower_count', customer: @customer %>
+        </span> 人　➡
+        <%=link_to followers_customer_path(@customer.id) do %>
+          <span class="follow-link">ユーザー一覧</span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>つぶやき数</th>
+      <td><%= @customer.posts.count %></td>
     </tr>
   </table>
 </div>
 <div class="col-xs-5">
-  <h3>投稿一覧</h3>
   <div id="post_box" class="post_box">
-    <%= render @posts %>
+    <% if @customer.posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <h4>このユーザーの投稿はまだありません</h4>
+    <% end %>
   </div>
 </div>

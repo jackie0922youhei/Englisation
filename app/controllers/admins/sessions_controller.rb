@@ -25,11 +25,11 @@ class Admins::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    posts_path
+    admins_customers_path
   end
 
   def after_sign_out_path_for(resource)
-    posts_path
+    root_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.

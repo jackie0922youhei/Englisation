@@ -8,10 +8,11 @@ class Customer < ApplicationRecord
   # ログインする時に退会済み(is_deleted==true)のcustomerを弾くためのメソッド
   def active_for_authentication?
     # customerのis_deletedがfalseならtrueを返す
-    super && (self.is_deleted == false)
+    super && (is_deleted == false)
   end
 
-  validates :username, :email, :last_name, :first_name, presence: true
+  validates :username, :last_name, :first_name, presence: true
+  validates :email, {presence: true, uniqueness: { case_sensitive: false }}
 
   attachment :image
   has_many :posts, dependent: :destroy
@@ -39,7 +40,7 @@ class Customer < ApplicationRecord
   end
 
   def create_notification_follow!(current_customer)
-    temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    temp = Notification.where(["action_customer_id = ? and reciever_id = ? and action = ? ", current_customer.id, id, 'follow'])
     if temp.blank?
       notification = current_customer.active_notifications.new(reciever_id: id, action: 'follow')
       notification.save!
@@ -48,9 +49,9 @@ class Customer < ApplicationRecord
 
   # ゲストユーザーを探す or 作成する機能
   def self.guest
-    find_or_create_by!(username: 'sample_user') do |guest|
+    find_or_create_by!(username: 'ゲストユーザー') do |guest|
       guest.password = SecureRandom.urlsafe_base64
-      guest.email = SecureRandom.urlsafe_base64 + '@' + SecureRandom.urlsafe_base64
+      guest.email = 'sample' + '@' + SecureRandom.urlsafe_base64
       guest.last_name = 'サンプル'
       guest.first_name = '太郎'
     end
@@ -60,10 +61,10 @@ class Customer < ApplicationRecord
   after_create :assign_role
 
   def assign_role
-    if self.is_teacher?
-      self.add_role(:teacher)
+    if is_teacher?
+      add_role(:teacher)
     else
-      self.add_role(:guest)
+      add_role(:guest)
     end
   end
 
@@ -80,12 +81,12 @@ class Customer < ApplicationRecord
   end
 
   private
+
   def randomize_id
-    unless self.id == 1
+    unless id == 1
       begin
         self.id = SecureRandom.random_number(1_000_000)
-      end while Customer.where(id: self.id).exists?
+      end while Customer.where(id: id).exists?
     end
   end
-
 end

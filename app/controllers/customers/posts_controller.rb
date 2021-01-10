@@ -8,23 +8,27 @@ class Customers::PostsController < ApplicationController
     # ③limit(10)：表示する最大数を10個に指定する
     # ④pluck(:post_id)：post_idカラムのみを数字で取り出すように指定
     # ⑤Post.find()：pluckで取り出される数字を投稿のIDとすることでいいね順にpostを取得する事ができる
-    @favorite_rankings = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-    @comment_rankings = Post.find(Comment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @favorite_rankings = Post.find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
+    @comment_rankings = Post.find(Comment.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
     if params[:tag_name]
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(7).order(created_at: :desc)
     else
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
     end
   end
 
   def create
-    @post = Post.new
-    @posts = Post.all.order(created_at: :desc)
-    post = Post.new(post_params)
-    post.customer_id = current_customer.id
-    redirect_to root_path
-    unless post.save
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
+    @post = Post.new(post_params)
+    @post.customer_id = current_customer.id
+    @post.score = Language.get_data(post_params[:body])
+    if @post.save
+      redirect_to root_path
+    else
+      @customer = current_customer
       @teachers = Customer.all.where(is_teacher: true)
+      @favorite_rankings = Post.find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
+      @comment_rankings = Post.find(Comment.group(:post_id).order(Arel.sql('count(post_id) desc')).limit(10).pluck(:post_id))
       render :index
     end
   end
@@ -42,10 +46,10 @@ class Customers::PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
+    @post = Post.find(params[:id])
+    @post.update!(post_update_params)
+    render json: @post
   end
 
   def destroy
@@ -55,8 +59,13 @@ class Customers::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:body, :customer_id, :reference, :tag_list)
+  end
+
+  def post_update_params
+    params.require(:post).permit(:body)
   end
 
 end

@@ -14,18 +14,13 @@ $ ->
     # Called when there's incoming data on the websocket for this channel
     #投稿を追加
     # appendメソッドはhtml要素を動的に追加することができるメソッド
-
     $('#direct_messages').append data['direct_message']
   #サーバーサイドのspeakアクションにdirect_messageパラメータを渡す
   speak: (object) ->
     @perform 'speak', direct_message: object.content, roomId: object.roomId
- # キーイベント「keypress」：キーが修飾キーでなかった場合に発生
-$(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-  #return キーのキーコードが13（エンターキーのこと！！！！）
-  if event.keyCode is 13
+$(document).on 'click','[data-behavior~=room_speaker]', (event) ->
     #speakメソッド,event.target.valueを引数に.
-    roomId = document.getElementById('chat-input').getAttribute('data-room-id')
-    content = event.target.value
+    roomId = document.getElementById('target').getAttribute('data-room-id')
+    content = document.getElementById('content').value
     App.room.speak {roomId: roomId, content: content}
-    event.target.value = ''
-    event.preventDefault()
+    document.getElementById('content').value = ''

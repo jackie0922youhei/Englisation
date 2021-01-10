@@ -42,23 +42,35 @@
       display: flex;
       justify-content: flex-end;
       p {
-        padding: 10px 20px 10px 10px;
+        padding: 0 40px 0 0;
+        width: 25%;
+        color: red;
       }
       li {
         list-style: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
         a {
           display: block;
-          width: 110px;
-          padding: 10px;
+          width: 100%;
+          padding: 15px;
           text-align: center;
           text-decoration: none;
           color: #333;
+          height: 100%;
+          z-index: 2;
+          font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+          font-weight: bold;
+          font-size: medium;
+          white-space: nowrap
         }
         #guest {
-          width: 120px;
+          width: 100%;
         }
       }
       li:hover {
@@ -86,6 +98,10 @@ main {
   margin-top: 20px;
 }
 
+.flex p {
+  top: 30%;
+}
+
 .row {
   width: auto;
 }
@@ -106,6 +122,10 @@ footer {
   display: flex;
 }
 
+.post-form-bottom {
+  margin-bottom: 100px;
+}
+
 .post_box_right {
   display: flex;
   flex-direction: column;
@@ -123,6 +143,10 @@ footer {
 .post-show {
   position: relative;
   z-index: 1;
+  background-color: white;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .post-show #post-link {
@@ -140,9 +164,27 @@ footer {
   z-index: 3;
 }
 
+.js-edit-post-button {
+  position: absolute;
+  bottom: 5%;
+  right: 13%;
+  cursor:  pointer;
+}
+
+.trash-box {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
 // プロフィール関係
+.profile-image-box {
+  margin-bottom: 10px;
+}
+
 .profile_box {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .profile_box_right {
@@ -179,6 +221,15 @@ footer {
 .post_show {
  display: flex;
  margin-bottom: 10px;
+ position: relative;
+ border-radius: 15px;
+ background-color: white;
+ padding: 10px;
+ width: 95%;
+}
+
+.post-review-box {
+  margin-left: 20px;
 }
 
 .post_show_left {
@@ -189,6 +240,33 @@ footer {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
+}
+
+.post_customer {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+#js-edit-box {
+  position: absolute;
+  right: 17%;
+  top: 85%;
+  cursor:  pointer;
+}
+
+#js-trash-box {
+  position: absolute;
+  right: 12%;
+  top: 85%;
+}
+
+.badge-grey {
+  background-color: navy;
+}
+
+.edit_link {
+  text-decoration: none;
+  color: #38aef0 ;
 }
 
 // 投稿フォーム関係
@@ -249,7 +327,6 @@ footer {
 }
 
 // ランキング関係
-
 .ranking-box {
   padding: 5px auto;
 }
@@ -261,4 +338,108 @@ footer {
 .table-noborder tbody {
   margin-bottom: 10px;
   background-color: white;
+}
+
+.circle-number {
+  border-radius:50%;
+  text-align:center;
+}
+
+.ranking-number {
+  font-family: 'Comic Sans MS';
+  color: red;
+  width: 10%;
+}
+
+// アバウトページ
+.about-top-title {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: blue;
+}
+
+.about-box {
+  display: flex;
+}
+
+.about-box i {
+  margin-bottom: 20px;
+}
+
+.about-content {
+  background-color: white;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 30%;
+}
+
+.registration-button {
+  text-align: center;
+}
+
+.about-body p {
+  font-size: large;
+}
+
+.about-title {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+// 講師一覧関係
+.teacher-box {
+  background-color: white;
+  padding: 10px;
+  margin: 15px;
+}
+
+// プロフィール画像
+.img {
+  object-fit: cover;
+}
+
+// トップに戻る矢印
+#back {
+  position: fixed;
+  right: 120px;
+  bottom: 70px;
+}
+#back .arrow {
+  width: 50px;
+}
+
+// DM画面
+.balloon1-top {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  color: #555;
+  background-color: aqua;
+}
+.balloon1-top:before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-bottom: 15px solid aqua;
+}
+.balloon1-top h7 {
+  margin: 0;
+  padding: 0;
+}
+
+.room_show {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.DM-button {
+  display: inline-block;
 }
