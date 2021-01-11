@@ -18,12 +18,15 @@
   </div>
 </div>
 <div class="col-xs-3">
-  <div class="post_form">
-    <% if customer_signed_in? %>
+  <% if customer_signed_in? %>
+    <div class="post_form">
       <%= render 'customers/posts/post_form', post: @post %>
       <div class="post-form-bottom"></div>
-    <% end %>
-  </div>
+      <hr>
+      <%= render 'layouts/search' %>
+    </div>
+  <% end %>
+  <hr>
   <div class="ranking-box">
     <h4>いいね数ランキング</h4>
     <table class="table table-noborder table-sm">

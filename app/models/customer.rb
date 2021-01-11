@@ -68,6 +68,18 @@ class Customer < ApplicationRecord
     end
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Customer.where(username: content)
+    elsif method == 'forward'
+      Customer.where('username LIKE ?', content + '%')
+    elsif method == 'backward'
+      Customer.where('username LIKE ?', '%' + content)
+    else
+      Customer.where('username LIKE ?', '%' + content + '%')
+    end
+  end
+
   private
 
   def randomize_id

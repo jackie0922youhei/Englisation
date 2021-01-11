@@ -1,0 +1,15 @@
+<% if @model == 'customer' %>
+	<h3 class="text-center">"<%= @content %>"  ユーザー検索結果</h3>
+	<% if @records.present? %>
+    <%= render 'customers/customers/search_index', customers: @records %>
+  <% else %>
+    <p>該当のユーザーはいません</p>
+  <% end %>
+<% elsif @model == 'post' %>
+	<h3 class="text-center">"<%= @content %>"  つぶやき検索結果</h3>
+	<% if @records.present? %>
+    <%= render 'customers/posts/search_index', posts: @records %>
+  <% else %>
+    <p>該当のつぶやきはありません</p>
+  <% end %>
+<% end %>
