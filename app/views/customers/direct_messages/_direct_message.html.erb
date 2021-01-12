@@ -1,4 +1,6 @@
 <% if defined?(user) %>
+<!--direct_message_broadcast_job.rbでuserにnilを代入させている-->
+<!--defined？メソッドは変数が定義されているかどうかを調べる-->
   <% if direct_message.customer.id == user.id %>
     <div class="is_current_customer">
   <% else %>

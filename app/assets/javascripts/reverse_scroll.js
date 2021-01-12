@@ -1,6 +1,7 @@
 /* global $*/
 $(function() {
   var nextLoadPage = 2;
+  console.log('これが出てくるかな')
   $(".direct_messages").scrollTop(1);
   $(".direct_messages").scroll(function() {
     // $(".chat").scrollTop() == 0: 指定した要素のスクロール位置が0かどうか

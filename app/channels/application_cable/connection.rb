@@ -9,7 +9,6 @@ module ApplicationCable
     def connect
       # connectメソッドはコネクションの接続時に呼ばれるメソッド
       self.current_customer = find_verified_customer
-      # self.current_customer = Customer.first
     end
 
     protected
