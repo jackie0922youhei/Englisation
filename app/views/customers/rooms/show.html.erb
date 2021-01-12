@@ -16,7 +16,7 @@
     <% end %>
   <% end %>
 
-  <div id="direct_messages" class="direct_messages" data-room_id="<%= @room.id %>">
+  <div id="direct_messages" class="direct_messages" data-room_id="<%= @room.id %>" data-total-pages="<%= @direct_messages.total_pages %>">
     <!--@direct_messagesの並びを降順にするために、to_aでArray型に変更して、reverseで並び替えしている-->
     <% @direct_messages.to_a.reverse.each do |direct_message| %>
       <%= render partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message, user: current_customer } %>
