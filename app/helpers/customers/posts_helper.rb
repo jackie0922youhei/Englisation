@@ -1,2 +1,0 @@
-module Customers::PostsHelper
-end
