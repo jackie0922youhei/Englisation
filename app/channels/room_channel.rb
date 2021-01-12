@@ -5,6 +5,7 @@ class RoomChannel < ApplicationCable::Channel
 
   # 接続されたとき
   def subscribed
+    p "subscribed: #{params['room']}"
     # stream_from "some_channel"
     # Streamは、Channelにルーティング機能を与える
     # これにより、ChannelはPublishされたコンテンツ(Broadcast)をSubscriberにルーティングできる

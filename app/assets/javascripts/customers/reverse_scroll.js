@@ -1,4 +1,4 @@
- /* global $*/
+/* global $*/
 $(function() {
   var nextLoadPage = 2;
   $(".direct_messages").scrollTop(1);

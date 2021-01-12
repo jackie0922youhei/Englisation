@@ -13,6 +13,7 @@ class DirectMessageBroadcastJob < ApplicationJob
 
   def render_direct_message(direct_message)
     # direct_messageに単純な文字列ではなく、direct_messages/direct_messagパーシャルのHTMLを返す
-    ApplicationController.renderer.render partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message }
+    # ApplicationController.render_with_signed_in_user(current_customer, partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message })
+    ApplicationController.renderer.render(partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message, user: nil })
   end
 end
