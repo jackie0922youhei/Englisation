@@ -15,6 +15,8 @@ $ ->
     #投稿を追加
     # appendメソッドはhtml要素を動的に追加することができるメソッド
     $('#direct_messages').append data['direct_message']
+    console.log('aaaaaa')
+    $(window).scrollTop(0);
   #サーバーサイドのspeakアクションにdirect_messageパラメータを渡す
   speak: (object) ->
     @perform 'speak', direct_message: object.content, roomId: object.roomId

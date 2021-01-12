@@ -16,9 +16,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.raty.js
-//= require infinite-scroll.pkgd.min
-// require cable.js
-// require channels/room.coffee
 //= require_tree
 
  /* global $*/
