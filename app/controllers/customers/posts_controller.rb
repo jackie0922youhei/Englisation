@@ -19,8 +19,9 @@ class Customers::PostsController < ApplicationController
 
   def create
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(7)
-    @post = Post.new(post_params)
-    @post.customer_id = current_customer.id
+    @post = current_customer.posts.new(post_params)
+    # @post.customer_id = current_customer.id
+    byebug
     @post.score = Language.get_data(post_params[:body])
     if @post.save
       redirect_to root_path
