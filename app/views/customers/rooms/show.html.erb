@@ -22,7 +22,9 @@
       <%= render partial: 'customers/direct_messages/direct_message', locals: { direct_message: direct_message, user: current_customer } %>
     <% end %>
   </div>
-  <%= paginate @direct_messages, params: {:user => current_customer } %>
+  <div class="invisible_pagination">
+    <%= paginate @direct_messages, params: {:user => current_customer } %>
+  </div>
 
   <%= form_with do |f| %>
     <%= f.text_field :content, class: "form-control" %>
