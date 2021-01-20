@@ -12,5 +12,9 @@
 </tr>
 <tr>
   <td></td>
-  <td style="border-bottom: solid 1px;" colspan="2"><%= favorite_ranking.body %></td>
+  <td style="border-bottom: solid 1px;" colspan="2">
+    <%= link_to post_path(favorite_ranking.id) do %>
+      <%= favorite_ranking.body %>
+    <% end %>
+  </td>
 </tr>
